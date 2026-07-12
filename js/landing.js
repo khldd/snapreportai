@@ -81,39 +81,61 @@
     const image = gallery.querySelector("figure img");
     const captionTitle = gallery.querySelector("figcaption span:first-child");
     const captionNote = gallery.querySelector("figcaption span:last-child");
+    const autoplayToggle = gallery.querySelector(".gallery-autoplay");
     const productName = gallery.dataset.gallery === "myqa" ? "myQA.team" : "LÆRN";
+    let autoplayEnabled = !reduceMotion;
+    let autoplayTimer;
+
+    const updateAutoplayToggle = () => {
+      if (!autoplayToggle) return;
+      autoplayToggle.setAttribute("aria-pressed", String(autoplayEnabled));
+      autoplayToggle.innerHTML = autoplayEnabled
+        ? '<span aria-hidden="true">Ⅱ</span> Auto-preview on'
+        : '<span aria-hidden="true">▶</span> Auto-preview off';
+    };
+
+    const activate = (button) => {
+      if (!button || button.classList.contains("is-active") || !image) return;
+
+      buttons.forEach((candidate) => {
+        const active = candidate === button;
+        candidate.classList.toggle("is-active", active);
+        candidate.setAttribute("aria-selected", String(active));
+        candidate.tabIndex = active ? 0 : -1;
+      });
+
+      const swap = () => {
+        image.src = `assets/products/${button.dataset.screen}`;
+        image.alt = button.dataset.alt || "";
+        if (captionTitle) captionTitle.textContent = `${productName} / ${button.textContent.trim()}`;
+        if (captionNote) captionNote.textContent = screenNotes[button.dataset.screen] || "";
+        gallery.classList.remove("is-changing");
+      };
+
+      if (reduceMotion) {
+        swap();
+      } else {
+        gallery.classList.add("is-changing");
+        window.setTimeout(swap, 130);
+      }
+    };
+
+    const stopAutoplay = () => window.clearInterval(autoplayTimer);
+    const startAutoplay = () => {
+      stopAutoplay();
+      if (!autoplayEnabled || reduceMotion || buttons.length < 2) return;
+      autoplayTimer = window.setInterval(() => {
+        const activeIndex = buttons.findIndex((button) => button.classList.contains("is-active"));
+        activate(buttons[(activeIndex + 1) % buttons.length]);
+      }, 4600);
+    };
 
     buttons.forEach((button) => {
       button.tabIndex = button.classList.contains("is-active") ? 0 : -1;
       const preloaded = new Image();
       preloaded.src = `assets/products/${button.dataset.screen}`;
 
-      button.addEventListener("click", () => {
-        if (button.classList.contains("is-active") || !image) return;
-
-        buttons.forEach((candidate) => {
-          const active = candidate === button;
-          candidate.classList.toggle("is-active", active);
-          candidate.setAttribute("aria-selected", String(active));
-          candidate.tabIndex = active ? 0 : -1;
-        });
-
-        const swap = () => {
-          image.src = `assets/products/${button.dataset.screen}`;
-          image.alt = button.dataset.alt || "";
-          if (captionTitle) captionTitle.textContent = `${productName} / ${button.textContent.trim()}`;
-          if (captionNote) captionNote.textContent = screenNotes[button.dataset.screen] || "";
-          gallery.classList.remove("is-changing");
-        };
-
-        if (reduceMotion) {
-          swap();
-        } else {
-          gallery.classList.add("is-changing");
-          window.setTimeout(swap, 130);
-        }
-      });
-
+      button.addEventListener("click", () => activate(button));
       button.addEventListener("keydown", (event) => {
         if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
         event.preventDefault();
@@ -124,6 +146,20 @@
         next.click();
       });
     });
+
+    autoplayToggle?.addEventListener("click", () => {
+      autoplayEnabled = !autoplayEnabled;
+      updateAutoplayToggle();
+      startAutoplay();
+    });
+    gallery.addEventListener("pointerenter", stopAutoplay);
+    gallery.addEventListener("pointerleave", startAutoplay);
+    gallery.addEventListener("focusin", stopAutoplay);
+    gallery.addEventListener("focusout", () => window.setTimeout(() => {
+      if (!gallery.contains(document.activeElement)) startAutoplay();
+    }, 0));
+    updateAutoplayToggle();
+    startAutoplay();
   });
 
   const contactForm = document.querySelector("#contactForm");
