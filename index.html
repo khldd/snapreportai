@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0334EA">
+  <title>SnapReport | Applied AI products, built for real work</title>
+  <meta name="description" content="SnapReport is the product company behind myQA.team and LÆRN. We build applied AI software for quality, audit, compliance, and field training.">
+  <link rel="icon" href="assets/snapreport-symbol-blue.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/landing.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="page-progress" id="pageProgress" aria-hidden="true"></div>
+
+  <svg class="svg-defs" aria-hidden="true">
+    <defs>
+      <filter id="to-snap-blue" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="0 0 0 0 0.0118 0 0 0 0 0.2039 0 0 0 0 0.9176 0 0 0 1 0"/>
+      </filter>
+      <filter id="to-ink" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="0 0 0 0 0.0275 0 0 0 0 0.0745 0 0 0 0 0.1843 0 0 0 1 0"/>
+      </filter>
+      <filter id="logo-white-transparent" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 .5 .5 .5 0 -.7"/>
+      </filter>
+      <filter id="logo-blue-transparent" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="0 0 0 0 .0118 0 0 0 0 .2039 0 0 0 0 .9176 .5 .5 .5 0 -.7"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <header class="site-header" id="siteHeader">
+    <a class="site-brand" href="#home" aria-label="SnapReport home">
+      <svg class="site-brand__lockup" viewBox="600 1200 2600 1800" aria-hidden="true"><image href="Group.svg" width="3718" height="5389"/></svg>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" type="button" aria-controls="siteNav" aria-expanded="false">
+      <span>Menu</span><i aria-hidden="true"></i>
+    </button>
+
+    <nav class="site-nav" id="siteNav" aria-label="Main navigation">
+      <a href="#company">Company</a>
+      <a href="#products">Products</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#team">Team</a>
+    </nav>
+
+    <a class="header-contact" href="#contact">Start a conversation <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="signal-current" aria-hidden="true"></div>
+      <svg class="hero-watermark" viewBox="350 260 370 280" aria-hidden="true" focusable="false">
+        <use href="Group.svg#compressed"></use>
+      </svg>
+
+      <div class="hero-copy">
+        <p class="eyebrow eyebrow--reverse" data-reveal>Independent product company / Applied AI</p>
+        <h1 data-reveal>We build tools for work that has to be <em>right.</em></h1>
+        <p class="hero-lede" data-reveal>SnapReport is the team behind myQA.team and LÆRN. We build software for quality, audit, compliance, and workforce training where clear output matters more than AI theatre.</p>
+        <div class="hero-actions" data-reveal>
+          <a class="button button--light" href="#products">See what we build <span aria-hidden="true">↓</span></a>
+          <a class="text-link" href="#contact">Talk about a project <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+
+      <div class="hero-products" data-reveal aria-label="SnapReport products">
+        <figure class="hero-product hero-product--myqa">
+          <div class="browser-bar"><span></span><span></span><span></span><small>myQA.team / Product workspace</small></div>
+          <img src="assets/products/myqa-snapinspect-live.png" alt="myQA.team SnapInspect dashboard showing inspection templates, progress, scores, and compliance">
+          <figcaption><strong>myQA.team</strong><span>Quality assistance, powered by AI</span></figcaption>
+        </figure>
+        <figure class="hero-product hero-product--laern">
+          <div class="browser-bar"><span></span><span></span><span></span><small>LÆRN / Standalone training platform</small></div>
+          <img src="assets/products/laern-library-live.png" alt="Standalone LÆRN course library showing AI-assisted training courses and progress indicators">
+          <figcaption><strong>LÆRN</strong><span>AI-powered training platform</span></figcaption>
+        </figure>
+        <div class="capture-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      </div>
+
+      <div class="hero-foot">
+        <span>Two products in the field</span>
+        <span>One focused product team</span>
+        <span>Built from Europe</span>
+      </div>
+    </section>
+
+    <section class="company-section" id="company">
+      <div class="section-index"><span>01 / Company</span><span>What we are here to build</span></div>
+      <div class="company-statement">
+        <p class="eyebrow" data-reveal>Software with a job to finish</p>
+        <h2 data-reveal>Not AI for the demo.<br><em>AI for the workflow.</em></h2>
+      </div>
+      <div class="company-detail" data-reveal>
+        <p class="company-lead">We turn dense, domain-specific work into software people can actually use.</p>
+        <p>Our products sit inside audited, regulated, and operational environments. That means the interface has to be clear, the output has to be reviewable, and the intelligence has to understand the domain before it says anything useful.</p>
+      </div>
+      <div class="company-principles" data-reveal>
+        <article><span>01</span><strong>Domain before model.</strong><p>The workflow and its rules come first. Technology follows.</p></article>
+        <article><span>02</span><strong>Evidence before assertion.</strong><p>Important output should stay traceable to its source.</p></article>
+        <article><span>03</span><strong>Product before spectacle.</strong><p>Useful, legible, maintainable software beats a clever demo.</p></article>
+      </div>
+    </section>
+
+    <section class="products-section" id="products">
+      <div class="section-index section-index--reverse"><span>02 / Products</span><span>Work you can open and use</span></div>
+
+      <article class="product-case product-case--myqa">
+        <div class="product-copy">
+          <div class="product-number">Product / 01</div>
+          <img class="product-logo product-logo--myqa" src="logos/myqateam/logo-full.svg" alt="myQA.team">
+          <p class="product-tagline">Quality assistance, powered by AI.</p>
+          <h2>Seven operational tools. One quality workspace.</h2>
+          <p class="product-description">myQA.team brings audit reports, inspections, evidence capture, label compliance, root-cause analysis, action plans, and training into one quality operating system.</p>
+          <ul class="product-facts">
+            <li><span>Audit</span>SnapReport and SnapInspect cover standards-based audits and operational inspections</li>
+            <li><span>Capture</span>CaptureIQ turns recorded work into transcripts and structured observations</li>
+            <li><span>Improve</span>Label checks, root-cause analysis, and action plans close the quality loop</li>
+          </ul>
+          <a class="case-link" href="#contact">Ask us about myQA.team <span aria-hidden="true">↗</span></a>
+        </div>
+
+        <div class="product-gallery" data-gallery="myqa" data-reveal>
+          <div class="gallery-toolbar">
+            <div role="tablist" aria-label="myQA.team product screens">
+              <button type="button" class="is-active" role="tab" aria-selected="true" data-screen="myqa-audits-live.png" data-alt="myQA.team SnapReport dashboard listing standards-based audits, completion, and outcomes">Audits</button>
+              <button type="button" role="tab" aria-selected="false" data-screen="myqa-captureiq-live.png" data-alt="myQA.team CaptureIQ dashboard showing recorded sessions and extracted observations">CaptureIQ</button>
+              <button type="button" role="tab" aria-selected="false" data-screen="myqa-snapinspect-live.png" data-alt="myQA.team SnapInspect dashboard showing inspection templates, progress, scores, and compliance">SnapInspect</button>
+              <button type="button" role="tab" aria-selected="false" data-screen="myqa-corrective-live.png" data-alt="myQA.team corrective-action interface showing a completed root-cause analysis and immediate correction">Root cause</button>
+              <button type="button" role="tab" aria-selected="false" data-screen="myqa-label-validator-live.png" data-alt="myQA.team Label Validator showing packaging evidence and regulatory compliance results">Labels</button>
+              <button type="button" role="tab" aria-selected="false" data-screen="myqa-action-plan-live.png" data-alt="myQA.team action-plan dashboard showing open items, overdue actions, owners, and closures">Action plans</button>
+              <button type="button" role="tab" aria-selected="false" data-screen="myqa-training-live.png" data-alt="myQA.team training dashboard showing courses, generation status, engagement, and completion">Training</button>
+            </div>
+            <span>7 LIVE TOOLS / PREPRODUCTION</span>
+          </div>
+          <figure>
+            <img src="assets/products/myqa-audits-live.png" alt="myQA.team SnapReport dashboard listing standards-based audits, completion, and outcomes">
+            <figcaption><span>myQA.team / Audits</span><span>Audit portfolios stay visible across standards, progress, and outcomes.</span></figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="product-case product-case--laern">
+        <div class="product-copy">
+          <div class="product-number">Product / 02</div>
+          <img class="product-logo product-logo--laern" src="logos/laern/laern logo white.svg" alt="LÆRN">
+          <p class="product-tagline">A standalone AI-powered training platform.</p>
+          <h2>A document enters. A complete training workflow comes out.</h2>
+          <p class="product-description">LÆRN is now its own product: a workspace for turning source documents into editable storyboards, narrated videos, quizzes, assignments, and trackable learning.</p>
+          <ul class="product-facts">
+            <li><span>Create</span>Upload PDF, DOCX, TXT, or PPTX files into a guided four-step course workflow</li>
+            <li><span>Edit</span>Refine topics, slides, visuals, voice-over scripts, videos, and quizzes</li>
+            <li><span>Deliver</span>Assign training, send access, and follow learner progress from one workspace</li>
+          </ul>
+          <a class="case-link" href="https://preprod.laern.eu/tools/learn" target="_blank" rel="noreferrer">Open standalone LÆRN <span aria-hidden="true">↗</span></a>
+        </div>
+
+        <div class="product-gallery" data-gallery="laern" data-reveal>
+          <div class="gallery-toolbar">
+            <div role="tablist" aria-label="LÆRN product screens">
+              <button type="button" class="is-active" role="tab" aria-selected="true" data-screen="laern-library-live.png" data-alt="Standalone LÆRN course library with courses, generation status, engagement, and completion indicators">Course library</button>
+              <button type="button" role="tab" aria-selected="false" data-screen="laern-create-live.png" data-alt="Standalone LÆRN new-course screen for uploading PDF, DOCX, TXT, or PPTX source documents">Create course</button>
+              <button type="button" role="tab" aria-selected="false" data-screen="laern-storyboard-live.png" data-alt="Standalone LÆRN storyboard editor with slide list, editable visual, and voice-over script">Storyboard</button>
+              <button type="button" role="tab" aria-selected="false" data-screen="laern-preview-live.png" data-alt="Standalone LÆRN course preview with generated training videos and quizzes">Videos &amp; quiz</button>
+            </div>
+            <span>STANDALONE PRODUCT / LIVE PREPRODUCTION</span>
+          </div>
+          <figure>
+            <img src="assets/products/laern-library-live.png" alt="Standalone LÆRN course library with courses, generation status, engagement, and completion indicators">
+            <figcaption><span>LÆRN / Course library</span><span>The standalone workspace keeps creation, delivery, and learning progress together.</span></figcaption>
+          </figure>
+        </div>
+      </article>
+    </section>
+
+    <section class="capabilities-section" id="capabilities">
+      <div class="section-index"><span>03 / Capabilities</span><span>What we bring to a new problem</span></div>
+      <div class="capabilities-heading">
+        <p class="eyebrow" data-reveal>Product, software, systems, intelligence</p>
+        <h2 data-reveal>We design the workflow.<br>Then build every layer.</h2>
+      </div>
+      <div class="capability-grid">
+        <article data-reveal>
+          <span>01 / AI &amp; automation</span>
+          <h3>Make intelligence useful inside the workflow.</h3>
+          <p>Grounded assistants, RAG systems, document understanding, and automated workflows designed around reviewable output.</p>
+          <ul class="capability-stack" aria-label="AI and automation technologies"><li>LLMs</li><li>RAG</li><li>n8n</li><li>LangChain</li></ul>
+        </article>
+        <article data-reveal>
+          <span>02 / Full-stack engineering</span>
+          <h3>Ship the complete product, not a disconnected demo.</h3>
+          <p>Responsive interfaces, dependable APIs, databases, integrations, and deployment brought together as one maintainable system.</p>
+          <ul class="capability-stack" aria-label="Full-stack technologies"><li>Next.js</li><li>React</li><li>NestJS</li><li>Spring Boot</li></ul>
+        </article>
+        <article data-reveal>
+          <span>03 / Systems &amp; cloud</span>
+          <h3>Build a backbone that can keep growing.</h3>
+          <p>Containerized services, event-driven architecture, delivery pipelines, and observability for resilient software operations.</p>
+          <ul class="capability-stack" aria-label="Systems and cloud technologies"><li>Docker</li><li>Kubernetes</li><li>Kafka</li><li>Google Cloud</li></ul>
+        </article>
+        <article data-reveal>
+          <span>04 / Data &amp; computer vision</span>
+          <h3>Turn raw signals into decisions people can act on.</h3>
+          <p>Structured analytics, OCR, object detection and tracking, and predictive models connected to real product interfaces.</p>
+          <ul class="capability-stack" aria-label="Data and computer vision technologies"><li>Python</li><li>TensorFlow</li><li>OpenCV</li><li>Big data</li></ul>
+        </article>
+      </div>
+      <div class="capabilities-foot" data-reveal>
+        <span>Built in-house</span>
+        <p>Product design · Applied AI · Full-stack delivery · Microservices · Data intelligence · Cloud infrastructure</p>
+      </div>
+    </section>
+
+    <section class="team-section" id="team">
+      <div class="signal-current signal-current--team" aria-hidden="true"></div>
+      <div class="section-index section-index--reverse"><span>04 / Team</span><span>Small by design</span></div>
+      <div class="team-heading">
+        <div><p class="eyebrow eyebrow--reverse" data-reveal>The people doing the work</p><h2 data-reveal>Direct line to<br>the builders.</h2></div>
+        <p data-reveal>We keep the team close to the problem. The people in the conversation are the people shaping, designing, and shipping the product.</p>
+      </div>
+      <div class="team-grid">
+        <article data-reveal>
+          <div class="team-monogram">I</div>
+          <div><span>CEO &amp; Executive</span><h3>Ismail Saadi</h3><p>Product strategy &amp; applied AI</p></div>
+          <a href="mailto:snapreportai99@gmail.com?subject=Hello%20Ismail">Say hello <span aria-hidden="true">↗</span></a>
+        </article>
+        <article data-reveal>
+          <div class="team-monogram team-monogram--orange">N</div>
+          <div><span>Project Manager</span><h3>Nizar Madeby</h3><p>Planning, coordination &amp; delivery</p></div>
+          <a href="mailto:snapreportai99@gmail.com?subject=Hello%20Nizar">Say hello <span aria-hidden="true">↗</span></a>
+        </article>
+        <article data-reveal>
+          <img class="team-photo" src="assets/team/karim-klila.png" alt="Karim Klila" loading="lazy">
+          <div><span>System Architecture Engineer</span><h3>Karim Klila</h3><p>Systems, cloud &amp; automation</p></div>
+          <a href="https://www.linkedin.com/in/karim-klila-429713201/" target="_blank" rel="noreferrer">View LinkedIn <span aria-hidden="true">↗</span></a>
+        </article>
+        <article data-reveal>
+          <img class="team-photo" src="assets/team/firas-eljary.png" alt="Firas Eljary" loading="lazy">
+          <div><span>Software / AI Engineer</span><h3>Firas Eljary</h3><p>Full-stack, RAG &amp; automation</p></div>
+          <a href="https://www.linkedin.com/in/firasjery/" target="_blank" rel="noreferrer">View LinkedIn <span aria-hidden="true">↗</span></a>
+        </article>
+        <article data-reveal>
+          <img class="team-photo" src="assets/team/khaled-ayedi.png" alt="Khaled Ayedi" loading="lazy">
+          <div><span>Data / AI Engineer</span><h3>Khaled Ayedi</h3><p>AI, data &amp; computer vision</p></div>
+          <a href="https://www.linkedin.com/in/khaled-ayedi-2900181b6/" target="_blank" rel="noreferrer">View LinkedIn <span aria-hidden="true">↗</span></a>
+        </article>
+        <div class="team-note" data-reveal>
+          <span>How we work</span>
+          <p>Product thinking, AI, data, and delivery stay in the same room.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="signal-current signal-current--contact" aria-hidden="true"></div>
+      <div class="contact-copy">
+        <p class="eyebrow eyebrow--reverse" data-reveal>You found us / Let's make it useful</p>
+        <h2 data-reveal>Have a hard workflow worth fixing?</h2>
+        <p data-reveal>Tell us what your team is doing manually, repeatedly, or without enough confidence. We will tell you honestly whether we can help.</p>
+      </div>
+      <div class="contact-card" data-reveal>
+        <span class="contact-card__eyebrow">Start a conversation</span>
+        <form class="contact-form" id="contactForm">
+          <div class="contact-form__row">
+            <label>Name<input type="text" name="name" autocomplete="name" required></label>
+            <label>Email<input type="email" name="email" autocomplete="email" required></label>
+          </div>
+          <label>Company <span>(optional)</span><input type="text" name="company" autocomplete="organization"></label>
+          <label>What are you working on?<textarea name="message" rows="4" required></textarea></label>
+          <button class="contact-form__submit" type="submit">Send your message <span aria-hidden="true">↗</span></button>
+          <p class="contact-form__status" aria-live="polite"></p>
+        </form>
+        <p class="contact-email">Prefer email? <a href="mailto:snapreportai99@gmail.com">snapreportai99@gmail.com <span aria-hidden="true">↗</span></a></p>
+        <div class="contact-card__meta"><span>Currently accepting product conversations</span><span>Tunis / Switzerland / Remote</span></div>
+      </div>
+      <footer class="contact-footer"><span>Capture what matters.</span><span>© 2026 SnapReport</span></footer>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="footer-brand" href="#home" aria-label="SnapReport home">
+      <svg class="footer-brand__lockup" viewBox="600 1200 2600 1800" aria-hidden="true"><image href="Group.svg" width="3718" height="5389"/></svg>
+    </a>
+    <nav aria-label="Footer navigation"><a href="#company">Company</a><a href="#products">Products</a><a href="#team">Team</a><a href="#contact">Contact</a></nav>
+    <div><a href="#home">Back to top ↑</a></div>
+  </footer>
+
+  <script src="js/landing.js"></script>
+</body>
+</html>
