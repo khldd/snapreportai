@@ -117,7 +117,7 @@ button { color: inherit; }
   gap: 9px;
 }
 
-.site-brand__mark { width: 28px; height: 28px; filter: brightness(0) invert(1); }
+.site-brand__mark { width: 37px; height: 28px; flex: 0 0 auto; object-fit: contain; filter: brightness(0) invert(1); }
 .site-brand__name { font-size: 18px; font-weight: 900; line-height: 1; letter-spacing: -.05em; }
 .site-header.is-scrolled .site-brand__mark,
 .site-header.menu-visible .site-brand__mark,
@@ -568,7 +568,8 @@ button { color: inherit; }
   width: max-content;
   height: auto;
   display: inline-flex;
-  align-items: baseline;
+  align-items: center;
+  gap: 12px;
   color: var(--white);
   font-size: 49px;
   font-weight: 900;
@@ -576,8 +577,8 @@ button { color: inherit; }
   letter-spacing: -.075em;
 }
 
-.product-logo--agrobot span { color: #9ee152; }
-.product-logo--agrobot i { width: 10px; height: 10px; margin-left: 4px; border-radius: 50% 50% 50% 0; background: var(--orange); transform: rotate(-28deg); }
+.product-logo--agrobot img { width: 48px; height: 48px; }
+.product-logo--agrobot span { color: var(--white); }
 
 .product-tagline { margin: 16px 0 39px; color: rgba(255,255,255,.54); font: 500 10px/1.4 var(--mono); text-transform: uppercase; }
 
@@ -662,14 +663,39 @@ button { color: inherit; }
 .product-gallery figcaption span:first-child { flex: none; color: var(--ink); font: 600 9px/1 var(--mono); text-transform: uppercase; }
 .product-gallery figcaption span:last-child { max-width: 360px; color: var(--muted); font-size: 11px; text-align: right; }
 
-.product-gallery--agrobot { padding: 0; overflow: hidden; background: #dceec8; }
-.agrobot-preview { position: relative; min-height: 445px; display: flex; flex-direction: column; justify-content: space-between; padding: 40px; overflow: hidden; color: #17361b; background: radial-gradient(circle at 80% 10%, #fff9c7 0 4%, transparent 26%), linear-gradient(145deg, #dbf3ba 0%, #b5dc82 100%); }
-.agrobot-preview__kicker { font: 600 10px/1 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
-.agrobot-preview strong { position: relative; z-index: 1; max-width: 460px; font-size: clamp(46px, 5vw, 78px); font-weight: 900; line-height: .9; letter-spacing: -.07em; }
-.agrobot-preview p { position: relative; z-index: 1; max-width: 310px; margin: 0; font-size: 15px; line-height: 1.4; }
-.agrobot-preview__field { position: absolute; right: -12%; bottom: -14%; left: -12%; height: 57%; display: flex; gap: 17px; align-items: end; transform: rotate(-6deg); }
-.agrobot-preview__field i { flex: 1; height: 120%; border-radius: 50% 50% 0 0; background: repeating-linear-gradient(90deg, #39742e 0 7px, #4d913a 7px 14px); transform: skewX(-14deg); }
-.agrobot-preview__field i:nth-child(2n) { height: 100%; }
+.product-gallery--agrobot { padding: 0; overflow: hidden; background: #f2faf6; transform: rotate(-.35deg); }
+.agrobot-preview { min-height: 475px; display: grid; grid-template-rows: 52px 1fr; overflow: hidden; color: #073c30; background: #fcfefd; }
+.agrobot-preview__bar { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 0 18px; border-bottom: 1px solid rgba(7,60,48,.15); background: #f2faf6; }
+.agrobot-preview__bar > span { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 900; letter-spacing: -.03em; }
+.agrobot-preview__bar img { width: 25px; height: 25px; }
+.agrobot-preview__bar small { display: inline-flex; align-items: center; gap: 7px; color: #009966; font: 600 8px/1 var(--mono); letter-spacing: .05em; text-transform: uppercase; }
+.agrobot-preview__bar small i { width: 6px; height: 6px; border-radius: 50%; background: #c7f36b; box-shadow: 0 0 0 4px rgba(199,243,107,.22); }
+.agrobot-preview__body { min-height: 0; display: grid; grid-template-columns: minmax(0,1fr) 175px; }
+.agrobot-preview__main { min-width: 0; display: grid; align-content: center; gap: 17px; padding: 26px; }
+.agrobot-preview__question { margin-left: 14%; padding: 13px 15px; border-radius: 8px 8px 2px 8px; color: #fcfefd; background: #009966; }
+.agrobot-preview__question span,
+.agrobot-preview__answer span,
+.agrobot-preview__context > span { display: block; margin-bottom: 6px; opacity: .67; font: 600 7px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+.agrobot-preview__question strong { display: block; font-size: 11px; line-height: 1.35; letter-spacing: 0; }
+.agrobot-preview__answer { padding: 17px; border: 1px solid rgba(7,60,48,.15); border-left: 3px solid #c7f36b; background: #fcfefd; box-shadow: 0 14px 34px rgba(7,60,48,.08); }
+.agrobot-preview__answer > div:first-child { display: flex; align-items: center; gap: 10px; }
+.agrobot-preview__answer img { width: 31px; height: 31px; flex: none; }
+.agrobot-preview__answer p { margin: 0; }
+.agrobot-preview__answer > div p { display: grid; gap: 1px; }
+.agrobot-preview__answer > div strong { font-size: 16px; line-height: 1.1; letter-spacing: -.025em; }
+.agrobot-preview__answer > p { margin: 14px 0; color: #607b70; font-size: 10px; line-height: 1.5; }
+.agrobot-preview__answer dl { display: grid; grid-template-columns: 1fr 1fr; margin: 0; border-top: 1px solid rgba(7,60,48,.15); }
+.agrobot-preview__answer dl div { min-width: 0; padding: 11px 9px 0 0; }
+.agrobot-preview__answer dl div + div { padding-left: 9px; border-left: 1px solid rgba(7,60,48,.15); }
+.agrobot-preview__answer dt { color: #607b70; font: 500 7px/1.2 var(--mono); text-transform: uppercase; }
+.agrobot-preview__answer dd { margin: 5px 0 0; font-size: 10px; font-weight: 700; }
+.agrobot-preview__context { position: relative; padding: 25px 18px; border-left: 1px solid rgba(7,60,48,.15); background: #f2faf6; }
+.agrobot-preview__context > span { color: #009966; opacity: 1; }
+.agrobot-preview__context > strong { display: block; font-size: 14px; line-height: 1.15; }
+.agrobot-preview__context ul { margin: 27px 0 0; padding: 0; list-style: none; }
+.agrobot-preview__context li { position: relative; padding: 11px 0 11px 12px; border-top: 1px solid rgba(7,60,48,.15); color: #607b70; font-size: 9px; line-height: 1.35; }
+.agrobot-preview__context li::before { position: absolute; top: 16px; left: 0; width: 5px; height: 5px; border-radius: 50%; content: ""; background: #c7f36b; }
+.agrobot-preview__context > small { position: absolute; right: 18px; bottom: 22px; left: 18px; color: #8ca097; font: 500 7px/1.5 var(--mono); text-transform: uppercase; }
 
 .capabilities-section {
   width: var(--page);
@@ -1000,6 +1026,8 @@ button { color: inherit; }
   .product-number { margin-bottom: 34px; }
   .product-logo--myqa { width: 220px; height: 51px; }
   .product-logo--laern { width: 190px; height: 67px; }
+  .product-logo--agrobot { font-size: 42px; }
+  .product-logo--agrobot img { width: 42px; height: 42px; }
   .product-copy h2 { font-size: 42px; }
   .product-description { font-size: 15px; }
   .product-facts li { grid-template-columns: 66px 1fr; }
@@ -1012,6 +1040,10 @@ button { color: inherit; }
   .product-gallery figure { margin-top: 6px; }
   .product-gallery figure img { aspect-ratio: 1.32; }
   .product-gallery figcaption { min-height: 42px; }
+  .agrobot-preview { min-height: 455px; }
+  .agrobot-preview__body { grid-template-columns: 1fr; }
+  .agrobot-preview__main { padding: 22px 18px; }
+  .agrobot-preview__context { display: none; }
 
   .capability-grid article { min-height: 255px; padding: 25px 25px 30px; }
   .capability-grid h3 { margin-top: 22px; font-size: 19px; }
