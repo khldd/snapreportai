@@ -882,6 +882,7 @@ button { color: inherit; }
 }
 
 .footer-brand { display: inline-flex; align-items: center; gap: 9px; width: max-content; }
+.footer-brand .site-brand__name { color: var(--blue); }
 .site-footer nav { display: flex; gap: 25px; font: 600 10px/1 var(--mono); }
 .site-footer > div { justify-self: end; display: flex; gap: 24px; color: var(--muted); font: 500 9px/1 var(--mono); }
 .site-footer a:hover { color: var(--blue); }
