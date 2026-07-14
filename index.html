@@ -37,7 +37,8 @@
 
   <header class="site-header" id="siteHeader">
     <a class="site-brand" href="#home" aria-label="SnapReport home">
-      <svg class="site-brand__lockup" viewBox="600 1200 2600 1800" aria-hidden="true"><image href="Group.svg" width="3718" height="5389"/></svg>
+      <img class="site-brand__mark" src="assets/snapreport-symbol-blue.svg" alt="" aria-hidden="true">
+      <span class="site-brand__name">SnapReport</span>
     </a>
 
     <button class="menu-toggle" id="menuToggle" type="button" aria-controls="siteNav" aria-expanded="false">
@@ -112,9 +113,34 @@
     <section class="products-section" id="products">
       <div class="section-index section-index--reverse"><span>02 / Products</span><span>Work you can open and use</span></div>
 
+      <article class="product-case product-case--agrobot">
+        <div class="product-copy">
+          <div class="product-number">Product / 02</div>
+          <div class="product-logo product-logo--agrobot" role="img" aria-label="AgroBot"><span>agro</span>bot<i aria-hidden="true"></i></div>
+          <p class="product-tagline">AI assistance for agricultural operations.</p>
+          <h2>Make every field decision easier to trace.</h2>
+          <p class="product-description">AgroBot brings field information, structured observations, and practical next steps into one clear operational view.</p>
+          <ul class="product-facts">
+            <li><span>Observe</span>Capture the signals that matter while work is happening in the field</li>
+            <li><span>Understand</span>Turn records and observations into information teams can review together</li>
+            <li><span>Act</span>Keep the next action visible from the first observation through follow-up</li>
+          </ul>
+          <a class="case-link case-link--demo" href="#contact" data-demo-product="AgroBot">Request a demo <span aria-hidden="true">↗</span></a>
+        </div>
+
+        <div class="product-gallery product-gallery--agrobot" data-reveal aria-label="AgroBot product preview">
+          <div class="agrobot-preview">
+            <span class="agrobot-preview__kicker">AgroBot / Product preview</span>
+            <strong>Built for the field.</strong>
+            <p>Product visuals will appear here with the new AgroBot identity.</p>
+            <div class="agrobot-preview__field" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+        </div>
+      </article>
+
       <article class="product-case product-case--myqa">
         <div class="product-copy">
-          <div class="product-number">Product / 01</div>
+          <div class="product-number">Product / 03</div>
           <img class="product-logo product-logo--myqa" src="logos/myqateam/logo-full.svg" alt="myQA.team">
           <p class="product-tagline">Quality assistance, powered by AI.</p>
           <h2>Seven operational tools. One quality workspace.</h2>
@@ -124,11 +150,11 @@
             <li><span>Capture</span>CaptureIQ turns recorded work into transcripts and structured observations</li>
             <li><span>Improve</span>Label checks, root-cause analysis, and action plans close the quality loop</li>
           </ul>
-          <a class="case-link" href="#contact">Ask us about myQA.team <span aria-hidden="true">↗</span></a>
+          <a class="case-link case-link--demo" href="#contact" data-demo-product="myQA.team">Request a demo <span aria-hidden="true">↗</span></a>
         </div>
 
         <div class="product-gallery" data-gallery="myqa" data-reveal>
-          <div class="gallery-cue"><span><i aria-hidden="true"></i>Select a view to explore</span><button class="gallery-autoplay" type="button" aria-pressed="true"><span aria-hidden="true">Ⅱ</span> Auto-preview on</button></div>
+          <div class="gallery-cue"><span title="Select any tab below to navigate between product screens."><i aria-hidden="true"></i>Use the tabs to navigate the screens</span><button class="gallery-autoplay" type="button" aria-pressed="true"><span aria-hidden="true">Ⅱ</span> Auto-preview on</button></div>
           <div class="gallery-toolbar">
             <div role="tablist" aria-label="myQA.team product screens">
               <button type="button" class="is-active" role="tab" aria-selected="true" data-screen="myqa-audits-live.png" data-alt="myQA.team SnapReport dashboard listing standards-based audits, completion, and outcomes">Audits</button>
@@ -150,7 +176,7 @@
 
       <article class="product-case product-case--laern">
         <div class="product-copy">
-          <div class="product-number">Product / 02</div>
+          <div class="product-number">Product / 01</div>
           <img class="product-logo product-logo--laern" src="logos/laern/laern logo white.svg" alt="LÆRN">
           <p class="product-tagline">A standalone AI-powered training platform.</p>
           <h2>A document enters. A complete training workflow comes out.</h2>
@@ -160,11 +186,11 @@
             <li><span>Edit</span>Refine topics, slides, visuals, voice-over scripts, videos, and quizzes</li>
             <li><span>Deliver</span>Assign training, send access, and follow learner progress from one workspace</li>
           </ul>
-          <a class="case-link" href="https://preprod.laern.eu/tools/learn" target="_blank" rel="noreferrer">Open standalone LÆRN <span aria-hidden="true">↗</span></a>
+          <div class="case-actions"><a class="case-link case-link--demo" href="#contact" data-demo-product="LÆRN">Request a demo <span aria-hidden="true">↗</span></a><a class="case-link" href="https://preprod.laern.eu/tools/learn" target="_blank" rel="noreferrer">Open LÆRN <span aria-hidden="true">↗</span></a></div>
         </div>
 
         <div class="product-gallery" data-gallery="laern" data-reveal>
-          <div class="gallery-cue"><span><i aria-hidden="true"></i>Select a view to explore</span><button class="gallery-autoplay" type="button" aria-pressed="true"><span aria-hidden="true">Ⅱ</span> Auto-preview on</button></div>
+          <div class="gallery-cue"><span title="Select any tab below to navigate between product screens."><i aria-hidden="true"></i>Use the tabs to navigate the screens</span><button class="gallery-autoplay" type="button" aria-pressed="true"><span aria-hidden="true">Ⅱ</span> Auto-preview on</button></div>
           <div class="gallery-toolbar">
             <div role="tablist" aria-label="LÆRN product screens">
               <button type="button" class="is-active" role="tab" aria-selected="true" data-screen="laern-library-live.png" data-alt="Standalone LÆRN course library with courses, generation status, engagement, and completion indicators">Course library</button>
@@ -288,7 +314,8 @@
 
   <footer class="site-footer">
     <a class="footer-brand" href="#home" aria-label="SnapReport home">
-      <svg class="footer-brand__lockup" viewBox="600 1200 2600 1800" aria-hidden="true"><image href="Group.svg" width="3718" height="5389"/></svg>
+      <img class="site-brand__mark" src="assets/snapreport-symbol-blue.svg" alt="" aria-hidden="true">
+      <span class="site-brand__name">SnapReport</span>
     </a>
     <nav aria-label="Footer navigation"><a href="#company">Company</a><a href="#products">Products</a><a href="#team">Team</a><a href="#contact">Contact</a></nav>
     <div><a href="#home">Back to top ↑</a></div>

@@ -31,6 +31,7 @@
       scrollTicking = false;
     });
   }, { passive: true });
+
   updateScrollUI();
 
   menuToggle?.addEventListener("click", () => {
@@ -164,6 +165,15 @@
 
   const contactForm = document.querySelector("#contactForm");
   const contactStatus = contactForm?.querySelector(".contact-form__status");
+
+  document.querySelectorAll("[data-demo-product]").forEach((link) => {
+    link.addEventListener("click", () => {
+      const product = link.dataset.demoProduct;
+      const message = contactForm?.querySelector('[name="message"]');
+      if (!message || !product) return;
+      if (!message.value.trim()) message.value = `I would like a demo of ${product}.`;
+    });
+  });
 
   contactForm?.addEventListener("submit", (event) => {
     event.preventDefault();
