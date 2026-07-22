@@ -53,7 +53,15 @@ button { color: inherit; }
    [data-state] is the exact discriminator: every motion instance carries it, no static one
    does, and it is self-maintaining -- an instance without data-state cannot animate anyway,
    so it correctly keeps the static background. */
-.agent-mark[data-state] { background: none; }
+.agent-mark[data-state], .agent-mark--mono { background: none; }
+/* One-colour instances. `filter: brightness(0) invert(1)` used to force the flat background
+   image white, which worked on the retired six-petal mark because its petals were separate
+   shapes with gaps between them -- a silhouette still read as the mark. This mark's identity is
+   the contrast between two overlapping layers, so flattening merges outer petal, inner petal
+   and core into one featureless blob. #mark-mono-shapes keeps the construction by knocking the
+   inner petal out in the ground colour, which is why --swap-bg is set per instance rather than
+   baked into a file: these grounds are not the same colour. */
+.agent-mark--mono { color: var(--white); }
 .agent-thread { display: none; }
 .agent-seed, .agent-check { display: none; }
 
@@ -168,7 +176,7 @@ button { color: inherit; }
 .wordmark strong { font-size: clamp(62px, 7vw, 108px); line-height: .8; letter-spacing: -.075em; }
 .wordmark span { margin-top: 20px; color: var(--ink); font: 600 10px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; }
 .lockup-compact { display: grid; place-items: center; align-content: center; gap: 24px; background: var(--ink); }
-.lockup-compact .agent-mark { width: 128px; color: var(--white); filter: brightness(0) invert(1); }
+.lockup-compact .agent-mark { width: 128px; --swap-bg: var(--ink); } /* knocks out against .lockup-compact's ink ground */
 .lockup-compact span, .lockup-parent > span { color: rgba(252,252,254,.5); font: 500 8px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
 .lockup-parent { position: relative; display: grid; place-items: center; border-top: 1px solid var(--line-reverse); background: var(--white); }
 .lockup-parent > span { position: absolute; top: 20px; left: 20px; color: var(--muted); }
@@ -181,7 +189,7 @@ button { color: inherit; }
 .size-row { min-height: 320px; display: grid; grid-template-columns: repeat(4,1fr); }
 .size-row > div { display: grid; place-items: center; align-content: center; gap: 33px; border-right: 1px solid var(--line-reverse); }
 .size-row > div:last-child { border-right: 0; }
-.size-row .agent-mark { width: var(--icon-size); color: var(--white); filter: brightness(0) invert(1); }
+.size-row .agent-mark { width: var(--icon-size); --swap-bg: var(--blue); } /* .mark-section ground */
 .size-row .agent-thread { stroke-width: max(7px, calc(448px / var(--icon-size))); }
 .size-row span { color: rgba(252,252,254,.5); font: 500 8px/1 var(--mono); text-transform: uppercase; }
 .naming-note { display: grid; grid-template-columns: .28fr .72fr; margin-top: 70px; padding-top: 28px; border-top: 3px solid var(--white); }
@@ -191,7 +199,10 @@ button { color: inherit; }
 
 .motion-section { color: var(--white); background: var(--ink); }
 .state-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 1px; border: 1px solid var(--line-reverse); background: var(--line-reverse); }
-.state-grid article { min-width: 0; padding-bottom: 26px; background: var(--ink); }
+/* Flex column so the timing label bottom-aligns across all five cards regardless of how many
+   lines the description runs to. The old `min-height` on <p> only equalised them by accident,
+   at the copy length that happened to exist when it was written. */
+.state-grid article { min-width: 0; padding-bottom: 26px; background: var(--ink); display: flex; flex-direction: column; }
 .state-icon { height: 300px; display: grid; place-items: center; overflow: hidden; border-bottom: 1px solid var(--line-reverse); background-color: #0b493b; background-image: radial-gradient(rgba(255,255,255,.16) 1px, transparent 1px); background-size: 18px 18px; }
 /* 110px x 1.375. The brightness/invert filter that used to force the flat background image
    white is gone -- colour now comes from the symbol's own hooks. --mk-sat is REQUIRED on this
@@ -200,7 +211,7 @@ button { color: inherit; }
 .state-grid article > span, .state-grid article > small { display: block; margin: 25px 24px 0; color: rgba(252,252,254,.43); font: 500 8px/1 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
 .state-grid h3 { margin: 16px 24px 7px; font-size: 21px; line-height: 1.15; letter-spacing: -.025em; }
 .state-grid p { min-height: 64px; margin: 0 24px; color: rgba(252,252,254,.58); font-size: 13px; }
-.state-grid article > small { margin-top: 23px; color: var(--orange); }
+.state-grid article > small { margin: auto 24px 0; padding-top: 23px; color: var(--orange); }
 .motion-rule { display: grid; grid-template-columns: .28fr .72fr; gap: 40px; margin-top: 62px; padding-top: 26px; border-top: 3px solid var(--white); }
 .motion-rule span { color: rgba(252,252,254,.48); font: 600 9px/1.4 var(--mono); text-transform: uppercase; }
 .motion-rule p { max-width: 900px; margin: 0; font-size: clamp(25px, 3vw, 43px); font-weight: 700; line-height: 1.17; letter-spacing: -.04em; }
@@ -328,7 +339,7 @@ button { color: inherit; }
 
 .closing { position: relative; min-height: 760px; display: grid; grid-template-columns: 1fr .36fr; gap: 8vw; align-items: end; padding: 130px max(36px, calc((100vw - 1380px) / 2)) 80px; overflow: hidden; color: var(--white); background: var(--blue); }
 .closing::before { position: absolute; inset: 0; content: ""; opacity: .16; background-image: radial-gradient(rgba(255,255,255,.8) 1px, transparent 1px); background-size: 19px 19px; mask-image: linear-gradient(90deg, black, transparent 70%); }
-.agent-mark--closing { position: absolute; top: -15%; right: 4%; width: min(52vw,760px); color: var(--white); opacity: .08; filter: brightness(0) invert(1); transform: rotate(-9deg); }
+.agent-mark--closing { position: absolute; top: -15%; right: 4%; width: min(52vw,760px); opacity: .08; --swap-bg: var(--blue); transform: rotate(-9deg); } /* .closing ground */
 .closing-thread { position: absolute; left: -10%; bottom: -41%; width: 68vw; aspect-ratio: 1; border: 1px solid rgba(255,255,255,.17); border-radius: 50%; box-shadow: 0 0 0 8vw rgba(255,255,255,.025), 0 0 0 18vw rgba(255,255,255,.018); }
 .closing-copy, .closing-actions { position: relative; z-index: 2; }
 .closing h2 { margin: 0; font-size: clamp(65px,8vw,130px); font-weight: 900; line-height: .83; letter-spacing: -.074em; }

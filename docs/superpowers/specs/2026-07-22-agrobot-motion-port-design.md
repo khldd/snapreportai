@@ -454,7 +454,7 @@ This is exactly the failure mode §8.2 exists to catch: it is invisible to every
 not put pixels on a screen. `scripts/verify-mark.mjs` check 7 now asserts the file is
 well-formed and that no comment contains `--`, so it cannot regress silently.
 
-### Outstanding — the reverse treatment flattens the new mark
+### Resolved — the reverse treatment flattened the new mark
 
 Three selectors render the mark white-on-dark with `filter: brightness(0) invert(1)`:
 `.lockup-compact` (:161), `.size-row` (:174) and `.agent-mark--closing` (:319).
@@ -470,8 +470,43 @@ with `#mark-mono-shapes`: outer petal in `currentColor`, inner petal in the **ba
 colour, core in `currentColor` — a knockout that preserves the layering in a single colour. That
 symbol was not ported, because §4 scoped the port to motion instances only.
 
-Not fixed unilaterally: choosing the knockout colour per ground is a design decision, and these
-are instances the spec explicitly scoped out. See the handover note for the options.
+**Fix applied.** `#mark-mono-shapes` is now ported into the shared `<defs>`, and the six reverse
+instances render it inline with a per-instance `--swap-bg`. This is an unshipped `DESIGN.md`
+§Scale deliverable, not scope creep — flattening *deletes* the mark's identity rather than
+degrading it, since that identity is the contrast between the two overlapping layers.
+
+A baked `agrobot-reverse.svg` was rejected: it would hardcode one background, and **the grounds
+differ** — `.lockup-compact` sits on `--ink` (#073C30) while `.size-row` and `.agent-mark--closing`
+sit on `--blue` (#009966). A custom property is the only thing that adapts.
+
+| Instance | Ground | `--swap-bg` |
+|---|---|---|
+| `.lockup-compact .agent-mark` | `.lockup-compact` | `var(--ink)` |
+| `.size-row .agent-mark` ×4 | `.mark-section` | `var(--blue)` |
+| `.agent-mark--closing` | `.closing` | `var(--blue)` |
+
+`filter: brightness(0) invert(1)` is removed from all three. Confirmed visually at 20, 32, 64 and
+128px: the 8-lobe rosette is legible in one colour at every size. Measured ink coverage fell from
+61.8% to 33.3% (lockup) and 59.1% to 35.1% (size row) — that difference *is* the negative space
+returning.
+
+Note this is the one-colour variant only. The optically adjusted **micro** mark is still
+outstanding; see §9.
+
+### Also — state-card copy corrected
+
+The five `.state-grid` captions described the retired motion (Ready's "brief flash" was the
+removed `awn-resolve` bounce; Verified's "petals hold their position" contradicted its quarter
+turn; Alert's "two synchronized flashes" was one dot and one ring) and every timing label was
+wrong. Rewritten to describe behaviour rather than implementation — no radii or keyframe names in
+user-facing copy.
+
+Alert's label is **1950 ms**, not the flower's 1.7s: the ring finishes last, at 0.85s delay plus
+1.1s duration. Verified's 1150 ms is likewise its ring, the longest component.
+
+The longer captions broke the timing labels' alignment, which `.state-grid p { min-height: 64px }`
+had only equalised by accident at the old copy length. The cards are now a flex column with the
+label on `margin-top: auto`, so they bottom-align at any copy length.
 
 ## 9. Out of scope
 

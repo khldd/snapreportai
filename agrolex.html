@@ -79,6 +79,18 @@
       </g>
     </g>
   </g>
+  <!-- One-colour variant. DESIGN.md Scale requires a true one-colour version, and a flat
+       silhouette will not do: this mark's identity IS the contrast between the two overlapping
+       petal layers, so flattening every fill to one colour deletes the construction rather than
+       simplifying it. The layering is preserved by knocking the inner petal out in the GROUND
+       colour, which each instance supplies through swap-bg. currentColor paints the rest. -->
+  <g id="mark-mono-shapes">
+    <g transform="translate(32 32) scale(.29825) translate(-170.5 -161.5)">
+      <use href="#mark-petal-shape" transform="matrix(.975893 .975893 -.975893 .975893 161.354112 -162.595967)" fill="currentColor"/>
+      <use href="#mark-petal-shape" fill="var(--swap-bg,#FCFEFD)"/>
+      <use href="#mark-core-shape" fill="currentColor"/>
+    </g>
+  </g>
 </defs>
 </svg>
 
@@ -197,9 +209,7 @@
           <div class="wordmark"><strong>AgroBot</strong><span>Legal intelligence</span></div>
         </div>
         <div class="lockup-compact">
-          <svg class="agent-mark" viewBox="0 0 64 64" aria-hidden="true">
-            <path class="agent-thread" d="M30 8C18 8 10 13.5 10 21.5C10 28.7 16.2 32 32 32C46.8 32 53 36 53 43.5C53 51 45.5 56 33 56"/><path class="agent-thread" d="M34 8C46 8 54 13.5 54 21.5C54 28.7 47.8 32 32 32C17.2 32 11 36 11 43.5C11 51 18.5 56 31 56"/><rect class="agent-seed" x="28.25" y="28.25" width="7.5" height="7.5" rx="1.4" transform="rotate(45 32 32)"/>
-          </svg>
+          <svg class="agent-mark agent-mark--mono" viewBox="0 0 64 64" aria-hidden="true"><use href="#mark-mono-shapes"/></svg>
           <span>Compact / UI</span>
         </div>
         <div class="lockup-parent"><span>Inside</span><img src="logos/myqateam/logo-full.svg" alt="myQA.team"></div>
@@ -208,10 +218,10 @@
       <div class="size-system" data-reveal>
         <div class="size-system__head"><span>Optical scale</span><strong>One silhouette at every size.</strong><p>The six-cell structure remains legible from a 20 px status mark to a full identity moment.</p></div>
         <div class="size-row">
-          <div style="--icon-size:20px"><svg class="agent-mark agent-mark--micro" viewBox="0 0 64 64" aria-hidden="true"><path class="agent-thread" d="M30 8C18 8 10 13.5 10 21.5C10 28.7 16.2 32 32 32C46.8 32 53 36 53 43.5C53 51 45.5 56 33 56"/><path class="agent-thread" d="M34 8C46 8 54 13.5 54 21.5C54 28.7 47.8 32 32 32C17.2 32 11 36 11 43.5C11 51 18.5 56 31 56"/></svg><span>20 / Micro</span></div>
-          <div style="--icon-size:32px"><svg class="agent-mark" viewBox="0 0 64 64" aria-hidden="true"><path class="agent-thread" d="M30 8C18 8 10 13.5 10 21.5C10 28.7 16.2 32 32 32C46.8 32 53 36 53 43.5C53 51 45.5 56 33 56"/><path class="agent-thread" d="M34 8C46 8 54 13.5 54 21.5C54 28.7 47.8 32 32 32C17.2 32 11 36 11 43.5C11 51 18.5 56 31 56"/><rect class="agent-seed" x="28.25" y="28.25" width="7.5" height="7.5" rx="1.4" transform="rotate(45 32 32)"/></svg><span>32 / Chat</span></div>
-          <div style="--icon-size:64px"><svg class="agent-mark" viewBox="0 0 64 64" aria-hidden="true"><path class="agent-thread" d="M30 8C18 8 10 13.5 10 21.5C10 28.7 16.2 32 32 32C46.8 32 53 36 53 43.5C53 51 45.5 56 33 56"/><path class="agent-thread" d="M34 8C46 8 54 13.5 54 21.5C54 28.7 47.8 32 32 32C17.2 32 11 36 11 43.5C11 51 18.5 56 31 56"/><rect class="agent-seed" x="28.25" y="28.25" width="7.5" height="7.5" rx="1.4" transform="rotate(45 32 32)"/></svg><span>64 / Avatar</span></div>
-          <div style="--icon-size:128px"><svg class="agent-mark" viewBox="0 0 64 64" aria-hidden="true"><path class="agent-thread" d="M30 8C18 8 10 13.5 10 21.5C10 28.7 16.2 32 32 32C46.8 32 53 36 53 43.5C53 51 45.5 56 33 56"/><path class="agent-thread" d="M34 8C46 8 54 13.5 54 21.5C54 28.7 47.8 32 32 32C17.2 32 11 36 11 43.5C11 51 18.5 56 31 56"/><rect class="agent-seed" x="28.25" y="28.25" width="7.5" height="7.5" rx="1.4" transform="rotate(45 32 32)"/></svg><span>128 / Feature</span></div>
+          <div style="--icon-size:20px"><svg class="agent-mark agent-mark--mono" viewBox="0 0 64 64" aria-hidden="true"><use href="#mark-mono-shapes"/></svg><span>20 / Micro</span></div>
+          <div style="--icon-size:32px"><svg class="agent-mark agent-mark--mono" viewBox="0 0 64 64" aria-hidden="true"><use href="#mark-mono-shapes"/></svg><span>32 / Chat</span></div>
+          <div style="--icon-size:64px"><svg class="agent-mark agent-mark--mono" viewBox="0 0 64 64" aria-hidden="true"><use href="#mark-mono-shapes"/></svg><span>64 / Avatar</span></div>
+          <div style="--icon-size:128px"><svg class="agent-mark agent-mark--mono" viewBox="0 0 64 64" aria-hidden="true"><use href="#mark-mono-shapes"/></svg><span>128 / Feature</span></div>
         </div>
       </div>
 
@@ -230,11 +240,11 @@
       </div>
 
       <div class="state-grid" data-reveal>
-        <article data-state="ready"><div class="state-icon"><svg class="agent-mark" viewBox="-12 -12 88 88" aria-hidden="true" data-state="ready"><use href="#mark-master-shapes"/></svg></div><span>01 / Ready</span><h3>Present, not impatient.</h3><p>A brief flash signals availability, then the mark holds still until you ask something.</p><small>460 ms / once</small></article>
-        <article data-state="listening"><div class="state-icon"><svg class="agent-mark" viewBox="-12 -12 88 88" aria-hidden="true" data-state="listening"><use href="#mark-master-shapes"/></svg></div><span>02 / Listening</span><h3>Acknowledge the input.</h3><p>A quick tap starts at the top petal and ripples clockwise around the ring while you keep typing.</p><small>2400 ms / loop</small></article>
-        <article data-state="researching"><div class="state-icon"><svg class="agent-mark" viewBox="-12 -12 88 88" aria-hidden="true" data-state="researching"><use href="#mark-master-shapes"/></svg></div><span>03 / Researching</span><h3>Compare every context.</h3><p>A single signal visits each cell while sources and business context are cross-checked.</p><small>1050 ms / loop</small></article>
-        <article data-state="verified"><div class="state-icon"><svg class="agent-mark" viewBox="-12 -12 88 88" aria-hidden="true" data-state="verified"><use href="#mark-master-shapes"/></svg></div><span>04 / Verified</span><h3>Reach the answer.</h3><p>The petals hold their position while the intelligence core gives a steady confirming pulse.</p><small>1400 ms / focused</small></article>
-        <article data-state="alert"><div class="state-icon"><svg class="agent-mark" viewBox="-12 -12 88 88" aria-hidden="true" data-state="alert"><use href="#mark-master-shapes"/></svg></div><span>05 / Alert</span><h3>Signal what is new.</h3><p>Two synchronized flashes announce a new legal alert, followed by a calm pause until it is acknowledged.</p><small>2400 ms / pending loop</small></article>
+        <article data-state="ready"><div class="state-icon"><svg class="agent-mark" viewBox="-12 -12 88 88" aria-hidden="true" data-state="ready"><use href="#mark-master-shapes"/></svg></div><span>01 / Ready</span><h3>Present, not impatient.</h3><p>Two petal layers breathe on clocks that never divide into each other, so the mark stays alive without ever settling into a pulse. The core does not move.</p><small>5.2s + 6.8s / loop</small></article>
+        <article data-state="listening"><div class="state-icon"><svg class="agent-mark" viewBox="-12 -12 88 88" aria-hidden="true" data-state="listening"><use href="#mark-master-shapes"/></svg></div><span>02 / Listening</span><h3>Acknowledge the input.</h3><p>Four source dots emerge from the petal tips, sweep half a turn together and withdraw, carrying the outer flower a quarter turn with them. Then everything stops for a beat.</p><small>3400 ms / loop</small></article>
+        <article data-state="researching"><div class="state-icon"><svg class="agent-mark" viewBox="-12 -12 88 88" aria-hidden="true" data-state="researching"><use href="#mark-master-shapes"/></svg></div><span>03 / Researching</span><h3>Compare every context.</h3><p>The dots index through the sources in four quarter-turn steps while the outer flower steps the opposite way. It holds still for most of the cycle, which is what separates checking from spinning.</p><small>6000 ms / loop</small></article>
+        <article data-state="verified"><div class="state-icon"><svg class="agent-mark" viewBox="-12 -12 88 88" aria-hidden="true" data-state="verified"><use href="#mark-master-shapes"/></svg></div><span>04 / Verified</span><h3>Reach the answer.</h3><p>The dots converge into the core as the confirmation ring resolves outward, and the outer flower seats with one quarter turn. Then it stops completely.</p><small>1150 ms / once</small></article>
+        <article data-state="alert"><div class="state-icon"><svg class="agent-mark" viewBox="-12 -12 88 88" aria-hidden="true" data-state="alert"><use href="#mark-master-shapes"/></svg></div><span>05 / Alert</span><h3>Signal what is new.</h3><p>A single dot arrives from outside the frame and stays there, because a new regulation is pending until it is acknowledged. The mark answers with one ring, then turns to attend to it.</p><small>1950 ms / once</small></article>
       </div>
 
       <div class="motion-rule" data-reveal><span>Motion rule / One thought at a time</span><p>Gather <i>→</i> connect clauses <i>→</i> answer. Never rotate the full symbol, never bounce, and never animate after the result is stable.</p></div>
@@ -321,7 +331,7 @@
 
     <section class="closing">
       <div class="closing-thread" aria-hidden="true"></div>
-      <svg class="agent-mark agent-mark--closing" viewBox="0 0 64 64" aria-hidden="true"><path class="agent-thread" d="M30 8C18 8 10 13.5 10 21.5C10 28.7 16.2 32 32 32C46.8 32 53 36 53 43.5C53 51 45.5 56 33 56"/><path class="agent-thread" d="M34 8C46 8 54 13.5 54 21.5C54 28.7 47.8 32 32 32C17.2 32 11 36 11 43.5C11 51 18.5 56 31 56"/><rect class="agent-seed" x="28.25" y="28.25" width="7.5" height="7.5" rx="1.4" transform="rotate(45 32 32)"/></svg>
+      <svg class="agent-mark agent-mark--mono agent-mark--closing" viewBox="0 0 64 64" aria-hidden="true"><use href="#mark-mono-shapes"/></svg>
       <div class="closing-copy" data-reveal><p class="eyebrow eyebrow--reverse">AgroBot / Identity system</p><h2>The law moves.<br>Know where it lands.</h2></div>
       <div class="closing-actions" data-reveal>
         <a href="assets/agrobot.svg" download><span>Download the AgroBot symbol</span><span>SVG ↓</span></a>
