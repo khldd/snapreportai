@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="lot-title lot-description">
+  <title id="lot-title">AgroBot Lot</title>
+  <desc id="lot-description">Three grain kernels grow directly into a compact lot code, joining agricultural material and product traceability.</desc>
+  <g fill="#073C30">
+    <path d="M17 6C23 9 24 15 18 21C12 18 11 12 17 6Z"/>
+    <path d="M32 4C38 8 39 14 33 20C27 17 26 10 32 4Z"/>
+    <path d="M47 6C53 12 52 18 46 21C40 15 41 9 47 6Z"/>
+    <rect x="14" y="24" width="6" height="34" rx="2"/>
+    <rect x="23" y="29" width="3" height="29" rx="1.5"/>
+    <rect x="40" y="29" width="3" height="29" rx="1.5"/>
+    <rect x="45" y="24" width="6" height="34" rx="2"/>
+  </g>
+  <rect x="29" y="23" width="8" height="35" rx="2" fill="#009966"/>
+  <path d="M29 42H37" fill="none" stroke="#FCFEFD" stroke-width="3"/>
+</svg>

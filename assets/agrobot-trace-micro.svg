@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-labelledby="trace-micro-title trace-micro-description" color="#009966">
+  <title id="trace-micro-title">AgroBot Evidence Trace micro mark</title>
+  <desc id="trace-micro-description">A simplified evidence route ending in a proof point.</desc>
+  <path d="M3.5 7V4.5H15c2 0 3.5 1.2 3.5 3S17 10.5 15 10.5H8.5c-2 0-3.5 1.2-3.5 3s1.5 3 3.5 3H15" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="18" cy="17" r="3" fill="currentColor"/>
+</svg>

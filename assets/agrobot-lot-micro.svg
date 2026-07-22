@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-labelledby="lot-micro-title lot-micro-description">
+  <title id="lot-micro-title">AgroBot Lot micro mark</title>
+  <desc id="lot-micro-description">Two grain kernels grow into a simplified lot code.</desc>
+  <g fill="#073C30">
+    <path d="M7 2C10 4 10 7 7 10C4 8 4 5 7 2Z"/>
+    <path d="M17 2C20 5 20 8 16 10C14 7 14 4 17 2Z"/>
+    <rect x="5" y="11" width="4" height="11" rx="1.5"/>
+    <rect x="15" y="11" width="4" height="11" rx="1.5"/>
+  </g>
+  <rect x="10.5" y="10" width="3" height="12" rx="1.5" fill="#009966"/>
+</svg>

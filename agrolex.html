@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#073C30">
+  <title>AgroBot | Agent identity system</title>
+  <meta name="description" content="The visual identity and motion system for AgroBot, the legal intelligence agent inside myQA.team.">
+  <link rel="icon" href="assets/agrobot.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/agrolex.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the AgroBot identity</a>
+  <div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+
+  <header class="site-header" id="siteHeader">
+    <a class="header-brand" href="landing.html#products" aria-label="Back to the myQA.team product overview">
+      <img src="logos/myqateam/logo-compact.svg" alt="" aria-hidden="true">
+      <span><strong>AgroBot</strong><small>Agent identity / myQA.team</small></span>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" type="button" aria-controls="mainNav" aria-expanded="false">
+      <span>Index</span><i aria-hidden="true"></i>
+    </button>
+
+    <nav class="main-nav" id="mainNav" aria-label="AgroBot identity sections">
+      <a href="#idea">Idea</a>
+      <a href="#mark">Mark</a>
+      <a href="#motion">Motion</a>
+      <a href="#interface">Interface</a>
+      <a href="#system">System</a>
+    </nav>
+
+    <div class="header-meta"><span>MYQA / LEGAL AI</span><span>AXL–01 / 2026</span></div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home" data-section>
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <p class="eyebrow eyebrow--reverse" data-reveal>myQA.team / Legal intelligence agent</p>
+        <h1 data-reveal>See where<br>the law <em>lands.</em></h1>
+        <p class="hero-lede" data-reveal>AgroBot monitors what changes, connects it to what your business makes, and remembers the context behind every answer.</p>
+        <div class="hero-principles" data-reveal aria-label="AgroBot principles"><span>Monitor</span><span>Connect</span><span>Remember</span><span>Explain</span></div>
+      </div>
+
+      <div class="agent-stage" id="heroAgentStage" data-state="researching" data-reveal>
+        <div class="stage-toolbar"><span>Live mark / Researching</span><span class="stage-status" aria-live="polite"><i></i>Checking sources</span></div>
+        <div class="agent-orbit" aria-hidden="true">
+          <span class="orbit-ring orbit-ring--outer"></span>
+          <span class="orbit-ring orbit-ring--inner"></span>
+          <span class="source-node source-node--law">LAW</span>
+          <span class="source-node source-node--product">PRODUCT</span>
+          <span class="source-node source-node--memory">MARKET</span>
+        </div>
+        <svg class="agent-mark agent-mark--hero" viewBox="0 0 64 64" role="img" aria-label="AgroBot Canopy symbol researching">
+          <path class="agent-thread agent-thread--one" pathLength="100" d="M30 8C18 8 10 13.5 10 21.5C10 28.7 16.2 32 32 32C46.8 32 53 36 53 43.5C53 51 45.5 56 33 56"/>
+          <path class="agent-thread agent-thread--two" pathLength="100" d="M34 8C46 8 54 13.5 54 21.5C54 28.7 47.8 32 32 32C17.2 32 11 36 11 43.5C11 51 18.5 56 31 56"/>
+          <rect class="agent-seed" x="28.25" y="28.25" width="7.5" height="7.5" rx="1.4" transform="rotate(45 32 32)"/>
+          <path class="agent-check" d="M27.5 32.2l3 3 6.2-7"/>
+        </svg>
+        <div class="agent-state-controls" role="group" aria-label="Preview AgroBot agent states">
+          <button type="button" data-state-control="ready" aria-pressed="false"><i></i>Ready</button>
+          <button type="button" data-state-control="listening" aria-pressed="false"><i></i>Listening</button>
+          <button type="button" data-state-control="researching" aria-pressed="true"><i></i>Researching</button>
+          <button type="button" data-state-control="verified" aria-pressed="false"><i></i>Verified</button>
+          <button type="button" data-state-control="alert" aria-pressed="false"><i></i>Alert</button>
+        </div>
+      </div>
+
+      <div class="hero-foot">
+        <span>Identity proposal / 01</span>
+        <span>Built for the myQA.team system</span>
+        <a href="#idea">Explore the system <i aria-hidden="true">↓</i></a>
+      </div>
+    </section>
+
+    <section class="section idea-section" id="idea" data-section>
+      <div class="section-index"><span>01 / Core idea</span><span>Function becomes form</span></div>
+      <div class="idea-heading">
+        <p class="eyebrow" data-reveal>The Canopy</p>
+        <h2 data-reveal>Six living contexts.<br><em>One intelligent core.</em></h2>
+      </div>
+      <div class="idea-copy" data-reveal>
+        <p class="idea-lead">The symbol is human without becoming a food illustration, and intelligent without borrowing the generic AI sparkle.</p>
+        <p>Six connected context cells surround one precise hexagonal core. Their distinct contours make each source legible; their radial order shows the control AgroBot brings to law, product, market, ingredient, label, and memory.</p>
+      </div>
+
+      <div class="concept-strip" data-reveal>
+        <article><span>⌁ / Agri-food</span><strong>Contexts that stay connected.</strong><p>Soft asymmetry keeps the mark approachable without reducing the sector to a literal plant or leaf.</p></article>
+        <article><span>◌ / Intelligence</span><strong>Distributed context.</strong><p>Six independent cells remain visible while the agent compares them around one conclusion.</p></article>
+        <article><span>⬢ / Legal proof</span><strong>Precision at the center.</strong><p>The compact hexagonal seed is where sources, business context, and the answer resolve.</p></article>
+      </div>
+
+      <div class="anatomy" data-reveal>
+        <div class="anatomy-stage">
+          <span class="geometry geometry--vertical" aria-hidden="true"></span><span class="geometry geometry--horizontal" aria-hidden="true"></span>
+          <svg class="agent-mark agent-mark--anatomy" viewBox="0 0 64 64" role="img" aria-label="Anatomy of the AgroBot Canopy symbol">
+            <path class="agent-thread agent-thread--one" d="M30 8C18 8 10 13.5 10 21.5C10 28.7 16.2 32 32 32C46.8 32 53 36 53 43.5C53 51 45.5 56 33 56"/>
+            <path class="agent-thread agent-thread--two" d="M34 8C46 8 54 13.5 54 21.5C54 28.7 47.8 32 32 32C17.2 32 11 36 11 43.5C11 51 18.5 56 31 56"/>
+            <rect class="agent-seed" x="28.25" y="28.25" width="7.5" height="7.5" rx="1.4" transform="rotate(45 32 32)"/>
+          </svg>
+          <span class="anatomy-label anatomy-label--top"><i></i>Living module</span>
+          <span class="anatomy-label anatomy-label--middle"><i></i>Intelligence core</span>
+          <span class="anatomy-label anatomy-label--bottom"><i></i>Context ring</span>
+        </div>
+        <div class="anatomy-notes">
+          <div><span>01 / Connected intelligence</span><h3>It belongs in food operations.</h3><p>Six connected forms represent the product, ingredient, label, market, supplier, and legal contexts an agri-food team needs to review.</p></div>
+          <div><span>02 / Connected contexts</span><h3>It follows impact, not keywords.</h3><p>Each cell stands for a legal or business context mapped to a real product, market, label, or operation.</p></div>
+          <div><span>03 / Verified center</span><h3>Every answer has a proof point.</h3><p>The center holds the result only after every relevant context has been compared and cross-checked.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section mark-section" id="mark" data-section>
+      <div class="section-index section-index--reverse"><span>02 / Mark</span><span>AgroBot by design</span></div>
+      <div class="section-heading section-heading--reverse">
+        <p class="eyebrow eyebrow--reverse" data-reveal>Recognition before decoration</p>
+        <h2 data-reveal>Simple at 20 px.<br>Alive at 200.</h2>
+        <p data-reveal>The mark is designed for the place people will meet it most: beside an answer, inside a status chip, or quietly working in the corner of myQA.team.</p>
+      </div>
+
+      <div class="lockup-board" data-reveal>
+        <div class="lockup-primary">
+          <svg class="agent-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <path class="agent-thread" d="M30 8C18 8 10 13.5 10 21.5C10 28.7 16.2 32 32 32C46.8 32 53 36 53 43.5C53 51 45.5 56 33 56"/><path class="agent-thread" d="M34 8C46 8 54 13.5 54 21.5C54 28.7 47.8 32 32 32C17.2 32 11 36 11 43.5C11 51 18.5 56 31 56"/><rect class="agent-seed" x="28.25" y="28.25" width="7.5" height="7.5" rx="1.4" transform="rotate(45 32 32)"/>
+          </svg>
+          <div class="wordmark"><strong>AgroBot</strong><span>Legal intelligence</span></div>
+        </div>
+        <div class="lockup-compact">
+          <svg class="agent-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <path class="agent-thread" d="M30 8C18 8 10 13.5 10 21.5C10 28.7 16.2 32 32 32C46.8 32 53 36 53 43.5C53 51 45.5 56 33 56"/><path class="agent-thread" d="M34 8C46 8 54 13.5 54 21.5C54 28.7 47.8 32 32 32C17.2 32 11 36 11 43.5C11 51 18.5 56 31 56"/><rect class="agent-seed" x="28.25" y="28.25" width="7.5" height="7.5" rx="1.4" transform="rotate(45 32 32)"/>
+          </svg>
+          <span>Compact / UI</span>
+        </div>
+        <div class="lockup-parent"><span>Inside</span><img src="logos/myqateam/logo-full.svg" alt="myQA.team"></div>
+      </div>
+
+      <div class="size-system" data-reveal>
+        <div class="size-system__head"><span>Optical scale</span><strong>One silhouette at every size.</strong><p>The six-cell structure remains legible from a 20 px status mark to a full identity moment.</p></div>
+        <div class="size-row">
+          <div style="--icon-size:20px"><svg class="agent-mark agent-mark--micro" viewBox="0 0 64 64" aria-hidden="true"><path class="agent-thread" d="M30 8C18 8 10 13.5 10 21.5C10 28.7 16.2 32 32 32C46.8 32 53 36 53 43.5C53 51 45.5 56 33 56"/><path class="agent-thread" d="M34 8C46 8 54 13.5 54 21.5C54 28.7 47.8 32 32 32C17.2 32 11 36 11 43.5C11 51 18.5 56 31 56"/></svg><span>20 / Micro</span></div>
+          <div style="--icon-size:32px"><svg class="agent-mark" viewBox="0 0 64 64" aria-hidden="true"><path class="agent-thread" d="M30 8C18 8 10 13.5 10 21.5C10 28.7 16.2 32 32 32C46.8 32 53 36 53 43.5C53 51 45.5 56 33 56"/><path class="agent-thread" d="M34 8C46 8 54 13.5 54 21.5C54 28.7 47.8 32 32 32C17.2 32 11 36 11 43.5C11 51 18.5 56 31 56"/><rect class="agent-seed" x="28.25" y="28.25" width="7.5" height="7.5" rx="1.4" transform="rotate(45 32 32)"/></svg><span>32 / Chat</span></div>
+          <div style="--icon-size:64px"><svg class="agent-mark" viewBox="0 0 64 64" aria-hidden="true"><path class="agent-thread" d="M30 8C18 8 10 13.5 10 21.5C10 28.7 16.2 32 32 32C46.8 32 53 36 53 43.5C53 51 45.5 56 33 56"/><path class="agent-thread" d="M34 8C46 8 54 13.5 54 21.5C54 28.7 47.8 32 32 32C17.2 32 11 36 11 43.5C11 51 18.5 56 31 56"/><rect class="agent-seed" x="28.25" y="28.25" width="7.5" height="7.5" rx="1.4" transform="rotate(45 32 32)"/></svg><span>64 / Avatar</span></div>
+          <div style="--icon-size:128px"><svg class="agent-mark" viewBox="0 0 64 64" aria-hidden="true"><path class="agent-thread" d="M30 8C18 8 10 13.5 10 21.5C10 28.7 16.2 32 32 32C46.8 32 53 36 53 43.5C53 51 45.5 56 33 56"/><path class="agent-thread" d="M34 8C46 8 54 13.5 54 21.5C54 28.7 47.8 32 32 32C17.2 32 11 36 11 43.5C11 51 18.5 56 31 56"/><rect class="agent-seed" x="28.25" y="28.25" width="7.5" height="7.5" rx="1.4" transform="rotate(45 32 32)"/></svg><span>128 / Feature</span></div>
+        </div>
+      </div>
+
+      <div class="naming-note" data-reveal>
+        <span>Brand architecture</span>
+        <p><strong>AgroBot is unmistakably part of myQA.team.</strong> The parent green establishes ownership; the Canopy gives the agent its own recognizable behavior.</p>
+      </div>
+    </section>
+
+    <section class="section motion-section" id="motion" data-section>
+      <div class="section-index section-index--reverse"><span>03 / Motion</span><span>Thinking people can understand</span></div>
+      <div class="section-heading section-heading--reverse">
+        <p class="eyebrow eyebrow--reverse" data-reveal>Motion is product feedback</p>
+        <h2 data-reveal>Not a spinner.<br>A visible comparison.</h2>
+        <p data-reveal>Each movement explains what the agent is doing. One signal checks the six contextual cells in sequence, returns to the intelligence core, then stops.</p>
+      </div>
+
+      <div class="state-grid" data-reveal>
+        <article data-state="ready"><div class="state-icon"><svg class="agent-mark" viewBox="0 0 64 64" aria-hidden="true"><path class="agent-thread agent-thread--one" pathLength="100" d="M30 8C18 8 10 13.5 10 21.5C10 28.7 16.2 32 32 32C46.8 32 53 36 53 43.5C53 51 45.5 56 33 56"/><path class="agent-thread agent-thread--two" pathLength="100" d="M34 8C46 8 54 13.5 54 21.5C54 28.7 47.8 32 32 32C17.2 32 11 36 11 43.5C11 51 18.5 56 31 56"/><rect class="agent-seed" x="28.25" y="28.25" width="7.5" height="7.5" rx="1.4" transform="rotate(45 32 32)"/></svg></div><span>01 / Ready</span><h3>Present, not impatient.</h3><p>A brief flash signals availability, then the mark holds still until you ask something.</p><small>460 ms / once</small></article>
+        <article data-state="listening"><div class="state-icon"><svg class="agent-mark" viewBox="0 0 64 64" aria-hidden="true"><path class="agent-thread agent-thread--one" pathLength="100" d="M30 8C18 8 10 13.5 10 21.5C10 28.7 16.2 32 32 32C46.8 32 53 36 53 43.5C53 51 45.5 56 31 56"/><path class="agent-thread agent-thread--two" pathLength="100" d="M34 8C46 8 54 13.5 54 21.5C54 28.7 47.8 32 32 32C17.2 32 11 36 11 43.5C11 51 18.5 56 31 56"/><rect class="agent-seed" x="28.25" y="28.25" width="7.5" height="7.5" rx="1.4" transform="rotate(45 32 32)"/></svg></div><span>02 / Listening</span><h3>Acknowledge the input.</h3><p>A quick tap starts at the top petal and ripples clockwise around the ring while you keep typing.</p><small>2400 ms / loop</small></article>
+        <article data-state="researching"><div class="state-icon"><svg class="agent-mark" viewBox="0 0 64 64" aria-hidden="true"><path class="agent-thread agent-thread--one" pathLength="100" d="M30 8C18 8 10 13.5 10 21.5C10 28.7 16.2 32 32 32C46.8 32 53 36 53 43.5C53 51 45.5 56 33 56"/><path class="agent-thread agent-thread--two" pathLength="100" d="M34 8C46 8 54 13.5 54 21.5C54 28.7 47.8 32 32 32C17.2 32 11 36 11 43.5C11 51 18.5 56 31 56"/><rect class="agent-seed" x="28.25" y="28.25" width="7.5" height="7.5" rx="1.4" transform="rotate(45 32 32)"/></svg></div><span>03 / Researching</span><h3>Compare every context.</h3><p>A single signal visits each cell while sources and business context are cross-checked.</p><small>1050 ms / loop</small></article>
+        <article data-state="verified"><div class="state-icon"><svg class="agent-mark" viewBox="0 0 64 64" aria-hidden="true"><path class="agent-thread agent-thread--one" pathLength="100" d="M30 8C18 8 10 13.5 10 21.5C10 28.7 16.2 32 32 32C46.8 32 53 36 53 43.5C53 51 45.5 56 33 56"/><path class="agent-thread agent-thread--two" pathLength="100" d="M34 8C46 8 54 13.5 54 21.5C54 28.7 47.8 32 32 32C17.2 32 11 36 11 43.5C11 51 18.5 56 31 56"/><rect class="agent-seed" x="28.25" y="28.25" width="7.5" height="7.5" rx="1.4" transform="rotate(45 32 32)"/><path class="agent-check" d="M27.5 32.2l3 3 6.2-7"/></svg></div><span>04 / Verified</span><h3>Reach the answer.</h3><p>The petals hold their position while the intelligence core gives a steady confirming pulse.</p><small>1400 ms / focused</small></article>
+        <article data-state="alert"><div class="state-icon"><svg class="agent-mark" viewBox="0 0 64 64" aria-hidden="true"><path class="agent-thread agent-thread--one" pathLength="100" d="M30 8C18 8 10 13.5 10 21.5C10 28.7 16.2 32 32 32C46.8 32 53 36 53 43.5C53 51 45.5 56 33 56"/><path class="agent-thread agent-thread--two" pathLength="100" d="M34 8C46 8 54 13.5 54 21.5C54 28.7 47.8 32 32 32C17.2 32 11 36 11 43.5C11 51 18.5 56 31 56"/><rect class="agent-seed" x="28.25" y="28.25" width="7.5" height="7.5" rx="1.4" transform="rotate(45 32 32)"/></svg></div><span>05 / Alert</span><h3>Signal what is new.</h3><p>Two synchronized flashes announce a new legal alert, followed by a calm pause until it is acknowledged.</p><small>2400 ms / pending loop</small></article>
+      </div>
+
+      <div class="motion-rule" data-reveal><span>Motion rule / One thought at a time</span><p>Gather <i>→</i> connect clauses <i>→</i> answer. Never rotate the full symbol, never bounce, and never animate after the result is stable.</p></div>
+    </section>
+
+    <section class="section interface-section" id="interface" data-section>
+      <div class="section-index"><span>04 / In product</span><span>Designed for myQA.team</span></div>
+      <div class="section-heading">
+        <p class="eyebrow" data-reveal>Identity becomes behavior</p>
+        <h2 data-reveal>A calm expert<br>inside the workflow.</h2>
+        <p data-reveal>AgroBot does not arrive as a separate AI universe. It lives inside the product, uses the same information architecture, and makes its sources and remembered context visible.</p>
+      </div>
+
+      <div class="product-demo" id="productDemo" data-reveal>
+        <header class="demo-topbar">
+          <div class="demo-brand"><img src="logos/myqateam/logo-compact.svg" alt=""><strong>myQA.team</strong></div>
+          <div class="demo-breadcrumb"><span>Workspace</span><i>/</i><strong>Legal intelligence</strong></div>
+          <div class="demo-user">MS</div>
+        </header>
+        <div class="demo-body">
+          <aside class="demo-sidebar" aria-label="Illustrative application navigation">
+            <span>WORKSPACE</span><a href="#interface">Overview</a><a href="#interface">Products</a><a href="#interface">Documents</a><a class="is-current" href="#interface"><svg class="agent-mark" viewBox="0 0 64 64" aria-hidden="true"><path class="agent-thread" d="M30 8C18 8 10 13.5 10 21.5C10 28.7 16.2 32 32 32C46.8 32 53 36 53 43.5C53 51 45.5 56 33 56"/><path class="agent-thread" d="M34 8C46 8 54 13.5 54 21.5C54 28.7 47.8 32 32 32C17.2 32 11 36 11 43.5C11 51 18.5 56 31 56"/></svg>AgroBot</a><span>QUALITY</span><a href="#interface">Audits</a><a href="#interface">Labels</a><a href="#interface">Actions</a>
+          </aside>
+
+          <div class="demo-chat">
+            <div class="chat-head">
+              <div class="chat-agent"><svg class="agent-mark" viewBox="0 0 64 64" aria-hidden="true"><path class="agent-thread agent-thread--one" pathLength="100" d="M30 8C18 8 10 13.5 10 21.5C10 28.7 16.2 32 32 32C46.8 32 53 36 53 43.5C53 51 45.5 56 33 56"/><path class="agent-thread agent-thread--two" pathLength="100" d="M34 8C46 8 54 13.5 54 21.5C54 28.7 47.8 32 32 32C17.2 32 11 36 11 43.5C11 51 18.5 56 31 56"/><rect class="agent-seed" x="28.25" y="28.25" width="7.5" height="7.5" rx="1.4" transform="rotate(45 32 32)"/><path class="agent-check" d="M27.5 32.2l3 3 6.2-7"/></svg><div><strong>AgroBot</strong><span id="demoStatus" aria-live="polite"><i></i>Monitoring your legal context</span></div></div>
+              <button id="replayDemo" type="button">Replay thinking <span aria-hidden="true">↻</span></button>
+            </div>
+            <div class="chat-thread">
+              <div class="user-message"><span>You</span><p>Does the latest packaging update affect any of our tomato sauces?</p></div>
+              <article class="agent-response">
+                <div class="response-title"><svg class="agent-mark" viewBox="0 0 64 64" aria-hidden="true"><path class="agent-thread" d="M30 8C18 8 10 13.5 10 21.5C10 28.7 16.2 32 32 32C46.8 32 53 36 53 43.5C53 51 45.5 56 33 56"/><path class="agent-thread" d="M34 8C46 8 54 13.5 54 21.5C54 28.7 47.8 32 32 32C17.2 32 11 36 11 43.5C11 51 18.5 56 31 56"/><rect class="agent-seed" x="28.25" y="28.25" width="7.5" height="7.5" rx="1.4" transform="rotate(45 32 32)"/></svg><div><strong>I found one likely impact.</strong><span>4 sources cross-checked · Illustrative example</span></div></div>
+                <p>The update changes how recycled-content information must be documented. It may affect the secondary packaging records for two products sold in the EU.</p>
+                <div class="impact-card"><span>Affected in your workspace</span><div><strong>Tomato basil sauce · 350 g</strong><small>Secondary packaging / EU</small></div><div><strong>Arrabbiata sauce · 350 g</strong><small>Secondary packaging / EU</small></div></div>
+                <div class="response-actions"><button type="button">Review requirements</button><button type="button">Create an action</button><button type="button">See sources <span>4</span></button></div>
+              </article>
+            </div>
+            <div class="chat-compose"><button type="button" aria-label="Add context">+</button><span>Ask about a law, requirement, product, or market…</span><button type="button">Ask AgroBot <b aria-hidden="true">↑</b></button></div>
+          </div>
+
+          <aside class="context-rail">
+            <div class="context-head"><span>Active context</span><strong>What AgroBot remembers</strong></div>
+            <dl><div><dt>Business</dt><dd>Alba Foods</dd></div><div><dt>Products</dt><dd>24 profiles</dd></div><div><dt>Markets</dt><dd>EU · CH</dd></div><div><dt>Sources</dt><dd>18 monitored</dd></div></dl>
+            <div class="context-memory"><span>Used for this answer</span><p><i></i>Packaging specifications</p><p><i></i>Sales markets</p><p><i></i>Previous label review</p></div>
+            <small>Illustrative interface. Not legal advice.</small>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section system-section" id="system" data-section>
+      <div class="section-index"><span>05 / System</span><span>AgroBot is part of myQA.team</span></div>
+      <div class="section-heading">
+        <p class="eyebrow" data-reveal>Distinct character, shared parent</p>
+        <h2 data-reveal>No Snap blue.<br>No legal cliché.</h2>
+        <p data-reveal>AgroBot starts with the myQA.team green family, then adds a deep operational ground and one high-visibility verification color. Recognition comes from the Canopy and its behavior—not a disconnected sub-brand.</p>
+      </div>
+
+      <div class="palette" data-reveal>
+        <button class="swatch swatch--blue" type="button" data-copy="#009966"><span>Identity / Primary</span><strong>myQA Green</strong><small>#009966</small><i>Copy</i></button>
+        <button class="swatch swatch--ink" type="button" data-copy="#073C30"><span>Ground / Depth</span><strong>Process Ink</strong><small>#073C30</small><i>Copy</i></button>
+        <button class="swatch swatch--white" type="button" data-copy="#FCFEFD"><span>Canvas / Reading</span><strong>QA White</strong><small>#FCFEFD</small><i>Copy</i></button>
+        <button class="swatch swatch--mist" type="button" data-copy="#E2F4EC"><span>Context / Structure</span><strong>Process Mist</strong><small>#E2F4EC</small><i>Copy</i></button>
+        <button class="swatch swatch--orange" type="button" data-copy="#C7F36B"><span>Verification / 5% maximum</span><strong>Proof Signal</strong><small>#C7F36B</small><i>Copy</i></button>
+      </div>
+
+      <div class="system-grid">
+        <article class="type-card" data-reveal><span>Type / Shared with myQA.team</span><div class="type-display">Law changes.<br><em>Context stays.</em></div><div class="type-foot"><strong>Satoshi</strong><small>Conversation / Interface / Display</small></div></article>
+        <article class="evidence-card" data-reveal><span>Evidence / Utility voice</span><div class="evidence-lines"><p><i>SOURCE</i><b>EU / OFFICIAL JOURNAL</b></p><p><i>CHECKED</i><b>14 JUL 2026 · 09:42</b></p><p><i>IMPACT</i><b>2 PRODUCT RECORDS</b></p><p><i>STATUS</i><b class="is-proof">● CROSS-CHECKED</b></p></div><div class="type-foot"><strong>IBM Plex Mono</strong><small>Sources / Dates / System state</small></div></article>
+      </div>
+
+      <div class="voice-board" data-reveal>
+        <div class="voice-intro"><span>Voice</span><h3>Attentive, sourced, plain.</h3><p>AgroBot separates what changed, what it may affect, and what the person should review next.</p></div>
+        <div class="voice-example voice-example--do"><span>Say</span><blockquote>“I found one change that may affect two product records.”</blockquote><small>Specific scope. Calibrated certainty. Clear next step.</small></div>
+        <div class="voice-example voice-example--dont"><span>Avoid</span><blockquote>“Urgent! A new law has major implications for your business.”</blockquote><small>No alarmism. No unsupported consequence.</small></div>
+      </div>
+
+      <div class="rules" data-reveal>
+        <div class="rules-title"><span>Identity rules</span><h3>Keep the intelligence visible.</h3></div>
+        <ul><li><b>01</b><span><strong>Use Proof Signal only for active system feedback.</strong>It visits each cell during research and flashes briefly for an unacknowledged alert.</span></li><li><b>02</b><span><strong>Let motion finish.</strong>A verified answer is still. Endless movement implies unfinished work.</span></li><li><b>03</b><span><strong>Keep AgroBot inside myQA.team.</strong>The agent is a capability in the workflow, not a competing platform.</span></li><li><b>04</b><span><strong>Always make context inspectable.</strong>Memory builds trust only when people can see and correct it.</span></li></ul>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div class="closing-thread" aria-hidden="true"></div>
+      <svg class="agent-mark agent-mark--closing" viewBox="0 0 64 64" aria-hidden="true"><path class="agent-thread" d="M30 8C18 8 10 13.5 10 21.5C10 28.7 16.2 32 32 32C46.8 32 53 36 53 43.5C53 51 45.5 56 33 56"/><path class="agent-thread" d="M34 8C46 8 54 13.5 54 21.5C54 28.7 47.8 32 32 32C17.2 32 11 36 11 43.5C11 51 18.5 56 31 56"/><rect class="agent-seed" x="28.25" y="28.25" width="7.5" height="7.5" rx="1.4" transform="rotate(45 32 32)"/></svg>
+      <div class="closing-copy" data-reveal><p class="eyebrow eyebrow--reverse">AgroBot / Identity system</p><h2>The law moves.<br>Know where it lands.</h2></div>
+      <div class="closing-actions" data-reveal>
+        <a href="assets/agrobot.svg" download><span>Download the AgroBot symbol</span><span>SVG ↓</span></a>
+        <a href="landing.html#products"><span>Open myQA.team overview</span><span>PRODUCT ↗</span></a>
+        <a href="landing.html"><span>Back to the company site</span><span>SITE ↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div><img src="logos/myqateam/logo-compact.svg" alt=""><strong>myQA.team</strong><span>/</span><b>AgroBot</b></div><p>Agent identity / July 2026</p><a href="#home">Back to top ↑</a></footer>
+  <script src="js/agrolex.js"></script>
+</body>
+</html>

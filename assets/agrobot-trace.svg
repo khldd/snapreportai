@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="trace-title trace-description" color="#009966">
+  <title id="trace-title">AgroBot Evidence Trace</title>
+  <desc id="trace-description">A continuous route scans three evidence rows, registers two checkpoints, and closes in a proof ring.</desc>
+  <path d="M10 20V13H41C46.5 13 50 16.5 50 21S46.5 29 41 29H23C17.5 29 14 32.5 14 37S17.5 45 23 45H42" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="42" cy="29" r="2.75" fill="currentColor"/>
+  <circle cx="23" cy="45" r="2.75" fill="currentColor"/>
+  <path d="M42 45H47V46.5" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="50" cy="52" r="7" fill="none" stroke="currentColor" stroke-width="5.5"/>
+</svg>

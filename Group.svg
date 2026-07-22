@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+    <title id="title">AgroBot rosette mark</title>
+    <desc id="desc">A dark green rotated petal behind a mist petal with a green regulatory-status core.</desc>
+    <defs>
+        <path id="petal" d="M94.058 161.505c2.523-39.299 35.578-37.346 37.469-38.964 1.167-.999.65-1.254 1.328-5.979 5.67-39.555 69.432-46.653 75.979 3.904.478 3.691 1.991 2.233 5.712 2.751 29.633 4.124 43.835 41.709 21.984 64.312-11.514 11.912-24.9 11.639-26.067 11.803-2.678.375-1.392 1.539-1.791 4.188-5.154 34.287-40.612 40.77-59.084 27.846-17.257-12.075-16.54-26.896-17.402-30.764-.649-2.909-35.389-.163-38.128-39.097Z"/>
+    </defs>
+    <g transform="translate(32 32) scale(.29825) translate(-170.5 -161.5)">
+        <use href="#petal" transform="matrix(.975893 .975893 -.975893 .975893 161.354112 -162.595967)" fill="#073C30"/>
+        <use href="#petal" fill="#E2F4EC"/>
+        <path d="M170.498 182.938c-28.539-2.6-27.456-36.195-6.101-42.789 28.622-8.838 42.207 39.858 6.101 42.789Z" fill="#009966"/>
+    </g>
+</svg>
