@@ -117,14 +117,27 @@
     stateButtons.forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.stateControl === state)));
   };
 
-  const stopStateCycle = () => window.clearInterval(stateTimer);
+  /* Dwell is per state, not one global interval. Researching needs 6.4s to complete a full
+     revolution: its dots wait out a 0.35s sweep delay and the step cycle itself runs 6s, so the
+     first revolution only closes at 6.35s. Cutting it short at 3.2s advanced mid-turn and the
+     state never read as a complete index through the sources.
+     A single 6.4s interval is the wrong fix in the other direction: Verified settles at 1.15s
+     and Alert at 1.95s, so both would sit motionless for seconds before advancing. */
+  const stateDwell = { researching: 6400 };
+  const defaultDwell = 3200;
+
+  const stopStateCycle = () => window.clearTimeout(stateTimer);
   const startStateCycle = () => {
     stopStateCycle();
     if (reduceMotion || !agentStage) return;
-    stateTimer = window.setInterval(() => {
-      const index = stateOrder.indexOf(agentStage.dataset.state);
-      activateState(stateOrder[(index + 1) % stateOrder.length]);
-    }, 3200);
+    const queueNext = () => {
+      stateTimer = window.setTimeout(() => {
+        const index = stateOrder.indexOf(agentStage.dataset.state);
+        activateState(stateOrder[(index + 1) % stateOrder.length]);
+        queueNext();
+      }, stateDwell[agentStage.dataset.state] ?? defaultDwell);
+    };
+    queueNext();
   };
 
   stateButtons.forEach((button) => {

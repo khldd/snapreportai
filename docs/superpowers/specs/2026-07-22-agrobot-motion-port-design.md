@@ -297,6 +297,19 @@ broken asset path and sends the next person hunting in the wrong place.
 
 - `activateState()`: mirror state onto mark svgs with the reflow reset (§4.2).
 - `stateOrder` and `stateCopy` unchanged.
+- **Per-state dwell** replaces the single 3.2s `setInterval` with a chained `setTimeout`.
+  Researching gets **6400 ms**; everything else keeps **3200 ms**.
+
+  Researching's first revolution closes at 6.35s — a 0.35s sweep delay plus the 6s step cycle —
+  so the old 3.2s interval advanced mid-turn and the state never read as a complete index
+  through the sources. Raising the *global* interval to match is the wrong fix in the other
+  direction: Verified settles at 1.15s and Alert at 1.95s, so both would sit motionless for
+  seconds. Shortening Researching's cycle to fit the hero is also rejected — its cadence is
+  settled design timing (holds at 71% of the cycle are what stop it reading as a spinner) and
+  should not bend to one consumer.
+
+  Measured over a full rotation with a `MutationObserver` attached at `DOMContentLoaded`:
+  researching 6413 ms, verified 3211, alert 3205, ready 3210, listening 3205, researching 6405.
 
 ### `landing.html`
 
