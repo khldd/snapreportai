@@ -35,6 +35,8 @@ The port is therefore not a file swap: every motion-bearing instance must become
 | Motion scope | **Only state-driven instances.** Logos and favicons stay static. |
 | Verified confirm ring | Enlarge to radius 28, `scale(3.33)` — see §7. |
 | Verified dot start radius | Move `34` → `38` — see §7. |
+| Transform pivot | Keep `transform-origin:32px 32px`, add `transform-box:view-box` — see invariant (h). Percentages would **break** it. |
+| `deploy/` | Out of scope this pass — see §9. |
 
 ### Why `trace`, `lot` and `disposition` are out of scope
 
@@ -111,6 +113,39 @@ must be set to a light value, or the dots are green-on-green and invisible.
 **outside** both breathing groups as a fixed anchor, and reduced motion renders it completely
 still.
 
+**h. The transform pivot is `transform-box: view-box; transform-origin: 32px 32px`.**
+Do not "fix" this to percentages. Every animated group inside `#mark-master-shapes` must pivot
+on the mark centre `(32,32)` under **both** viewBoxes, and the formulation is counter-intuitive
+enough that it was got wrong once during review.
+
+Measured in Chromium/Edge — marker at user `(32,12)`, rotated 90° cw, landing `(52,32)` proves
+a centre pivot:
+
+| Formulation | under `-12 -12 88 88` | under `0 0 64 64` |
+|---|---|---|
+| `transform-origin:32px 32px` | **(32,32)** correct | **(32,32)** correct |
+| `transform-box:view-box` + `transform-origin:32px 32px` | **(32,32)** correct | **(32,32)** correct |
+| `transform-box:view-box` + `transform-origin:50% 50%` | **(44,44)** off-centre by 12 | (32,32) correct |
+| `transform-box:fill-box` + `transform-origin:32px 32px` | (63,43) broken | — |
+
+The reasoning: **lengths** in `transform-origin` resolve in the local user coordinate system —
+they are *not* measured from the viewBox's top-left corner — so `32px 32px` is the true centre
+regardless of `viewBox` min-x/min-y. **Percentages** resolve against the reference box *size*
+(88) applied from the user-space origin, giving `(44,44)`. Switching to `50% 50%` therefore
+*introduces* the off-centre pivot rather than preventing it.
+
+`transform-box: view-box` is added explicitly because it is a verified no-op under Chromium
+while pinning the reference box against a `fill-box` default, which is the formulation that
+genuinely breaks the pivot.
+
+At-rest rendering is identical in every case above — the mark only reveals a wrong pivot once it
+moves. Verify empirically by running Listening and confirming the outer flower spins in place
+rather than swinging around an off-centre point.
+
+*Cross-engine caveat:* measured on Chromium/Edge only. Firefox and WebKit were not available in
+this environment; if the mark is ever verified there, re-run `scripts/verify-mark.mjs`'s pivot
+case first.
+
 ---
 
 ## 4. Architecture
@@ -173,7 +208,7 @@ instances, since colour now comes from variables rather than filtering a raster-
 | File | Change |
 |---|---|
 | `assets/agrobot.svg` | Rewritten to the new geometry, `viewBox="0 0 64 64"`. **Self-contained with baked fills** (ink `#073C30` outer, mist `#E2F4EC` inner, green `#009966` core) — it is consumed via `<img>` and as a favicon, where page CSS variables cannot reach. |
-| `deploy/assets/agrobot.svg` | Same file, copied. |
+| `deploy/assets/agrobot.svg` | **Not touched** — see §9. |
 | `assets/agrobot-ready.svg` | Deleted — superseded by `data-state`. |
 | `assets/agrobot-listening.svg` | Deleted. |
 | `assets/agrobot-researching.svg` | Deleted. |
@@ -197,9 +232,8 @@ Linked from `agrolex.html` after `css/agrolex.css`.
 
 ### `css/agrolex.css` — edits
 
-- Line 49: `.agent-mark` — drop the `background: url(...)` so inline-SVG instances are not
-  painted over. Non-motion instances that still rely on the background get it via their own
-  selectors.
+- Line 49: `.agent-mark` — **keep** the `background: url(...)`; the three motion selectors opt out
+  with `background: none`. See §5.2 for why this is inverted from the obvious approach.
 - Lines 98, 99, 100, 105: remove the four `[data-state="…"] .agent-mark` background-swap rules.
   These are also currently **mis-mapped** — `listening` loads `agrobot-ready.svg` and `verified`
   loads `agrobot-listening.svg`. The port fixes this by construction.
@@ -210,6 +244,9 @@ Linked from `agrolex.html` after `css/agrolex.css`.
   invariant (g). Removing the rule alone would orphan the keyframe, so both go.
 - Line 267: remove `.product-demo.is-running .chat-agent .agent-mark` background swap.
 - Lines 187–190: drop the `filter` hack for state-grid marks.
+- Line 176 `.size-row .agent-mark--micro .agent-thread { stroke-width: 11 }`: **removed.** It
+  targets `.agent-thread`, which line 50 sets to `display:none`, so it has been dead code since
+  the previous direction was retired.
 - Add 1.375× sizing for the three motion instances (§5.1 below).
 
 #### 5.1 Sizing compensation
@@ -219,6 +256,31 @@ Linked from `agrolex.html` after `css/agrolex.css`.
 | `.agent-mark--hero` | `min(42%, 230px)` | `min(57.75%, 316px)` | also `39%` → `53.6%` at the 403 breakpoint |
 | `.state-icon .agent-mark` | `110px` | `151.25px` | |
 | `.chat-agent .agent-mark` | `37px` | `50.9px` | `margin:-7px` absorbs the overflow so rail layout is unchanged |
+
+#### 5.2 The background inheritance, enumerated
+
+**All 17 `.agent-mark` elements are inline `<svg viewBox="0 0 64 64">`** whose legacy
+`agent-thread` paths are hidden by `.agent-thread{display:none}` at line 50. What you actually
+see is the CSS background painted on the `<svg>` box. Seven become motion instances; **ten do
+not**, spread across seven selectors:
+
+| Selector | CSS | Instances in `agrolex.html` |
+|---|---|---|
+| `.agent-mark--anatomy` | :138 | 103 |
+| `.lockup-primary .agent-mark` | :156 | 130 |
+| `.lockup-compact .agent-mark` | :161 | 136 |
+| `.size-row .agent-mark` | :174 | 147, 148, 149, 150 |
+| `.response-title .agent-mark` | :234 | 206 |
+| `.agent-mark--closing` | :319 | 260 |
+| `.demo-sidebar .agent-mark` | :215 | none — selector currently matches nothing |
+
+Dropping the background at line 49 would blank all ten. So the approach is **inverted**: line 49
+keeps the background, and the three motion selectors set `background: none`.
+
+This is deliberately the safer failure mode. Three opt-outs instead of seven opt-ins is a
+smaller diff, and a *missed* motion instance renders the old mark ghosted behind the new one —
+loud and immediate — whereas a missed static instance would render blank, which reads as a
+broken asset path and sends the next person hunting in the wrong place.
 
 ### `agrolex.html` — edits
 
@@ -236,12 +298,12 @@ Linked from `agrolex.html` after `css/agrolex.css`.
 - `activateState()`: mirror state onto mark svgs with the reflow reset (§4.2).
 - `stateOrder` and `stateCopy` unchanged.
 
-### `landing.html`, `deploy/index.html`
+### `landing.html`
 
-Three `<img src="assets/agrobot.svg?v=20260714-1">` each, at lines 119, 133 and 138. No
-structural change — bump the cache-bust query so the new file is picked up. `deploy/` is a
-separate git repository with a GitHub remote (`khldd/snapreportai`) and is the live site:
-**edit only, do not commit or push.**
+Three `<img src="assets/agrobot.svg?v=20260714-1">` at lines 119, 133 and 138. No structural
+change — bump the cache-bust query so the new file is picked up.
+
+`deploy/` is **not touched this pass** — see §9.
 
 ---
 
@@ -287,7 +349,7 @@ starting at 0.95s (`flower-attend`, 56% of 1.7s).
 | Ready | bare mark, no dots | 0 dots |
 | Listening | 4 dots, r=38, `rotate(45deg)` | on the **cardinals** |
 | Researching | 4 dots, r=38, no sweep | on the **diagonals** |
-| Verified | 4 dots at r=12, scale .6, opacity .5 + confirm ring | merged at core |
+| Verified | 4 dots at r=12, scale .6, opacity .5 + confirm ring at `scale(2.5)` → r=21 | merged at core |
 | Alert | 1 dot, r=38, top-right + pulse ring | 1 dot |
 
 Ready renders completely still, per invariant (g).
@@ -296,7 +358,7 @@ Ready renders completely still, per invariant (g).
 
 ## 7. Deviations from the source artifact
 
-Three, all deliberate.
+Five, all deliberate.
 
 **1. State name.** `svg[data-state="new-regulation"]` → `svg[data-state="alert"]`, to match the
 app's existing vocabulary. Recorded at the top of `css/agrobot-mark.css`.
@@ -313,6 +375,18 @@ so it clearly registers, while staying **inside** the 31.5 silhouette.
 The containment is the point. Verified resolves *within* the mark's own footprint; New
 Regulation's ring (radius 36) breaks *past* it. The two rings stay legible as different events,
 and the dots-in / ring-out counterpoint survives in both.
+
+**4. Verified's reduced-motion ring `scale(1.35)` → `scale(2.5)`.** The static frame must track
+its animated counterpart. At `scale(1.35)` the ring sits at radius 11.3 against an animated peak
+of 28 — under-representing it by more than half. `scale(2.5)` gives radius 21, which is the same
+proportion of peak (0.75) that New Regulation's reduced frame already uses (`scale(4)` of
+`scale(6.2)`, 0.65). Deviation 3 changed only `confirm-pulse`; this is its other half.
+
+**5. `transform-box: view-box` added** to every animated group inside `#mark-master-shapes`. The
+artifact sets only `transform-origin: 32px 32px`, which measures correct but leaves the reference
+box at the browser default. Adding it is a verified no-op that pins the pivot against a
+`fill-box` default. `transform-origin` itself is **unchanged** — see invariant (h) for why
+percentages would break it.
 
 ---
 
@@ -339,11 +413,27 @@ Structural checks pass happily on animations that are invisible, off-centre, or 
 the five states is rendered in a browser and confirmed by eye before the work is reported
 complete. Specifically checked:
 
+- **the pivot** — run Listening and confirm the outer flower spins *in place* rather than
+  swinging around an off-centre point (invariant h). This is the check that at-rest rendering
+  cannot give you;
 - the mark is centred and unclipped in the 88-unit viewBox at all three motion sizes;
 - dots are visible against the dark state-grid ground (invariant e);
 - Verified's ring at radius 28 reads as a single clean ring over the rosette, not as fragments;
 - Listening's 1.8s hold is a genuine full stop;
-- no state leaves the mark rotated at rest.
+- no state leaves the mark rotated at rest;
+- **no static instance renders blank and none shows a ghosted double mark** — the two failure
+  modes of the background inversion in §5.2, checked across all ten static instances.
+
+### 8.3 Animation load
+
+Seven marks animate on one page: the hero, five state-grid cards with authored `data-state`, and
+the chat agent. Three of those loop perpetually (Ready's two breathing groups, Listening's three
+animations, Researching's three); Verified and Alert are `1 forwards` and settle.
+
+Before reporting complete: confirm visually that the grid does not read as noisy with five states
+running side by side, and measure CPU with the page idle and scrolled to the grid. If it is not
+acceptable, the fix is to gate the grid with an `IntersectionObserver` toggling
+`animation-play-state` — noted here so the option is on record, not implemented pre-emptively.
 
 ---
 
@@ -352,4 +442,21 @@ complete. Specifically checked:
 - The Evidence Trace direction (`agrobot-trace.*`) and its motion system.
 - `agrobot-lot*.svg`, `agrobot-disposition.svg`.
 - Any change to marketing copy in `landing.html`, `index.html` or `deploy/index.html`.
-- Pushing `deploy/` to its remote.
+
+**`deploy/` entirely — not edited, not committed, not pushed.** It has its own `.git`, a remote
+at `khldd/snapreportai`, and a `CNAME`: it is the live GitHub Pages site. Editing it without
+committing would leave a live-site repository dirty, which is a trap for whoever opens it next.
+It keeps the old `deploy/assets/agrobot.svg` and the old `?v=` query until it is synced or
+regenerated as a deliberate, separate step.
+
+**The optically-adjusted micro mark.** `DESIGN.md` §Scale requires a true micro version proven
+at 16, 20, 24, 32, 64 and 128px in one colour, reverse and myQA Green. The source artifact
+declares `#mark-micro-shapes` to be identical geometry to `#mark-mono-shapes` — i.e. no optical
+adjustment was made. This port does not address it, and the size row at `agrolex.html:147-150`
+plus the new favicon will render the unadjusted mark at 20px and below. Tracked as outstanding
+against the contract, not silently closed.
+
+**Legacy `agent-thread` markup outside the state grid.** Nine static instances still carry the
+old direction's hidden paths. They are inert (`display:none`, line 50) and cost nothing; only
+the state-grid five are rewritten, because those become motion instances. Cleaning the rest is a
+separate tidy-up.
