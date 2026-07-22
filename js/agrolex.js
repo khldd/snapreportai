@@ -94,12 +94,26 @@
   };
   let stateTimer;
 
+  /* The mark's motion is driven by CSS custom properties keyed off svg[data-state], so the
+     state has to live on the <svg> itself, not only on the stage -- the stage keeps its own
+     copy for the source-node and status-dot rules.
+     Removing the attribute, forcing layout, then re-applying it restarts the animations from
+     zero. Without that, switching state mid-gesture leaves dots stranded wherever the previous
+     animation happened to be cut off. */
+  const setMarkState = (mark, state) => {
+    if (!mark) return;
+    mark.removeAttribute("data-state");
+    void mark.getBoundingClientRect();
+    mark.setAttribute("data-state", state);
+  };
+
   const activateState = (state) => {
     if (!agentStage || !stateCopy[state]) return;
     agentStage.dataset.state = state;
     if (stageTitle) stageTitle.textContent = stateCopy[state][0];
     if (stageStatus) stageStatus.innerHTML = `<i></i>${stateCopy[state][1]}`;
-    if (stageMark) stageMark.setAttribute("aria-label", `AgroBot Canopy symbol: ${state}`);
+    setMarkState(stageMark, state);
+    if (stageMark) stageMark.setAttribute("aria-label", `AgroBot symbol: ${state}`);
     stateButtons.forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.stateControl === state)));
   };
 
@@ -164,14 +178,20 @@
   const demoStatus = document.querySelector("#demoStatus");
   let demoTimeout;
 
+  /* Replaces the old background-image swap on .product-demo.is-running: the chat agent's mark
+     is the same symbol, so it takes the same data-state the hero does. */
+  const chatMark = document.querySelector(".chat-agent .agent-mark");
+
   const finishDemo = () => {
     productDemo?.classList.remove("is-running");
+    setMarkState(chatMark, "verified");
     if (demoStatus) demoStatus.innerHTML = "<i></i>Answer ready · 4 sources checked";
   };
 
   const runDemo = () => {
     window.clearTimeout(demoTimeout);
     productDemo?.classList.add("is-running");
+    setMarkState(chatMark, "researching");
     if (demoStatus) demoStatus.innerHTML = "<i></i>Cross-checking sources and product context";
     if (reduceMotion) {
       finishDemo();

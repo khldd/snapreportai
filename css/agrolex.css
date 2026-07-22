@@ -47,6 +47,13 @@ button { color: inherit; }
 .menu-toggle { display: none; }
 
 .agent-mark { overflow: visible; color: var(--blue); background: url("../assets/agrobot.svg") center / contain no-repeat; transform-box: fill-box; transform-origin: center; }
+/* Ten static instances are painted by that background image. The seven motion instances
+   render the inline #mark-master-shapes symbol instead, so they must drop it or the old
+   flat mark shows through behind the live one.
+   [data-state] is the exact discriminator: every motion instance carries it, no static one
+   does, and it is self-maintaining -- an instance without data-state cannot animate anyway,
+   so it correctly keeps the static background. */
+.agent-mark[data-state] { background: none; }
 .agent-thread { display: none; }
 .agent-seed, .agent-check { display: none; }
 
@@ -81,7 +88,9 @@ button { color: inherit; }
 .source-node--law { top: 7%; left: 9%; }
 .source-node--product { right: -1%; top: 48%; }
 .source-node--memory { bottom: 4%; left: 11%; }
-.agent-mark--hero { position: relative; z-index: 4; width: min(42%, 230px); filter: drop-shadow(0 22px 22px rgba(0,153,102,.16)); }
+/* 1.375x: the motion viewBox is 88 units for a 64-unit mark, so an uncompensated box renders
+   the mark at 64/88 = 73% of its intended size. 42% -> 57.75%, 230px -> 316px. */
+.agent-mark--hero { position: relative; z-index: 4; width: min(57.75%, 316px); filter: drop-shadow(0 22px 22px rgba(0,153,102,.16)); }
 .agent-state-controls { position: absolute; z-index: 8; inset: auto 0 0; display: grid; grid-template-columns: repeat(5, 1fr); min-height: 68px; border-top: 1px solid var(--line); background: var(--white); }
 .agent-state-controls button { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 8px; border: 0; border-right: 1px solid var(--line); background: transparent; cursor: pointer; color: var(--muted); font: 600 8px/1 var(--mono); text-transform: uppercase; transition: color 160ms ease, background 160ms ease; }
 .agent-state-controls button:last-child { border-right: 0; }
@@ -94,18 +103,19 @@ button { color: inherit; }
 .hero-foot a i { color: var(--orange); font-style: normal; font-size: 15px; transition: transform 160ms ease; }
 .hero-foot a:hover i { transform: translateY(3px); }
 
-[data-state="ready"] .agent-mark { animation: awn-resolve .46s var(--ease) both; }
-[data-state="listening"] .agent-mark { background: url("../assets/agrobot-ready.svg") center / contain no-repeat; animation: none; }
-[data-state="researching"] .agent-mark { background: url("../assets/agrobot-researching.svg") center / contain no-repeat; -webkit-mask: none; mask: none; animation: none; }
-[data-state="alert"] .agent-mark { background: url("../assets/agrobot-alert.svg") center / contain no-repeat; animation: none; }
+/* The per-state background swaps are gone. The mark is now one symbol driven by
+   data-state; its motion lives in css/agrobot-mark.css. The old rules also had
+   listening loading agrobot-ready.svg and verified loading agrobot-listening.svg,
+   which the symbol fixes by construction.
+   `awn-resolve` is gone with them: it scaled the whole mark 0.9 -> 1.06 -> 1 on
+   entering Ready, which is the whole-logo bounce DESIGN.md bans outright. Ready's
+   only sanctioned motion is the breathing exception in agrobot-mark.css. */
 [data-state="researching"] .source-node { animation: source-read 2.8s ease-in-out infinite; }
 [data-state="researching"] .source-node--product { animation-delay: .6s; }
 [data-state="researching"] .source-node--memory { animation-delay: 1.2s; }
 @keyframes source-read { 50% { color: var(--white); background: var(--blue); transform: translateY(-3px); } }
-[data-state="verified"] .agent-mark { background: url("../assets/agrobot-listening.svg") center / contain no-repeat; animation: none; }
 [data-state="verified"] .stage-status i,
 [data-state="alert"] .stage-status i { animation: none; background: var(--orange); }
-@keyframes awn-resolve { 0% { transform: scale(.9); filter: saturate(.2) brightness(1.45); } 68% { transform: scale(1.06); filter: saturate(1.35) brightness(1.08); } 100% { transform: none; filter: none; } }
 
 .section { position: relative; padding: 130px max(36px, calc((100vw - 1380px) / 2)); scroll-margin-top: var(--header); }
 .section-index { display: flex; justify-content: space-between; padding-bottom: 16px; margin-bottom: 96px; color: rgba(7,19,47,.48); border-bottom: 1px solid var(--line); font: 500 9px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
@@ -173,7 +183,6 @@ button { color: inherit; }
 .size-row > div:last-child { border-right: 0; }
 .size-row .agent-mark { width: var(--icon-size); color: var(--white); filter: brightness(0) invert(1); }
 .size-row .agent-thread { stroke-width: max(7px, calc(448px / var(--icon-size))); }
-.size-row .agent-mark--micro .agent-thread { stroke-width: 11; }
 .size-row span { color: rgba(252,252,254,.5); font: 500 8px/1 var(--mono); text-transform: uppercase; }
 .naming-note { display: grid; grid-template-columns: .28fr .72fr; margin-top: 70px; padding-top: 28px; border-top: 3px solid var(--white); }
 .naming-note > span { color: rgba(252,252,254,.5); }
@@ -184,10 +193,10 @@ button { color: inherit; }
 .state-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 1px; border: 1px solid var(--line-reverse); background: var(--line-reverse); }
 .state-grid article { min-width: 0; padding-bottom: 26px; background: var(--ink); }
 .state-icon { height: 300px; display: grid; place-items: center; overflow: hidden; border-bottom: 1px solid var(--line-reverse); background-color: #0b493b; background-image: radial-gradient(rgba(255,255,255,.16) 1px, transparent 1px); background-size: 18px 18px; }
-.state-icon .agent-mark { width: 110px; color: var(--white); filter: brightness(0) invert(1); }
-.state-grid [data-state="listening"] .agent-mark,
-.state-grid [data-state="researching"] .agent-mark,
-.state-grid [data-state="alert"] .agent-mark { filter: none; }
+/* 110px x 1.375. The brightness/invert filter that used to force the flat background image
+   white is gone -- colour now comes from the symbol's own hooks. --mk-sat is REQUIRED on this
+   ground: without it the dots resolve to green on dark green and are invisible. */
+.state-icon .agent-mark { width: 151.25px; --mk-outer: var(--mist); --mk-inner: var(--white); --mk-sat: var(--mist); }
 .state-grid article > span, .state-grid article > small { display: block; margin: 25px 24px 0; color: rgba(252,252,254,.43); font: 500 8px/1 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
 .state-grid h3 { margin: 16px 24px 7px; font-size: 21px; line-height: 1.15; letter-spacing: -.025em; }
 .state-grid p { min-height: 64px; margin: 0 24px; color: rgba(252,252,254,.58); font-size: 13px; }
@@ -217,7 +226,9 @@ button { color: inherit; }
 .demo-chat { min-width: 0; display: grid; grid-template-rows: auto 1fr auto; background: var(--white); }
 .chat-head { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 0 24px; border-bottom: 1px solid var(--line); }
 .chat-agent { display: flex; align-items: center; gap: 13px; }
-.chat-agent .agent-mark { width: 37px; }
+/* 37px x 1.375 = 50.9px; the negative margin absorbs the extra 13.9px so the rail layout
+   is unchanged from the static 37px box. */
+.chat-agent .agent-mark { width: 50.9px; margin: -7px; }
 .chat-agent > div { display: grid; gap: 4px; }
 .chat-agent strong { font-size: 15px; letter-spacing: -.02em; }
 .chat-agent span { display: inline-flex; align-items: center; gap: 7px; color: var(--muted); font: 500 7px/1 var(--mono); }
@@ -263,8 +274,9 @@ button { color: inherit; }
 .context-memory p { margin: 13px 0 0; font-size: 9px; }
 .context-memory p i { display: inline-block; width: 5px; height: 5px; margin-right: 7px; border-radius: 50%; background: var(--orange); }
 .context-rail > small { position: absolute; right: 20px; bottom: 22px; left: 20px; color: #9aa3b7; font: 500 7px/1.4 var(--mono); text-transform: uppercase; }
-.product-demo.is-running .chat-agent .agent-mark { color: var(--blue); }
-.product-demo.is-running .chat-agent .agent-mark { background: url("../assets/agrobot-researching.svg") center / contain no-repeat; -webkit-mask: none; mask: none; animation: none; }
+/* The demo runner now drives the chat agent through data-state in js/agrolex.js
+   (researching while running, verified once the answer lands) rather than swapping
+   a background image here. */
 
 .system-section { background: var(--white); }
 .palette { display: grid; grid-template-columns: 1.35fr 1fr 1fr; grid-template-rows: 310px 220px; gap: 7px; }
@@ -400,7 +412,7 @@ button { color: inherit; }
   .agent-orbit { width: 87%; }
   .source-node--product { right: -4%; }
   .source-node--memory { left: 2%; }
-  .agent-mark--hero { width: 39%; }
+  .agent-mark--hero { width: 53.6%; } /* 39% x 1.375, per the motion viewBox compensation */
   .agent-state-controls { min-height: 62px; }
   .agent-state-controls button { font-size: 0; }
   .agent-state-controls button i { width: 7px; height: 7px; }

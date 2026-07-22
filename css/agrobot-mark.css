@@ -1,0 +1,316 @@
+/* ============================================================================
+   AGROBOT MARK — MOTION SYSTEM
+   Ported from Open Design project `agrobot-premium-identity`
+   (agrobot-third-direction.html + MOTION.md + DESIGN.md).
+   Spec: docs/superpowers/specs/2026-07-22-agrobot-motion-port-design.md
+   ============================================================================
+
+   STATE NAME MAPPING
+   The design vocabulary calls the fifth state `new-regulation` ("New Regulation
+   Detected" in DESIGN.md). This app calls it `alert`, and that name is kept.
+   Read `svg[data-state="alert"]` below as the design's New Regulation state.
+   Every other state name is identical in both.
+
+   HOW THIS WORKS — READ BEFORE EDITING
+   Descendant selectors do NOT cross the `<use>` shadow tree boundary. You cannot
+   write `svg[data-state="ready"] .src-dots { ... }` and have it apply; the dots
+   live inside a shadow tree built from #mark-master-shapes.
+
+   Instead, `svg[data-state="x"]` sets inherited CSS custom properties, and the
+   elements inside the symbol consume them from inline styles:
+       style="animation:var(--d-reach,none)"
+   Custom properties DO inherit inward across the boundary — that is the entire
+   mechanism. Refactoring these blocks into ordinary rules that target elements
+   inside the symbol will silently break every state.
+
+   THE MARK ITSELF NEVER ROTATES. Only the outer flower layer turns, and only in
+   multiples of 90deg — the petal is 4-fold symmetric (lobe apexes measured at
+   0.17/90.14/180.00/271.48deg, radii within 1%), so a quarter turn lands
+   visually identical and loops without snapping. A non-multiple would leave the
+   mark visibly rotated at rest. All other motion belongs to the detached source
+   dots: dots outward = the agent reaching for sources; dots inward = resolution,
+   or the world reaching the agent.
+
+   GEOMETRY (64-unit space, centre 32,32)
+   Outer petal reaches r=31.5 (widest individually measured tip 31.61).
+   Dot ring r=38 · dot radius 2.2 · launch 31.2 · retract 27.
+   Any HELD, FULL-SCALE dot radius R must satisfy R - 2.2 > 31.5 or the dot is
+   swallowed by the petal and vanishes. That bug shipped once already.
+   ========================================================================== */
+
+
+/* ---------------------------------------------------------------------------
+   READY — idle liveness, not decoration.
+   A permitted exception to DESIGN.md's decorative-breathing ban (see the
+   2026-07-22 amendment). An always-on agent rendered perfectly frozen is
+   indistinguishable from a crashed one, so idle carries the smallest honest
+   signal that it is alive.
+   The four binding conditions: periods must not divide into each other
+   (5.2s / 6.8s = 13:17, realigning only every 88.4s — equal or opposite phases
+   produce the audible-feeling pulse the ban targets); amplitude stays small
+   (6% / 4.5%, about 3.5px and 1.9px at a 120px render); the core stays OUTSIDE
+   both breathing groups as a fixed anchor; reduced motion renders it still.
+   --------------------------------------------------------------------------- */
+svg[data-state="ready"] {
+  --outer-animation: flower-breathe-outer 5.2s ease-in-out infinite;
+  --inner-animation: flower-breathe-inner 6.8s ease-in-out infinite;
+}
+
+/* ---------------------------------------------------------------------------
+   LISTENING — a repeating gesture with a genuine full stop.
+   3.4s cycle: emerge 0.32s -> sweep 180deg to 1.28s -> retract to 1.60s ->
+   hold completely still for 1.80s. The held pause is what separates recurring
+   acknowledgement from a spinner; it must be a real stop, not a slow drift.
+   --------------------------------------------------------------------------- */
+svg[data-state="listening"] {
+  --d-op: 1;
+  --d-reach: dot-listen-reach 3.4s linear infinite;
+  --d-sweep: dot-listen-sweep 3.4s linear infinite;
+  --outer-animation: flower-quarter 3.4s linear infinite;
+}
+
+/* ---------------------------------------------------------------------------
+   RESEARCHING — stepped rotation on a uniform ring, reading as indexing through
+   sources rather than loading. 6s cycle of 4 x (1.07s hold + 0.43s turn) = 360.
+   Holds are 71% of the cycle; that ratio is what stops it reading as a spinner.
+   --------------------------------------------------------------------------- */
+svg[data-state="researching"] {
+  --d-op: 1;
+  --d-reach: dot-research-reach 1s cubic-bezier(.16,.84,.44,1) 1 forwards;
+  --d-sweep: dot-research-step 6s linear infinite;
+  --d-stagger: .11s;
+  --d-sweep-delay: .35s;
+  --outer-animation: flower-step-ccw 6s linear .35s infinite;
+}
+
+/* ---------------------------------------------------------------------------
+   VERIFIED — convergence, then a complete stop. Dots in, ring out; the
+   counterpoint is what makes it feel resolved rather than merely finished.
+   Self-contained: the dots start at the orbit radius whether or not a previous
+   state had deployed them, so entering Verified cold still reads correctly.
+   --------------------------------------------------------------------------- */
+svg[data-state="verified"] {
+  --d-op: 1;
+  --d-reach: dot-verify .6s cubic-bezier(.5,0,.75,0) 1 forwards;
+  --outer-animation: flower-settle .75s cubic-bezier(.16,.84,.44,1) 1 forwards;
+  --confirm-animation: confirm-pulse 1.15s ease-out 1;
+}
+
+/* ---------------------------------------------------------------------------
+   ALERT  (design vocabulary: NEW REGULATION DETECTED) — the inversion.
+   Dot 4 carries this state, not dot 1. Dot 4's base rotation is rotate(45),
+   which renders top-right, where arrivals are expected. Dot 1 is at rotate(135)
+   — right and DOWN — which is why an earlier build read as a flick at the
+   bottom of the mark.
+   The dot starts at r=70, genuinely outside the frame (the diagonal only clears
+   the viewBox past r=62.2), so it enters by crossing the edge rather than
+   materialising in open space, and it STAYS on the ring: a pending regulation
+   is pending until acknowledged, so it must not evaporate.
+   --------------------------------------------------------------------------- */
+svg[data-state="alert"] {
+  --d-op: 1;
+  --d-reach: dot-arrive .95s cubic-bezier(.12,.7,.2,1) 1 forwards;
+  --d1-display: none;
+  --d2-display: none;
+  --d3-display: none;
+  --outer-animation: flower-attend 1.7s linear 1 forwards;
+  --pulse-animation: pulse-once 1.1s ease-out .85s 1;
+}
+
+/* Data-driven source count for Researching. Clamped 2-5, default 4. */
+svg[data-sources="2"] { --d3-display: none; --d4-display: none; }
+svg[data-sources="3"] { --d4-display: none; }
+
+
+/* ===========================================================================
+   KEYFRAMES
+   =========================================================================== */
+
+/* Listening: emerge at the lobe tips, glide out, sweep 180deg together, retract
+   inward, then hold still. Four dots spaced 90deg apart have 4-fold rotational
+   symmetry, so a 180deg sweep returns the SET to a visually identical
+   configuration — dot A lands exactly where dot C launched. The retraction
+   therefore reads as returning to the same corners and the gesture closes on
+   itself. Per-segment easing lives here; never linear. */
+@keyframes dot-listen-reach {
+  0%     { transform: translateY(-31.2px) scale(0); animation-timing-function: cubic-bezier(.16,.84,.44,1); }
+  9.41%  { transform: translateY(-38px) scale(1);   animation-timing-function: cubic-bezier(.65,0,.35,1); }
+  37.65% { transform: translateY(-38px) scale(1);   animation-timing-function: cubic-bezier(.55,0,.9,.4); }
+  47.06% { transform: translateY(-27px) scale(0); }
+  100%   { transform: translateY(-27px) scale(0); }
+}
+@keyframes dot-listen-sweep {
+  0%     { transform: rotate(0deg); }
+  9.41%  { transform: rotate(0deg); animation-timing-function: cubic-bezier(.65,0,.35,1); }
+  37.65% { transform: rotate(180deg); }
+  100%   { transform: rotate(180deg); }
+}
+
+/* The outer flower quarter-turns beneath the dots, on the same clock and easing,
+   at half their angular rate — the dots appear to carry it round. It is bounded
+   and stops dead for the 1.8s hold. The outer/inner offset goes 45 -> 135deg,
+   but 135 mod 90 = 45, so the rosette is unchanged too. Only this layer moves;
+   the inner flower and core stay fixed, so the logo as a whole never rotates. */
+@keyframes flower-quarter {
+  0%     { transform: rotate(0deg); }
+  9.41%  { transform: rotate(0deg); animation-timing-function: cubic-bezier(.65,0,.35,1); }
+  37.65% { transform: rotate(90deg); }
+  100%   { transform: rotate(90deg); }
+}
+
+/* Ready: asynchronous breathing. Scale only, centred, core excluded. */
+@keyframes flower-breathe-outer {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.06); }
+}
+@keyframes flower-breathe-inner {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.045); }
+}
+
+/* Researching: the flower indexes counter to the dots on the identical step
+   clock. Both land self-similar every step, so the counterpoint never leaves
+   the mark in a wrong orientation. Two systems indexing against each other is
+   the cross-check made visible. This is NOT the banned counter-rotation: that
+   was continuous, this holds still for 71% of its cycle. */
+@keyframes flower-step-ccw {
+  0%, 17.83%  { transform: rotate(0deg);    animation-timing-function: cubic-bezier(.65,0,.35,1); }
+  25%, 42.83% { transform: rotate(-90deg);  animation-timing-function: cubic-bezier(.65,0,.35,1); }
+  50%, 67.83% { transform: rotate(-180deg); animation-timing-function: cubic-bezier(.65,0,.35,1); }
+  75%, 92.83% { transform: rotate(-270deg); animation-timing-function: cubic-bezier(.65,0,.35,1); }
+  100%        { transform: rotate(-360deg); }
+}
+
+/* Verified: one decisive quarter turn that eases out and stops dead, like a
+   mechanism seating, while the dots converge into the core. Everything arrives
+   at rest together. */
+@keyframes flower-settle {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(90deg); }
+}
+
+/* Alert: the flower holds until the dot has actually landed (0.95s = 56% of
+   1.7s), then turns once to attend to it. The mark registers the arrival, then
+   turns toward it. Restrained, never alarmed. */
+@keyframes flower-attend {
+  0%, 56% { transform: rotate(0deg); animation-timing-function: cubic-bezier(.16,.84,.44,1); }
+  100%    { transform: rotate(90deg); }
+}
+
+/* Researching: dots arrive in a staggered cascade onto ONE uniform ring, all the
+   same size, and stay out for the duration. Uneven radii were tried and
+   abandoned — once the dots must clear the silhouette and stay inside the frame
+   the usable band is under 7 units, too narrow to read as deliberate and wide
+   enough to look misaligned. Two of four dots were being swallowed whole.
+   The transient start at r=31.2/scale(0) is inside the silhouette BY DESIGN:
+   the dot emerges FROM the mark. Its inner edge is 31.2 + 4.6t, clearing 31.5
+   at t~0.07 while the dot is still ~7% of full size. */
+@keyframes dot-research-reach {
+  0%   { transform: translateY(-31.2px) scale(0); }
+  100% { transform: translateY(-38px) scale(1); }
+}
+
+/* The ring advances in four discrete 90deg steps, holding ~1.07s between each.
+   The holds dominate, so this can never read as a spinner. A FULL 360 is
+   required rather than a single repeating 90, which also keeps the loop
+   seamless when the source count drops below four. */
+@keyframes dot-research-step {
+  0%, 17.83%  { transform: rotate(0deg);   animation-timing-function: cubic-bezier(.65,0,.35,1); }
+  25%, 42.83% { transform: rotate(90deg);  animation-timing-function: cubic-bezier(.65,0,.35,1); }
+  50%, 67.83% { transform: rotate(180deg); animation-timing-function: cubic-bezier(.65,0,.35,1); }
+  75%, 92.83% { transform: rotate(270deg); animation-timing-function: cubic-bezier(.65,0,.35,1); }
+  100%        { transform: rotate(360deg); }
+}
+
+/* Verified: dots converge into the core as the ring pulses outward.
+   PORT DEVIATION — starts at r=38, not the artifact's r=34. At 34 the dot's
+   inner edge is 31.8 against the widest measured tip of 31.61: a clearance of
+   0.19 units, so the dots visibly grazed the mark. This is the same grazing
+   that moved Listening's orbit from 34 to 38; the fix was never applied here.
+   38 also puts Verified on the same ring every other state uses. */
+@keyframes dot-verify {
+  0%   { transform: translateY(-38px) scale(1); opacity: .55; }
+  60%  { opacity: 1; }
+  100% { transform: translateY(0px) scale(.3); opacity: 0; }
+}
+
+/* Alert: the inversion — one dot arrives from the world and STAYS. Full size
+   throughout; nothing shrinks to a speck. */
+@keyframes dot-arrive {
+  0%   { transform: translateY(-70px) scale(1); }
+  100% { transform: translateY(-38px) scale(1); }
+}
+
+/* Verified's confirmation ring. Base circle is r=8.4.
+   PORT DEVIATION — scale 3.33, not the artifact's 1.8. At 1.8 the ring reached
+   radius 15.1 and was lost in the mark's centre where the core already sits.
+   3.33 carries it to radius 28: it clearly registers, while staying INSIDE the
+   31.5 silhouette. That containment is deliberate and load-bearing — Verified
+   resolves WITHIN the mark's own footprint, while Alert's ring below breaks
+   PAST it. Direction and extent are what keep the two rings legible as
+   different events. */
+@keyframes confirm-pulse {
+  0%   { opacity: 0; transform: scale(.7); }
+  28%  { opacity: .7; }
+  100% { opacity: 0; transform: scale(3.33); }
+}
+
+/* Alert's answering pulse — the mark registering the arrival. Base circle is
+   r=5.8, so scale 6.2 carries the ring out to radius 36: past the outer petal
+   (31.5) and onto the dot's ring (38), visibly reaching out to meet what
+   landed. It fires at 0.85s, overlapping the dot's 0.95s landing by 0.1s so the
+   two read as cause and effect. */
+@keyframes pulse-once {
+  0%   { opacity: 0; transform: scale(.4); }
+  15%  { opacity: .5; }
+  100% { opacity: 0; transform: scale(6.2); }
+}
+
+
+/* ===========================================================================
+   REDUCED MOTION — five distinguishable static frames.
+   DESIGN.md requires "meaningful static states", so these are not just "off":
+   each frame has to be identifiably its own state.
+   =========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  svg[data-state] {
+    --outer-animation: none;
+    --inner-animation: none;
+    --pulse-animation: none;
+    --confirm-animation: none;
+    --d-reach: none;
+    --d-sweep: none;
+  }
+
+  /* Listening freezes mid-sweep at 45deg, putting its dots on the CARDINALS;
+     Researching rests on the DIAGONALS. This must not be 90deg — with dots
+     evenly spaced at 90deg, a 90deg freeze renders identically to Researching
+     under 4-fold symmetry. Angular position, not distance, separates them. */
+  svg[data-state="listening"]   { --d-op: 1; --d-reach-t: translateY(-38px); --d-sweep-t: rotate(45deg); }
+  svg[data-state="researching"] { --d-op: 1; --d-reach-t: translateY(-38px); }
+
+  /* Verified: dots merged at the core. The r=12 position is inside the
+     silhouette BY DESIGN — they have arrived, this is not an orbit position.
+     PORT DEVIATION — confirm ring at scale(2.5) (radius 21), not the artifact's
+     1.35 (radius 11.3), to track the animated peak of 28. */
+  svg[data-state="verified"] {
+    --d-op: .5;
+    --d-reach-t: translateY(-12px) scale(.6);
+    --confirm-opacity: .55;
+    --confirm-transform: scale(2.5);
+  }
+
+  /* Alert: the single arrived dot, held on the ring, plus the answering ring. */
+  svg[data-state="alert"] {
+    --d-op: 1;
+    --d-reach-t: translateY(-38px);
+    --d1-display: none;
+    --d2-display: none;
+    --d3-display: none;
+    --pulse-opacity: .4;
+    --pulse-transform: scale(4);
+  }
+
+  /* Ready inherits the blanket `none` above and renders completely still —
+     the fourth binding condition of the breathing exception. */
+}

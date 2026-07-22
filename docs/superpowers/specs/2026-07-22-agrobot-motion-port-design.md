@@ -437,6 +437,42 @@ acceptable, the fix is to gate the grid with an `IntersectionObserver` toggling
 
 ---
 
+## 9a. Findings from visual verification
+
+Everything in §8.1 passed, and the states, pivot, rings and reduced-motion frames all confirmed
+by eye. Two things only rendering caught.
+
+### Resolved — `assets/agrobot.svg` failed to parse, and rendered as nothing
+
+The explanatory comment in the new asset named the custom properties with their leading dashes
+(`--mk-outer / --mk-inner / …`). **XML forbids a double hyphen inside a comment**, so the whole
+file failed to parse. SVG loaded through `<img>` or `background-image` is parsed as strict XML:
+there was no console error, no failed request, and no failing structural check — the ten static
+instances simply went blank, including the size row, both lockups and the favicon.
+
+This is exactly the failure mode §8.2 exists to catch: it is invisible to every check that does
+not put pixels on a screen. `scripts/verify-mark.mjs` check 7 now asserts the file is
+well-formed and that no comment contains `--`, so it cannot regress silently.
+
+### Outstanding — the reverse treatment flattens the new mark
+
+Three selectors render the mark white-on-dark with `filter: brightness(0) invert(1)`:
+`.lockup-compact` (:161), `.size-row` (:174) and `.agent-mark--closing` (:319).
+
+That hack worked on the retired mark, whose six petals were separate shapes with gaps between
+them — a flat silhouette still read as "six petals plus a seed". **The new mark's construction
+lives entirely in the colour contrast between two overlapping layers.** Flatten all three fills
+to white and the outer petal, inner petal and core merge into one featureless blob. Verified
+visually at 20, 32, 64 and 128px.
+
+`DESIGN.md` §Scale requires a one-colour version, and the source artifact solves this properly
+with `#mark-mono-shapes`: outer petal in `currentColor`, inner petal in the **background**
+colour, core in `currentColor` — a knockout that preserves the layering in a single colour. That
+symbol was not ported, because §4 scoped the port to motion instances only.
+
+Not fixed unilaterally: choosing the knockout colour per ground is a design decision, and these
+are instances the spec explicitly scoped out. See the handover note for the options.
+
 ## 9. Out of scope
 
 - The Evidence Trace direction (`agrobot-trace.*`) and its motion system.
