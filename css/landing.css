@@ -823,7 +823,7 @@ button { color: inherit; }
 .team-grid article a { align-self: end; width: max-content; padding-bottom: 5px; border-bottom: 1px solid rgba(255,255,255,.5); font: 600 10px/1 var(--mono); }
 .team-grid article a span { margin-left: 8px; color: var(--orange); font-size: 15px; }
 
-.team-note { min-height: 180px; display: flex; flex-direction: column; justify-content: space-between; background: rgba(0,20,120,.17); }
+.team-note { grid-column: 1 / -1; min-height: 180px; display: flex; flex-direction: column; justify-content: space-between; background: rgba(0,20,120,.17); }
 .team-note p { max-width: 600px; margin: 0; font-size: 26px; font-weight: 700; line-height: 1.12; letter-spacing: -.035em; }
 
 .contact-section {
