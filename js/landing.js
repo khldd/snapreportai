@@ -188,6 +188,6 @@
     const body = `Name: ${name}\nEmail: ${email}\nCompany: ${company}\n\nWhat they are working on:\n${message}`;
 
     if (contactStatus) contactStatus.textContent = "Opening your email app with the message ready to send.";
-    window.location.href = `mailto:snapreportai99@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:support@snapreportai.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   });
 })();
