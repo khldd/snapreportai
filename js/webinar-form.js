@@ -66,6 +66,14 @@
       paceThreeMonths: "Sous 3 mois",
       paceQuarter: "Ce trimestre",
       paceNow: "Maintenant",
+      helpTitle: "Comment on peut vous aider ?",
+      helpDemo: "Accès démo de nos outils",
+      helpTraining: "Formation",
+      helpReporting: "Reporting",
+      helpRegulatory: "Veille réglementaire",
+      aiTrainingTitle: "Intéressé par nos offres de formation diagnostique sur l'IA ?",
+      aiTrainingYes: "Oui",
+      aiTrainingNo: "Non",
       consent: "J\u2019accepte que SnapReport conserve ces informations pour me recontacter.",
       privacy: "Vos réponses sont chiffrées et stockées de manière sécurisée. Utilisées uniquement pour donner suite à ce webinaire — jamais partagées ni vendues.",
       submit: "Envoyer mes réponses",
@@ -128,6 +136,14 @@
       paceThreeMonths: "Within 3 months",
       paceQuarter: "This quarter",
       paceNow: "Right now",
+      helpTitle: "How can we help?",
+      helpDemo: "Demo access to our tools",
+      helpTraining: "Training",
+      helpReporting: "Reporting",
+      helpRegulatory: "Regulatory monitoring",
+      aiTrainingTitle: "Interested in our AI diagnostic training offers?",
+      aiTrainingYes: "Yes",
+      aiTrainingNo: "No",
       consent: "I agree that SnapReport may store this to follow up with me.",
       privacy: "Your answers are encrypted and stored securely. Used only to follow up on this webinar — never shared or sold.",
       submit: "Send my answers",
@@ -144,7 +160,7 @@
   };
 
   const HTML_KEYS = new Set(["heading"]);
-  const section = document.querySelector("#ai-input");
+  const section = document.querySelector("#form-section");
   if (!section) return;
 
   const form = section.querySelector("#webinarForm");
@@ -252,6 +268,8 @@
     if (fillMs < MIN_FILL_MS) { setStatus(I18N[currentLang].errFast, true); return; }
 
     const needs = Array.from(form.querySelectorAll('input[name="needs"]:checked')).map((input) => input.value);
+    const help = Array.from(form.querySelectorAll('input[name="help"]:checked')).map((input) => input.value);
+    const aiTrainingInput = form.querySelector('input[name="ai_training"]:checked');
     const paceInput = form.querySelector('input[name="pace"]:checked');
     const payload = {
       full_name: form.elements.fullName?.value ?? "",
@@ -260,6 +278,8 @@
       role: form.elements.role?.value || null,
       sector: form.elements.sector?.value || null,
       needs,
+      help,
+      ai_training: aiTrainingInput ? aiTrainingInput.value : null,
       pace: paceInput ? paceInput.value : null,
       notes: form.elements.notes?.value ?? "",
       lang: currentLang,
