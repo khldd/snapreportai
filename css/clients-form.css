@@ -139,6 +139,13 @@
   font-size: 16px;
 }
 
+.webinar-copy > .webinar-thanks {
+  margin: 0 0 16px;
+  font: 700 clamp(18px, 2vw, 22px)/1.3 var(--satoshi);
+  letter-spacing: -.02em;
+  text-transform: none;
+}
+
 @media (max-width: 1180px) {
   .clients-form-hero { min-height: 550px; }
   .clients-form-hero .hero-copy { width: 52vw; margin-left: 28px; }
