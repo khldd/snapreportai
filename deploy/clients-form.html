@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0334EA">
+  <title>Client Input Form | SnapReport</title>
+  <meta name="description" content="Tell us where AI should lighten the load. Two minutes, six questions. Your answers go straight to the SnapReport product team.">
+  <link rel="icon" href="assets/snapreport-symbol-blue.svg?v=20260714-2" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/landing.css?v=20261117-1">
+  <link rel="stylesheet" href="css/clients-form.css?v=20261117-1">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="page-progress" id="pageProgress" aria-hidden="true"></div>
+
+  <svg class="svg-defs" aria-hidden="true">
+    <defs>
+      <filter id="to-snap-blue" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="0 0 0 0 0.0118 0 0 0 0 0.2039 0 0 0 0 0.9176 0 0 0 1 0"/>
+      </filter>
+      <filter id="to-ink" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="0 0 0 0 0.0275 0 0 0 0 0.0745 0 0 0 0 0.1843 0 0 0 1 0"/>
+      </filter>
+      <filter id="logo-white-transparent" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 .5 .5 .5 0 -.7"/>
+      </filter>
+      <filter id="logo-blue-transparent" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="0 0 0 0 .0118 0 0 0 0 .2039 0 0 0 0 .9176 .5 .5 .5 0 -.7"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <header class="site-header" id="siteHeader">
+    <a class="site-brand" href="landing.html" aria-label="SnapReport home">
+      <img class="site-brand__mark" src="assets/snapreport-symbol-blue.svg?v=20260714-2" alt="" aria-hidden="true">
+      <span class="site-brand__name">SnapReport</span>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" type="button" aria-controls="siteNav" aria-expanded="false">
+      <span>Menu</span><i aria-hidden="true"></i>
+    </button>
+
+    <nav class="site-nav" id="siteNav" aria-label="Main navigation">
+      <a href="landing.html#company">Company</a>
+      <a href="landing.html#products">Products</a>
+      <a href="landing.html#capabilities">Capabilities</a>
+      <a href="landing.html#team">Team</a>
+    </nav>
+
+    <a class="header-contact" href="landing.html#contact">Start a conversation <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main id="main">
+    <section class="clients-form-hero" id="home">
+      <div class="signal-current" aria-hidden="true"></div>
+      <svg class="hero-watermark" viewBox="350 260 370 280" aria-hidden="true" focusable="false">
+        <use href="Group.svg#compressed"></use>
+      </svg>
+
+      <div class="hero-copy">
+        <p class="eyebrow eyebrow--reverse" data-reveal>Your input shapes what we build</p>
+        <h1 data-reveal>Tell us where AI should <em>lighten the load</em>.</h1>
+        <p class="hero-lede" data-reveal>Two minutes, six questions. Your answers go straight to the SnapReport product team — they decide what we build next.</p>
+      </div>
+
+      <div class="hero-foot" data-reveal>
+        <span>2 minutes</span>
+        <span>Direct to the team</span>
+        <span>Encrypted & private</span>
+      </div>
+    </section>
+
+    <section class="webinar-section" id="form-section" lang="fr">
+      <div class="section-index"><span>Your input</span><span>Two minutes, straight to the team</span></div>
+      <div class="webinar-copy">
+        <div class="webinar-lang" role="group" data-i18n-aria="langGroup" aria-label="Langue du formulaire / Form language">
+          <button type="button" class="is-active" data-lang-btn="fr" aria-pressed="true">FR</button>
+          <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+        </div>
+        <p class="eyebrow" data-reveal data-i18n="eyebrow">Webinaire en direct / Votre avis compte</p>
+        <h2 data-reveal data-i18n="heading">Dites-nous où l&rsquo;IA vous <em>allégerait</em>.</h2>
+        <p class="webinar-lede" data-reveal data-i18n="lede">Deux minutes, six questions. Vos réponses arrivent directement à l&rsquo;équipe produit — elles décident de ce que nous construisons ensuite.</p>
+        <ul class="webinar-points" data-reveal>
+          <li><span data-i18n="point1t">2 minutes</span><p data-i18n="point1d">Chronométré honnêtement : six questions, aucune inscription.</p></li>
+          <li><span data-i18n="point2t">Direct</span><p data-i18n="point2d">Vos réponses arrivent à l&rsquo;équipe, pas à un robot.</p></li>
+          <li><span data-i18n="point3t">Privé</span><p data-i18n="point3d">Chiffré en transit et au repos. Jamais partagé, jamais vendu.</p></li>
+        </ul>
+      </div>
+      <div class="webinar-card" data-reveal>
+        <span class="webinar-card__eyebrow" data-i18n="cardEyebrow">Formulaire en direct</span>
+        <form class="webinar-form" id="webinarForm">
+          <div class="webinar-form__row">
+            <label><span data-i18n="labelName">Nom et prénom</span><input type="text" name="fullName" maxlength="120" autocomplete="name" required></label>
+            <label><span data-i18n="labelEmail">Email professionnel</span><input type="email" name="email" maxlength="160" autocomplete="email" data-i18n-ph="emailPlaceholder" required></label>
+          </div>
+          <label><span data-i18n="labelCompany">Entreprise</span><input type="text" name="company" maxlength="160" autocomplete="organization" required></label>
+          <div class="webinar-form__row">
+            <label><span data-i18n="labelRole">Votre rôle</span> <span data-i18n="optional">(optionnel)</span>
+              <select name="role">
+                <option value="" selected data-i18n="rolePlaceholder">Choisir…</option>
+                <option value="direction" data-i18n="roleDirection">Direction / Fondateur</option>
+                <option value="operations" data-i18n="roleOperations">Opérations</option>
+                <option value="quality" data-i18n="roleQuality">Qualité / Réglementaire</option>
+                <option value="sales" data-i18n="roleSales">Ventes / Marketing</option>
+                <option value="it" data-i18n="roleIT">IT / Digital</option>
+                <option value="other" data-i18n="roleOther">Autre</option>
+              </select>
+            </label>
+            <label><span data-i18n="labelSector">Votre secteur</span> <span data-i18n="optional">(optionnel)</span>
+              <select name="sector">
+                <option value="" selected data-i18n="sectorPlaceholder">Choisir…</option>
+                <option value="agro" data-i18n="sectorAgro">Agroalimentaire</option>
+                <option value="industry" data-i18n="sectorIndustry">Industrie</option>
+                <option value="distribution" data-i18n="sectorDistribution">Distribution / Retail</option>
+                <option value="services" data-i18n="sectorServices">Services</option>
+                <option value="tech" data-i18n="sectorTech">Tech / Numérique</option>
+                <option value="health" data-i18n="sectorHealth">Santé</option>
+                <option value="other" data-i18n="sectorOther">Autre</option>
+              </select>
+            </label>
+          </div>
+          <fieldset class="webinar-fieldset">
+            <legend data-i18n="needsTitle">Si l&rsquo;IA pouvait vous alléger dès demain, ce serait sur quoi ?</legend>
+            <div class="chip-group">
+              <label class="chip"><input type="checkbox" name="needs" value="reports"><span data-i18n="needReports">Rapports & administratif</span></label>
+              <label class="chip"><input type="checkbox" name="needs" value="quality"><span data-i18n="needQuality">Docs qualité & conformité</span></label>
+              <label class="chip"><input type="checkbox" name="needs" value="clients"><span data-i18n="needClients">Réponses aux clients</span></label>
+              <label class="chip"><input type="checkbox" name="needs" value="data"><span data-i18n="needData">Analyse de données</span></label>
+              <label class="chip"><input type="checkbox" name="needs" value="production"><span data-i18n="needProduction">Planification production</span></label>
+              <label class="chip"><input type="checkbox" name="needs" value="marketing"><span data-i18n="needMarketing">Contenus marketing</span></label>
+              <label class="chip"><input type="checkbox" name="needs" value="forecasts"><span data-i18n="needForecasts">Prévisions & budgets</span></label>
+              <label class="chip"><input type="checkbox" name="needs" value="other"><span data-i18n="needOther">Autre</span></label>
+            </div>
+          </fieldset>
+          <label><span data-i18n="notesLabel">Quelque chose à préciser ?</span> <span data-i18n="optional">(optionnel)</span>
+            <textarea name="notes" rows="3" maxlength="1000" data-i18n-ph="notesPlaceholder"></textarea>
+          </label>
+          <fieldset class="webinar-fieldset">
+            <legend data-i18n="paceTitle">À quel rythme ?</legend>
+            <div class="chip-group">
+              <label class="chip"><input type="radio" name="pace" value="exploring"><span data-i18n="paceExploring">J&rsquo;explore</span></label>
+              <label class="chip"><input type="radio" name="pace" value="three_months"><span data-i18n="paceThreeMonths">Sous 3 mois</span></label>
+              <label class="chip"><input type="radio" name="pace" value="quarter"><span data-i18n="paceQuarter">Ce trimestre</span></label>
+              <label class="chip"><input type="radio" name="pace" value="now"><span data-i18n="paceNow">Maintenant</span></label>
+            </div>
+          </fieldset>
+          <label class="webinar-consent"><input type="checkbox" name="consent" required><span data-i18n="consent">J&rsquo;accepte que SnapReport conserve ces informations pour me recontacter.</span></label>
+          <div class="hp-field" aria-hidden="true"><label>Site web<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+          <button class="webinar-form__submit" type="submit"><span data-i18n="submit">Envoyer mes réponses</span> <span aria-hidden="true">↗</span></button>
+          <p class="webinar-form__status" aria-live="polite"></p>
+        </form>
+        <div class="webinar-success" hidden>
+          <strong data-i18n="successTitle">Bien reçu. Merci !</strong>
+          <p data-i18n="successBody">Vos réponses sont arrivées directement à l&rsquo;équipe SnapReport. On vous recontacte très vite — et si le sujet est urgent, écrivez à snapreportai99@gmail.com.</p>
+          <small data-i18n="successMeta">Réponse enregistrée de manière sécurisée</small>
+        </div>
+        <p class="webinar-privacy" data-i18n="privacy">Vos réponses sont chiffrées et stockées de manière sécurisée. Utilisées uniquement pour donner suite à ce webinaire — jamais partagées ni vendues.</p>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="signal-current signal-current--contact" aria-hidden="true"></div>
+      <div class="contact-copy">
+        <p class="eyebrow eyebrow--reverse" data-reveal>You found us / Let's make it useful</p>
+        <h2 data-reveal>Have a hard workflow worth fixing?</h2>
+        <p data-reveal>Tell us what your team is doing manually, repeatedly, or without enough confidence. We will tell you honestly whether we can help.</p>
+      </div>
+      <div class="contact-card" data-reveal>
+        <span class="contact-card__eyebrow">Start a conversation</span>
+        <form class="contact-form" id="contactForm">
+          <div class="contact-form__row">
+            <label>Name<input type="text" name="name" autocomplete="name" required></label>
+            <label>Email<input type="email" name="email" autocomplete="email" required></label>
+          </div>
+          <label>Company <span>(optional)</span><input type="text" name="company" autocomplete="organization"></label>
+          <label>What are you working on?<textarea name="message" rows="4" required></textarea></label>
+          <button class="contact-form__submit" type="submit">Send your message <span aria-hidden="true">↗</span></button>
+          <p class="contact-form__status" aria-live="polite"></p>
+        </form>
+        <p class="contact-email">Prefer email? <a href="mailto:snapreportai99@gmail.com">snapreportai99@gmail.com <span aria-hidden="true">↗</span></a></p>
+        <div class="contact-card__meta"><span>Currently accepting product conversations</span><span>Tunis / Switzerland / Remote</span></div>
+      </div>
+      <footer class="contact-footer"><span>Capture what matters.</span><span>© 2026 SnapReport</span></footer>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="footer-brand" href="landing.html" aria-label="SnapReport home">
+      <img class="site-brand__mark" src="assets/snapreport-symbol-blue.svg?v=20260714-2" alt="" aria-hidden="true">
+      <span class="site-brand__name">SnapReport</span>
+    </a>
+    <nav aria-label="Footer navigation"><a href="landing.html#company">Company</a><a href="landing.html#products">Products</a><a href="landing.html#capabilities">Capabilities</a><a href="landing.html#team">Team</a><a href="landing.html#contact">Contact</a></nav>
+    <div><a href="index.html">Identity standards</a><a href="landing.html">Back to top ↑</a></div>
+  </footer>
+
+  <script src="js/landing.js?v=20261117-1"></script>
+  <script src="js/webinar-form.js?v=20261117-1" defer></script>
+</body>
+</html>
