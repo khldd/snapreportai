@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0334EA">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Private dashboard | SnapReport</title>
+  <link rel="icon" href="assets/snapreport-symbol-blue.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin-dashboard.css?v=20261117-1">
+  <script src="js/admin-dashboard.js?v=20261117-1" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="admin-header">
+    <a class="admin-brand" href="index.html" aria-label="SnapReport home">
+      <img src="assets/snapreport-symbol-blue.svg" alt="" aria-hidden="true">
+      <span>SnapReport</span>
+    </a>
+    <a class="site-link" href="index.html">Back to website <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main class="admin-main" id="main">
+    <section class="login-panel" id="loginPanel" aria-labelledby="loginTitle">
+      <p class="eyebrow">Private workspace</p>
+      <h1 id="loginTitle">Sign in to view responses</h1>
+      <p class="login-intro">Use the Supabase Auth account authorized for this dashboard.</p>
+      <form id="loginForm" method="post">
+        <label for="loginEmail">Email address</label>
+        <input id="loginEmail" name="email" type="email" autocomplete="username" required>
+        <label for="loginPassword">Password</label>
+        <input id="loginPassword" name="password" type="password" autocomplete="current-password" required>
+        <button class="primary-button" id="loginButton" type="submit">Sign in</button>
+        <p class="message" id="loginMessage" role="alert" hidden></p>
+      </form>
+      <p class="privacy-note">Access is limited to accounts approved by a project administrator.</p>
+    </section>
+
+    <section class="dashboard" id="dashboard" aria-labelledby="dashboardTitle" hidden>
+      <div class="dashboard-heading">
+        <div>
+          <p class="eyebrow">Private workspace / Webinar</p>
+          <h1 id="dashboardTitle">Responses</h1>
+          <p class="signed-in">Signed in as <span id="signedInEmail"></span></p>
+        </div>
+        <button class="quiet-button" id="logoutButton" type="button">Sign out</button>
+      </div>
+
+      <section class="results-panel" aria-label="Webinar responses">
+        <div class="results-toolbar">
+          <form class="search-form" id="searchForm" role="search" method="post">
+            <label class="sr-only" for="searchInput">Search responses</label>
+            <input id="searchInput" name="search" type="search" maxlength="120" placeholder="Search name, email, company, or answers">
+            <button class="secondary-button" id="searchButton" type="submit">Search</button>
+          </form>
+          <button class="quiet-button" id="refreshButton" type="button">Refresh</button>
+        </div>
+        <div class="results-meta">
+          <p id="resultsSummary" aria-live="polite"></p>
+          <p class="message" id="resultsMessage" role="alert" hidden></p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Received</th>
+                <th scope="col">Name and email</th>
+                <th scope="col">Company</th>
+                <th scope="col">Interested in</th>
+                <th scope="col">Response details</th>
+              </tr>
+            </thead>
+            <tbody id="resultsBody"></tbody>
+          </table>
+          <p class="empty-state" id="emptyState" hidden>No responses match this search.</p>
+        </div>
+        <nav class="pagination" aria-label="Response pages">
+          <button class="quiet-button" id="previousButton" type="button" disabled>Previous</button>
+          <span id="pageSummary"></span>
+          <button class="quiet-button" id="nextButton" type="button" disabled>Next</button>
+        </nav>
+      </section>
+    </section>
+  </main>
+  <footer class="admin-footer"><span>SnapReport / Private workspace</span><span>Access is checked by Supabase on every request.</span></footer>
+</body>
+</html>

@@ -3,12 +3,14 @@
 -- Run ONCE in: Supabase Dashboard → SQL Editor → New query → paste → Run
 --
 -- Security model (why this is safe to expose to the public internet):
---   1. Row Level Security is ON for both tables with NO policies:
+--   1. Row Level Security is ON for all data tables with NO policies:
 --      anon/authenticated can never read, list, update or delete a single row,
 --      even if they call the REST API directly with the public anon key.
---   2. The public site may only call TWO functions, both heavily validated:
+--   2. The public site may only call the public form functions, both validated:
 --        webinar_form_enabled()  → true/false kill-switch check
 --        submit_webinar_lead(b)  → validates everything server-side, then inserts
+--      Authenticated users may call get_webinar_leads() only if their UUID is
+--      explicitly allowlisted in webinar_admins.
 --      Direct inserts into webinar_leads are impossible for the public.
 --   3. The kill switch lives in webinar_form_config and is enforced HERE
 --      (server-side), not just in the page JS. Flip it and the API refuses.
@@ -111,8 +113,18 @@ alter table public.webinar_leads      enable row level security;
 revoke all on public.webinar_form_config from anon, authenticated;
 revoke all on public.webinar_leads      from anon, authenticated;
 
+-- Admin membership is managed only from the Supabase SQL editor. A user cannot
+-- grant themselves access through the public API.
+create table if not exists public.webinar_admins (
+  user_id    uuid primary key references auth.users(id) on delete cascade,
+  created_at timestamptz not null default now()
+);
+
+alter table public.webinar_admins enable row level security;
+revoke all on public.webinar_admins from public, anon, authenticated;
+
 -- ----------------------------------------------------------------------------
--- 3. The only two functions the public may call
+-- 3. Public form RPCs
 -- ----------------------------------------------------------------------------
 
 -- Kill-switch check. Returns true only while the form is open.
@@ -402,6 +414,75 @@ grant  execute on function public.submit_webinar_lead(jsonb) to anon;
 
 revoke all on function public.webinar_form_enabled() from public, authenticated;
 grant  execute on function public.webinar_form_enabled() to anon;
+
+-- Return a capped page of leads only to explicitly allowlisted Auth users.
+-- The dashboard never receives direct table privileges.
+create or replace function public.get_webinar_leads(
+  p_limit integer default 25,
+  p_offset integer default 0,
+  p_search text default ''
+)
+returns table(total_count bigint, lead_rows jsonb)
+language plpgsql
+stable
+security definer
+set search_path = pg_catalog, public
+as $$
+declare
+  v_limit integer := least(greatest(coalesce(p_limit, 25), 1), 100);
+  v_offset integer := greatest(coalesce(p_offset, 0), 0);
+  v_search text := left(btrim(coalesce(p_search, '')), 120);
+begin
+  if auth.uid() is null
+     or not exists (
+       select 1
+       from public.webinar_admins as admins
+       where admins.user_id = auth.uid()
+     ) then
+    raise exception using errcode = '42501', message = 'admin_required';
+  end if;
+
+  return query
+  with filtered as (
+    select
+      leads.id,
+      leads.created_at,
+      leads.source,
+      leads.lang,
+      leads.full_name,
+      leads.email,
+      leads.company,
+      leads.role,
+      leads.sector,
+      leads.needs,
+      leads.help,
+      leads.ai_training,
+      leads.pace,
+      leads.notes,
+      leads.form_data
+    from public.webinar_leads as leads
+    where v_search = ''
+       or leads.full_name ilike '%' || v_search || '%'
+       or leads.email ilike '%' || v_search || '%'
+       or leads.company ilike '%' || v_search || '%'
+       or coalesce(leads.notes, '') ilike '%' || v_search || '%'
+       or leads.form_data::text ilike '%' || v_search || '%'
+  ),
+  page as (
+    select filtered.id, filtered.created_at, to_jsonb(filtered) as lead
+    from filtered
+    order by filtered.created_at desc, filtered.id desc
+    limit v_limit
+    offset v_offset
+  )
+  select
+    (select count(*) from filtered),
+    coalesce((select jsonb_agg(page.lead order by page.created_at desc, page.id desc) from page), '[]'::jsonb);
+end;
+$$;
+
+revoke all on function public.get_webinar_leads(integer, integer, text) from public, anon, authenticated;
+grant execute on function public.get_webinar_leads(integer, integer, text) to authenticated;
 
 -- ----------------------------------------------------------------------------
 -- Done. Quick reference:
