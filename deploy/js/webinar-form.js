@@ -31,28 +31,8 @@
       labelName: "Nom et prénom",
       labelEmail: "Email professionnel",
       emailPlaceholder: "prenom@entreprise.com",
-      labelCompany: "Entreprise",
-      companyLabel: "Entreprise / organisation",
-      labelRole: "Votre rôle",
+      companyLabel: "Entreprise",
       optional: "(optionnel)",
-      rolePlaceholder: "Choisir…",
-      roleDirection: "Direction / Fondateur",
-      roleOperations: "Opérations",
-      roleFieldLabel: "Votre fonction",
-      roleOperationsProduction: "Opérations / Production",
-      roleQuality: "Qualité / Réglementaire",
-      roleSales: "Ventes / Marketing",
-      roleIT: "IT / Digital",
-      roleOther: "Autre",
-      labelSector: "Votre secteur",
-      sectorPlaceholder: "Choisir…",
-      sectorAgro: "Agroalimentaire",
-      sectorIndustry: "Industrie",
-      sectorDistribution: "Distribution / Retail",
-      sectorServices: "Services",
-      sectorTech: "Tech / Numérique",
-      sectorHealth: "Santé",
-      sectorOther: "Autre",
       choose: "Choisir…",
       other: "Autre",
       interestTitle: "Qu\u2019est-ce qui vous intéresse ?",
@@ -61,17 +41,6 @@
       interestDiagnostic: "Un diagnostic IA",
       interestProject: "Un projet IA sur mesure",
       productsTitle: "Quel(s) outil(s) voulez-vous voir ?",
-      productAdvice: "Je ne sais pas encore — conseillez-moi",
-      trainingAudienceTitle: "Pour qui ?",
-      trainingAudienceLeadership: "Direction",
-      trainingAudienceManagers: "Managers",
-      trainingAudienceTeams: "Équipes métier",
-      trainingAudienceSelf: "Moi-même",
-      trainingSizeTitle: "Combien de participants ?",
-      trainingFormatTitle: "Format préféré",
-      formatInPerson: "Présentiel",
-      formatRemote: "À distance",
-      formatHybrid: "Hybride",
       projectDetailsTitle: "Votre projet",
       projectDescription: "Décrivez le besoin en quelques lignes",
       projectPlaceholder: "Ex. : automatiser nos rapports d’audit mensuels à partir de fichiers Excel et de photos terrain.",
@@ -91,30 +60,7 @@
       timelineThreeMonths: "Dans les 3 mois",
       timelineSixMonths: "Dans 3 à 6 mois",
       timelineExplore: "Je m’informe",
-      companySizeTitle: "Taille de l’entreprise",
-      companySize1: "1–10 personnes",
-      companySize2: "11–50 personnes",
-      companySize3: "51–250 personnes",
-      companySize4: "Plus de 250",
       countryTitle: "Pays",
-      sectorFood: "Agroalimentaire",
-      sectorAgriculture: "Agriculture",
-      sectorManufacturing: "Industrie",
-      sectorRetail: "Distribution / Retail",
-      sectorHealthPharma: "Santé / Pharma",
-      sectorEducation: "Éducation / Formation",
-      sectorConsulting: "Services / Conseil",
-      sectorTechDigital: "Tech / Numérique",
-      sectorPublic: "Secteur public / ONG",
-      roleHR: "RH / Formation",
-      contactChannelTitle: "Comment préférez-vous être contacté ?",
-      contactCall: "Appel",
-      phoneTitle: "Téléphone",
-      phonePlaceholder: "+216 XX XXX XXX",
-      contactTimeTitle: "Meilleur moment",
-      timeMorning: "Matin",
-      timeAfternoon: "Après-midi",
-      timeAny: "Peu importe",
       questionTitle: "Une question restée sans réponse pendant le webinaire ?",
       ratingTitle: "Le webinaire vous a-t-il été utile ?",
       newsletter: "M’informer des prochains webinaires et nouveautés (1 email par mois maximum).",
@@ -154,7 +100,6 @@
       errInvalid: "Merci de vérifier vos réponses, puis de renvoyer.",
       errInterest: "Choisissez au moins une option.",
       errProducts: "Choisissez au moins un outil à découvrir.",
-      errPhone: "Indiquez un numéro de téléphone valide pour être rappelé.",
       errFast: "Un instant — relisez vos réponses, puis renvoyez.",
       errNetwork: "Connexion impossible. Réessayez, ou écrivez-nous : snapreportai99@gmail.com",
       errRejected: "Impossible d’enregistrer vos réponses. Réessayez, ou écrivez-nous : snapreportai99@gmail.com",
@@ -178,28 +123,8 @@
       labelName: "Full name",
       labelEmail: "Work email",
       emailPlaceholder: "you@company.com",
-      labelCompany: "Company",
-      companyLabel: "Company / organisation",
-      labelRole: "Your role",
+      companyLabel: "Company",
       optional: "(optional)",
-      rolePlaceholder: "Select…",
-      roleDirection: "Founder / Leadership",
-      roleOperations: "Operations",
-      roleFieldLabel: "Your role",
-      roleOperationsProduction: "Operations / Production",
-      roleQuality: "Quality / Regulatory",
-      roleSales: "Sales / Marketing",
-      roleIT: "IT / Digital",
-      roleOther: "Other",
-      labelSector: "Your sector",
-      sectorPlaceholder: "Select…",
-      sectorAgro: "Food & agriculture",
-      sectorIndustry: "Manufacturing",
-      sectorDistribution: "Distribution / Retail",
-      sectorServices: "Services",
-      sectorTech: "Tech / Digital",
-      sectorHealth: "Healthcare",
-      sectorOther: "Other",
       choose: "Choose…",
       other: "Other",
       interestTitle: "What are you interested in?",
@@ -208,17 +133,6 @@
       interestDiagnostic: "An AI assessment",
       interestProject: "A custom AI project",
       productsTitle: "Which tool(s) would you like to see?",
-      productAdvice: "Not sure yet — advise me",
-      trainingAudienceTitle: "Who is it for?",
-      trainingAudienceLeadership: "Leadership",
-      trainingAudienceManagers: "Managers",
-      trainingAudienceTeams: "Business teams",
-      trainingAudienceSelf: "Myself",
-      trainingSizeTitle: "How many participants?",
-      trainingFormatTitle: "Preferred format",
-      formatInPerson: "On-site",
-      formatRemote: "Remote",
-      formatHybrid: "Hybrid",
       projectDetailsTitle: "Your project",
       projectDescription: "Describe the need in a few lines",
       projectPlaceholder: "E.g. automate our monthly audit reports from Excel files and field photos.",
@@ -238,30 +152,7 @@
       timelineThreeMonths: "Within 3 months",
       timelineSixMonths: "In 3–6 months",
       timelineExplore: "Just exploring",
-      companySizeTitle: "Company size",
-      companySize1: "1–10 people",
-      companySize2: "11–50 people",
-      companySize3: "51–250 people",
-      companySize4: "More than 250",
       countryTitle: "Country",
-      sectorFood: "Food & beverage",
-      sectorAgriculture: "Agriculture",
-      sectorManufacturing: "Manufacturing",
-      sectorRetail: "Retail / Distribution",
-      sectorHealthPharma: "Health / Pharma",
-      sectorEducation: "Education / Training",
-      sectorConsulting: "Services / Consulting",
-      sectorTechDigital: "Tech / Digital",
-      sectorPublic: "Public sector / NGO",
-      roleHR: "HR / Training",
-      contactChannelTitle: "How do you prefer to be contacted?",
-      contactCall: "Phone call",
-      phoneTitle: "Phone",
-      phonePlaceholder: "+216 XX XXX XXX",
-      contactTimeTitle: "Best time",
-      timeMorning: "Morning",
-      timeAfternoon: "Afternoon",
-      timeAny: "Any time",
       questionTitle: "A question left unanswered during the webinar?",
       ratingTitle: "Was the webinar useful to you?",
       newsletter: "Let me know about upcoming webinars and news (max. 1 email per month).",
@@ -301,7 +192,6 @@
       errInvalid: "Please check your answers, then send again.",
       errInterest: "Please choose at least one option.",
       errProducts: "Please choose at least one tool to see.",
-      errPhone: "Please add a valid phone number so we can call you.",
       errFast: "One moment — review your answers, then send again.",
       errNetwork: "Connection failed. Please retry, or email us: snapreportai99@gmail.com",
       errRejected: "We couldn’t save your answers. Please retry, or email us: snapreportai99@gmail.com",
@@ -384,20 +274,12 @@
     text.hidden = !other.checked;
     if (!other.checked) text.value = "";
   };
-  const syncPhoneRequirement = () => {
-    const required = ["appel", "whatsapp"].includes(field("contact_channel").value);
-    field("phone").required = required;
-    form.querySelector("#phoneOptional").hidden = required;
-    form.querySelector("#phoneRequired").hidden = !required;
-  };
   form.addEventListener("change", () => {
     syncInterestDetails();
     syncPainOther();
-    syncPhoneRequirement();
   });
   syncInterestDetails();
   syncPainOther();
-  syncPhoneRequirement();
 
   // --------------------------------------------------------------------------
   // Submission
@@ -431,13 +313,6 @@
       document.getElementById("demoDetails").scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
-    syncPhoneRequirement();
-    if (["appel", "whatsapp"].includes(field("contact_channel").value)
-        && field("phone").value.replace(/\D/g, "").length < 8) {
-      setStatus(I18N[currentLang].errPhone, true);
-      field("phone").focus();
-      return;
-    }
     if (!form.reportValidity()) return;
 
     const fillMs = Date.now() - openedAt;
@@ -448,21 +323,12 @@
       if (["website", "source", "lang", "submitted_at", "consent"].includes(key)) return;
       answers[key] = key in answers ? [].concat(answers[key], value) : value;
     });
-    ["interest", "products", "training_audience", "pain_points"].forEach((key) => {
+    ["interest", "products", "pain_points"].forEach((key) => {
       if (!Array.isArray(answers[key])) answers[key] = answers[key] ? [answers[key]] : [];
     });
     answers.consent = field("consent").checked;
     answers.newsletter = field("newsletter").checked;
 
-    const roleMap = {
-      direction: "direction", operations: "operations", qualite: "quality",
-      rh: "other", commercial: "sales", it: "it", autre: "other"
-    };
-    const sectorMap = {
-      agroalimentaire: "agro", agriculture: "agro", industrie: "industry",
-      distribution: "distribution", sante: "health", education: "other",
-      services: "services", tech: "tech", public: "other", autre: "other"
-    };
     const timelineMap = { maintenant: "now", "3mois": "three_months", "6mois": "quarter", info: "exploring" };
     const helpMap = { demo: "demo", formation: "training" };
     const notes = [
@@ -474,8 +340,6 @@
       full_name: field("name").value,
       email: field("email").value,
       company: field("company").value,
-      role: roleMap[field("role").value] || null,
-      sector: sectorMap[field("sector").value] || null,
       needs: [],
       help: interests.map((value) => helpMap[value]).filter(Boolean),
       ai_training: null,
