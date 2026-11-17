@@ -400,39 +400,6 @@
   syncPhoneRequirement();
 
   // --------------------------------------------------------------------------
-  // Kill switch — the server is the real gate; this just keeps the page in sync.
-  // Network errors intentionally keep the form visible: a flaky connection
-  // should never blank the section during the live webinar.
-  // --------------------------------------------------------------------------
-  const disableForm = () => {
-    section.hidden = true;
-    document.querySelectorAll("[data-webinar-nav]").forEach((el) => { el.hidden = true; });
-  };
-
-  const checkFormEnabled = async () => {
-    try {
-      const controller = new AbortController();
-      const timer = window.setTimeout(() => controller.abort(), 5000);
-      const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/webinar_form_enabled`, {
-        method: "POST",
-        headers: {
-          apikey: SUPABASE_ANON_KEY,
-          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-          "Content-Type": "application/json"
-        },
-        body: "{}",
-        signal: controller.signal
-      });
-      window.clearTimeout(timer);
-      if (response.ok) {
-        const enabled = await response.json();
-        if (enabled === false) disableForm();
-      }
-    } catch { /* keep the form; submissions stay gated server-side */ }
-  };
-  checkFormEnabled();
-
-  // --------------------------------------------------------------------------
   // Submission
   // --------------------------------------------------------------------------
   const setStatus = (message, isError) => {

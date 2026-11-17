@@ -15,6 +15,38 @@
     document.body.classList.remove("menu-open");
   };
 
+  const webinarLinks = document.querySelectorAll("[data-webinar-nav]");
+  const isWebinarPage = Boolean(document.querySelector("#form-section"));
+  if (webinarLinks.length || isWebinarPage) {
+    const checkWebinarAvailability = async () => {
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), 5000);
+      try {
+        const response = await fetch("https://hqvhfttqkxrahfbgqdxa.supabase.co/rest/v1/rpc/webinar_form_enabled", {
+          method: "POST",
+          headers: {
+            apikey: "sb_publishable_aUAvE8Y7lNshFi2O6gVDDw_47d6HxYC",
+            Authorization: "Bearer sb_publishable_aUAvE8Y7lNshFi2O6gVDDw_47d6HxYC",
+            "Content-Type": "application/json"
+          },
+          body: "{}",
+          signal: controller.signal
+        });
+        if (!response.ok) throw new Error(`Availability check failed: HTTP ${response.status}`);
+        const enabled = await response.json();
+        if (enabled !== false) return;
+
+        webinarLinks.forEach((link) => link.remove());
+        if (isWebinarPage) window.location.replace("/");
+      } catch (error) {
+        console.error("[landing] Could not check webinar form availability:", error);
+      } finally {
+        window.clearTimeout(timeout);
+      }
+    };
+    checkWebinarAvailability();
+  }
+
   const updateScrollUI = () => {
     const top = window.scrollY;
     const scrollable = document.documentElement.scrollHeight - window.innerHeight;
