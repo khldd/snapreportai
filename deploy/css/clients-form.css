@@ -107,6 +107,38 @@
   border-left: 1px solid rgba(255,255,255,.25);
 }
 
+.webinar-form__hint {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font: 400 14px/1.45 var(--satoshi);
+}
+
+.webinar-form__contact-intro {
+  margin-top: 24px;
+}
+
+.webinar-form__contact-intro h3 {
+  margin: 0;
+  color: var(--ink);
+  font: 700 16px/1.4 var(--satoshi);
+}
+
+.webinar-form__contact-intro p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font: 400 14px/1.45 var(--satoshi);
+}
+
+.webinar-form__contact-intro + .webinar-form__row {
+  margin-top: 12px;
+}
+
+.webinar-success p {
+  margin: 0;
+  color: var(--ink);
+  font-size: 16px;
+}
+
 @media (max-width: 1180px) {
   .clients-form-hero { min-height: 550px; }
   .clients-form-hero .hero-copy { width: 52vw; margin-left: 28px; }

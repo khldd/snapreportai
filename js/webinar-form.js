@@ -18,8 +18,24 @@
 
   const I18N = {
     fr: {
-      eyebrow: "Webinaire en direct / Votre avis compte",
-      heading: 'Dites-nous où l\u2019IA vous <em>allégerait</em>.',
+      homeAria: "Accueil SnapReport",
+      menuLabel: "Menu",
+      navAria: "Navigation principale",
+      navCompany: "Entreprise",
+      navProducts: "Produits",
+      navCapabilities: "Expertises",
+      navTeam: "Équipe",
+      navContact: "Parlons de votre projet",
+      heroEyebrow: "Votre avis façonne ce que nous construisons",
+      heroHeading: "Dites-nous où l’IA pourrait <em>vous simplifier la tâche</em>.",
+      heroLede: "Quelques minutes pour nous dire où l’IA pourrait vous aider. Vos réponses vont directement à l’équipe produit de SnapReport.",
+      heroFootTime: "Quelques minutes",
+      heroFootDirect: "Directement à l’équipe",
+      heroFootPrivate: "Chiffré et privé",
+      sectionIndexTitle: "Votre avis",
+      sectionIndexSubtitle: "Quelques minutes, directement à l’équipe",
+      eyebrow: "Webinaire SnapReport - Merci d’avoir été là !",
+      heading: "Parlons de vos enjeux QHSE",
       lede: "Quelques minutes pour nous dire où l\u2019IA pourrait vous aider. Vos réponses arrivent directement à l\u2019équipe produit.",
       point1t: "Quelques minutes",
       point1d: "Un court formulaire, sans inscription.",
@@ -35,7 +51,8 @@
       optional: "(optionnel)",
       choose: "Choisir…",
       other: "Autre",
-      interestTitle: "Quel type de service vous intéresse ?",
+      interestTitle: "Qu’est-ce qui vous intéresse ?",
+      interestHint: "Plusieurs choix possibles. Les réponses s’affichent selon vos choix.",
       interestDemo: "Une démo de nos outils",
       interestTraining: "Une formation IA",
       interestDiagnostic: "Un diagnostic IA",
@@ -55,6 +72,14 @@
       painInspection: "Inspection QHSE",
       painAnalysis: "Analyse des données et tendances",
       painPlaceholder: "Précisez : traçabilité, HACCP, sous-traitants…",
+      timelineTitle: "Quand souhaitez-vous démarrer ?",
+      timelineNow: "Dès maintenant",
+      timelineThreeMonths: "Dans les 3 mois",
+      timelineSixMonths: "Dans 3 à 6 mois",
+      timelineNotSure: "Je ne sais pas encore",
+      timelineMoreInfo: "Je souhaite en savoir plus",
+      contactTitle: "Comment pouvons-nous vous contacter ?",
+      contactHint: "Un seul échange pour identifier vos besoins. Pas de relances automatiques.",
       questionTitle: "Une question restée sans réponse pendant le webinaire ?",
       ratingTitle: "Le webinaire vous a-t-il été utile ?",
       newsletter: "M’informer des prochains webinaires et nouveautés (1 email par mois maximum).",
@@ -93,14 +118,28 @@
       errNetwork: "Connexion impossible. Réessayez, ou écrivez-nous : snapreportai99@gmail.com",
       errRejected: "Impossible d’enregistrer vos réponses. Réessayez, ou écrivez-nous : snapreportai99@gmail.com",
       errClosed: "Le formulaire est fermé. Écrivez-nous : snapreportai99@gmail.com",
-      successTitle: "Bien reçu. Merci !",
-      successBody: "Vos réponses sont arrivées directement à l\u2019équipe SnapReport. On vous recontacte très vite — et si le sujet est urgent, écrivez à snapreportai99@gmail.com.",
-      successMeta: "Réponse enregistrée de manière sécurisée",
+      successBody: "Nous prendrons contact avec vous dans les plus brefs délais",
       langGroup: "Langue du formulaire / Form language"
     },
     en: {
-      eyebrow: "Live webinar / Your input counts",
-      heading: 'Tell us where AI should <em>lighten the load</em>.',
+      homeAria: "SnapReport home",
+      menuLabel: "Menu",
+      navAria: "Main navigation",
+      navCompany: "Company",
+      navProducts: "Products",
+      navCapabilities: "Capabilities",
+      navTeam: "Team",
+      navContact: "Start a conversation",
+      heroEyebrow: "Your input shapes what we build",
+      heroHeading: "Tell us where AI could <em>lighten the load</em>.",
+      heroLede: "A few minutes to tell us where AI could help. Your answers go straight to the SnapReport product team.",
+      heroFootTime: "A few minutes",
+      heroFootDirect: "Direct to the team",
+      heroFootPrivate: "Encrypted & private",
+      sectionIndexTitle: "Your input",
+      sectionIndexSubtitle: "A few minutes, straight to the team",
+      eyebrow: "SnapReport webinar — thanks for being here!",
+      heading: "Let's talk about your HSEQ challenges",
       lede: "A few minutes to tell us where AI could help. Your answers go straight to the product team.",
       point1t: "A few minutes",
       point1d: "A short form, no signup.",
@@ -117,6 +156,7 @@
       choose: "Choose…",
       other: "Other",
       interestTitle: "What are you interested in?",
+      interestHint: "You can choose more than one. Answers appear based on your selections.",
       interestDemo: "A demo of our tools",
       interestTraining: "AI training",
       interestDiagnostic: "An AI assessment",
@@ -129,13 +169,21 @@
       projectStageIdea: "Just an idea",
       projectStageScoped: "Scoped need",
       projectStageReady: "Ready to start",
-      painTitle: "In your HSEQ management, where would AI save you the most time?",
+      painTitle: "1. Which HSEQ tasks could AI help you save the most time on?",
       painRegulatory: "Regulatory monitoring",
       painAudit: "Internal audit",
       painCorrective: "Non-conformity and corrective action management",
       painInspection: "HSEQ inspection",
       painAnalysis: "Data and trend analysis",
       painPlaceholder: "Please specify: traceability, HACCP, subcontractors…",
+      timelineTitle: "When would you like to get started?",
+      timelineNow: "Right now",
+      timelineThreeMonths: "Within 3 months",
+      timelineSixMonths: "In 3–6 months",
+      timelineNotSure: "I’m not sure yet",
+      timelineMoreInfo: "I’d like to know more",
+      contactTitle: "How can we contact you?",
+      contactHint: "One conversation to identify your needs. No automatic follow-ups.",
       questionTitle: "A question left unanswered during the webinar?",
       ratingTitle: "Was the webinar useful to you?",
       newsletter: "Let me know about upcoming webinars and news (max. 1 email per month).",
@@ -174,14 +222,12 @@
       errNetwork: "Connection failed. Please retry, or email us: snapreportai99@gmail.com",
       errRejected: "We couldn’t save your answers. Please retry, or email us: snapreportai99@gmail.com",
       errClosed: "The form is closed. Write to us: snapreportai99@gmail.com",
-      successTitle: "Got it. Thank you!",
-      successBody: "Your answers went straight to the SnapReport team. We\u2019ll get back to you soon — and if it\u2019s urgent, write to snapreportai99@gmail.com.",
-      successMeta: "Answer stored securely",
+      successBody: "We’ll be in touch as soon as possible.",
       langGroup: "Form language / Langue du formulaire"
     }
   };
 
-  const HTML_KEYS = new Set(["heading"]);
+  const HTML_KEYS = new Set(["heading", "heroHeading"]);
   const section = document.querySelector("#form-section");
   if (!section) return;
 
@@ -203,18 +249,19 @@
   const applyLang = (lang) => {
     if (!I18N[lang]) return;
     currentLang = lang;
+    document.documentElement.lang = lang;
     section.setAttribute("lang", lang);
-    section.querySelectorAll("[data-i18n]").forEach((el) => {
+    document.querySelectorAll("[data-i18n]").forEach((el) => {
       const value = I18N[lang][el.dataset.i18n];
       if (value == null) return;
       if (HTML_KEYS.has(el.dataset.i18n)) el.innerHTML = value;
       else el.textContent = value;
     });
-    section.querySelectorAll("[data-i18n-ph]").forEach((el) => {
+    document.querySelectorAll("[data-i18n-ph]").forEach((el) => {
       const value = I18N[lang][el.dataset.i18nPh];
       if (value != null) el.setAttribute("placeholder", value);
     });
-    section.querySelectorAll("[data-i18n-aria]").forEach((el) => {
+    document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
       const value = I18N[lang][el.dataset.i18nAria];
       if (value != null) el.setAttribute("aria-label", value);
     });
@@ -308,6 +355,7 @@
     answers.newsletter = field("newsletter").checked;
 
     const helpMap = { demo: "demo", formation: "training" };
+    const timingMap = { maintenant: "now", "3mois": "three_months", "6mois": "quarter", pas_encore: "exploring", plus_info: "exploring" };
     const notes = [
       answers.project_description && `Projet : ${answers.project_description}`,
       answers.question && `Question : ${answers.question}`,
@@ -320,7 +368,7 @@
       needs: [],
       help: interests.map((value) => helpMap[value]).filter(Boolean),
       ai_training: null,
-      pace: null,
+      pace: timingMap[field("timing").value] || null,
       notes,
       lang: currentLang,
       website: honeypot ? honeypot.value : "",

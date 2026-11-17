@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/landing.css?v=20261117-2">
-  <link rel="stylesheet" href="css/clients-form.css?v=20261117-1">
+  <link rel="stylesheet" href="css/clients-form.css?v=20261117-3">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -37,23 +37,23 @@
   </svg>
 
   <header class="site-header" id="siteHeader">
-    <a class="site-brand" href="index.html#home" aria-label="SnapReport home">
+    <a class="site-brand notranslate" translate="no" href="index.html#home" aria-label="Accueil SnapReport" data-i18n-aria="homeAria">
       <img class="site-brand__mark" src="assets/snapreport-symbol-blue.svg?v=20260714-2" alt="" aria-hidden="true">
-      <span class="site-brand__name">SnapReport</span>
+      <span class="site-brand__name notranslate" translate="no">SnapReport</span>
     </a>
 
     <button class="menu-toggle" id="menuToggle" type="button" aria-controls="siteNav" aria-expanded="false">
-      <span>Menu</span><i aria-hidden="true"></i>
+      <span data-i18n="menuLabel">Menu</span><i aria-hidden="true"></i>
     </button>
 
-    <nav class="site-nav" id="siteNav" aria-label="Main navigation">
-      <a href="index.html#company">Company</a>
-      <a href="index.html#products">Products</a>
-      <a href="index.html#capabilities">Capabilities</a>
-      <a href="index.html#team">Team</a>
+    <nav class="site-nav" id="siteNav" aria-label="Navigation principale" data-i18n-aria="navAria">
+      <a href="index.html#company" data-i18n="navCompany">Entreprise</a>
+      <a href="index.html#products" data-i18n="navProducts">Produits</a>
+      <a href="index.html#capabilities" data-i18n="navCapabilities">Expertises</a>
+      <a href="index.html#team" data-i18n="navTeam">Équipe</a>
     </nav>
 
-    <a class="header-contact" href="index.html#contact">Start a conversation <span aria-hidden="true">↗</span></a>
+    <a class="header-contact" href="index.html#contact"><span data-i18n="navContact">Parlons de votre projet</span> <span aria-hidden="true">↗</span></a>
   </header>
 
   <main id="main">
@@ -64,26 +64,26 @@
       </svg>
 
       <div class="hero-copy">
-        <p class="eyebrow eyebrow--reverse" data-reveal>Your input shapes what we build</p>
-        <h1 data-reveal>Tell us where AI should <em>lighten the load</em>.</h1>
-        <p class="hero-lede" data-reveal>A few minutes to tell us where AI could help. Your answers go straight to the SnapReport product team.</p>
+        <p class="eyebrow eyebrow--reverse" data-reveal data-i18n="heroEyebrow">Votre avis façonne ce que nous construisons</p>
+        <h1 data-reveal data-i18n="heroHeading">Dites-nous où l’IA pourrait <em>vous simplifier la tâche</em>.</h1>
+        <p class="hero-lede" data-reveal data-i18n="heroLede">Quelques minutes pour nous dire où l’IA pourrait vous aider. Vos réponses vont directement à l’équipe produit de SnapReport.</p>
       </div>
 
       <div class="hero-foot" data-reveal>
-        <span>A few minutes</span>
-        <span>Direct to the team</span>
-        <span>Encrypted & private</span>
+        <span data-i18n="heroFootTime">Quelques minutes</span>
+        <span data-i18n="heroFootDirect">Directement à l’équipe</span>
+        <span data-i18n="heroFootPrivate">Chiffré et privé</span>
       </div>
     </section>
 
     <section class="webinar-section" id="form-section" lang="fr">
-      <div class="section-index"><span>Your input</span><span>A few minutes, straight to the team</span></div>
+      <div class="section-index"><span data-i18n="sectionIndexTitle">Votre avis</span><span data-i18n="sectionIndexSubtitle">Quelques minutes, directement à l’équipe</span></div>
       <div class="webinar-copy">
         <div class="webinar-lang" role="group" data-i18n-aria="langGroup" aria-label="Langue du formulaire / Form language">
           <button type="button" class="is-active" data-lang-btn="fr" aria-pressed="true">FR</button>
           <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
         </div>
-        <p class="eyebrow" data-reveal data-i18n="eyebrow">Webinaire en direct / Votre avis compte</p>
+        <p class="eyebrow" data-reveal data-i18n="eyebrow">Webinaire SnapReport - Merci d’avoir été là !</p>
         <h2 data-reveal data-i18n="heading">Parlons de vos enjeux QHSE</h2>
         <p class="webinar-lede" data-reveal data-i18n="lede">Quelques minutes pour nous dire où l&rsquo;IA pourrait vous aider. Vos réponses arrivent directement à l&rsquo;équipe produit.</p>
         <ul class="webinar-points" data-reveal>
@@ -96,7 +96,8 @@
         <span class="webinar-card__eyebrow" data-i18n="cardEyebrow">Formulaire en direct</span>
         <form class="webinar-form" id="webinarForm">
           <fieldset class="webinar-fieldset" data-req="interest">
-            <legend data-i18n="interestTitle">Quel type de service vous intéresse ?</legend>
+            <legend data-i18n="interestTitle">Qu’est-ce qui vous intéresse ?</legend>
+            <p class="webinar-form__hint" data-i18n="interestHint">Plusieurs choix possibles. Les réponses s’affichent selon vos choix.</p>
             <div class="chip-group">
               <label class="chip"><input type="checkbox" name="interest" value="demo" data-reveal="demoDetails"><span data-i18n="interestDemo">Une démo de nos outils</span></label>
               <label class="chip"><input type="checkbox" name="interest" value="formation"><span data-i18n="interestTraining">Une formation IA</span></label>
@@ -137,7 +138,21 @@
             </div>
             <input type="text" name="pain_other" id="painOtherText" maxlength="300" hidden data-i18n-ph="painPlaceholder" placeholder="Précisez : traçabilité, HACCP, sous-traitants…">
           </fieldset>
+          <fieldset class="webinar-fieldset">
+            <legend data-i18n="timelineTitle">Quand souhaitez-vous démarrer ?</legend>
+            <div class="chip-group">
+              <label class="chip"><input type="radio" name="timing" value="maintenant"><span data-i18n="timelineNow">Dès maintenant</span></label>
+              <label class="chip"><input type="radio" name="timing" value="3mois"><span data-i18n="timelineThreeMonths">Dans les 3 mois</span></label>
+              <label class="chip"><input type="radio" name="timing" value="6mois"><span data-i18n="timelineSixMonths">Dans 3 à 6 mois</span></label>
+              <label class="chip"><input type="radio" name="timing" value="pas_encore"><span data-i18n="timelineNotSure">Je ne sais pas encore</span></label>
+              <label class="chip"><input type="radio" name="timing" value="plus_info"><span data-i18n="timelineMoreInfo">Je souhaite en savoir plus</span></label>
+            </div>
+          </fieldset>
           <label><span data-i18n="companyLabel">Entreprise / organisation</span><input type="text" name="company" maxlength="160" autocomplete="organization" required></label>
+          <div class="webinar-form__contact-intro">
+            <h3 data-i18n="contactTitle">Comment pouvons-nous vous contacter ?</h3>
+            <p data-i18n="contactHint">Un seul échange pour identifier vos besoins. Pas de relances automatiques.</p>
+          </div>
           <div class="webinar-form__row">
             <label><span data-i18n="labelName">Nom et prénom</span><input type="text" name="name" maxlength="120" autocomplete="name" required></label>
             <label><span data-i18n="labelEmail">Email professionnel</span><input type="email" name="email" maxlength="160" autocomplete="email" data-i18n-ph="emailPlaceholder" required></label>
@@ -162,9 +177,7 @@
           <p class="webinar-form__status" aria-live="polite"></p>
         </form>
         <div class="webinar-success" hidden>
-          <strong data-i18n="successTitle">Bien reçu. Merci !</strong>
-          <p data-i18n="successBody">Vos réponses sont arrivées directement à l&rsquo;équipe SnapReport. On vous recontacte très vite — et si le sujet est urgent, écrivez à snapreportai99@gmail.com.</p>
-          <small data-i18n="successMeta">Réponse enregistrée de manière sécurisée</small>
+          <p data-i18n="successBody">Nous prendrons contact avec vous dans les plus brefs délais</p>
         </div>
         <p class="webinar-privacy" data-i18n="privacy">Vos réponses sont chiffrées et stockées de manière sécurisée. Utilisées uniquement pour donner suite à ce webinaire — jamais partagées ni vendues.</p>
       </div>
@@ -187,15 +200,15 @@
   </main>
 
   <footer class="site-footer">
-    <a class="footer-brand" href="index.html#home" aria-label="SnapReport home">
+    <a class="footer-brand notranslate" translate="no" href="index.html#home" aria-label="SnapReport home">
       <img class="site-brand__mark" src="assets/snapreport-symbol-blue.svg?v=20260714-2" alt="" aria-hidden="true">
-      <span class="site-brand__name">SnapReport</span>
+      <span class="site-brand__name notranslate" translate="no">SnapReport</span>
     </a>
     <nav aria-label="Footer navigation"><a href="index.html#company">Company</a><a href="index.html#products">Products</a><a href="index.html#capabilities">Capabilities</a><a href="index.html#team">Team</a><a href="index.html#contact">Contact</a></nav>
     <div><a href="index.html">Identity standards</a><a href="index.html#home">Back to top ↑</a></div>
   </footer>
 
   <script src="js/landing.js?v=20261117-2"></script>
-  <script src="js/webinar-form.js?v=20261117-5" defer></script>
+  <script src="js/webinar-form.js?v=20261117-8" defer></script>
 </body>
 </html>
