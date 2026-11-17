@@ -1101,23 +1101,25 @@ button { color: inherit; }
   display: inline-flex;
   margin: 0 0 24px;
   border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--surface);
 }
 
 .webinar-lang button {
   min-width: 48px;
-  padding: 10px 0;
+  padding: 10px 12px;
   border: 0;
   color: var(--muted);
   background: transparent;
   cursor: pointer;
-  font: 600 10px/1 var(--mono);
-  letter-spacing: .06em;
+  font: 700 12px/1 var(--satoshi);
   transition: color 140ms ease, background 140ms ease;
 }
 
 .webinar-lang button + button { border-left: 1px solid var(--line); }
 
-.webinar-lang button.is-active { color: var(--white); background: var(--ink); }
+.webinar-lang button.is-active { color: var(--blue); background: var(--mist); }
 
 .webinar-copy h2 {
   max-width: 560px;
@@ -1169,28 +1171,24 @@ button { color: inherit; }
   align-self: start;
   padding: 34px;
   border: 1px solid var(--line);
+  border-radius: 18px;
   background: var(--white);
-  box-shadow: 14px 14px 0 var(--blue);
-  transform: rotate(.6deg);
+  box-shadow: 0 24px 60px rgba(7, 19, 47, .08);
 }
 
 .webinar-card__eyebrow {
   display: block;
   color: var(--blue);
-  font: 600 10px/1 var(--mono);
-  letter-spacing: .06em;
-  text-transform: uppercase;
+  font: 700 12px/1.3 var(--satoshi);
 }
 
 .webinar-form { margin-top: 22px; }
 
 .webinar-form > label {
   display: block;
-  margin-top: 16px;
+  margin-top: 18px;
   color: var(--ink);
-  font: 600 9px/1 var(--mono);
-  letter-spacing: .04em;
-  text-transform: uppercase;
+  font: 600 14px/1.35 var(--satoshi);
 }
 
 .webinar-form > label span { color: var(--muted); text-transform: none; letter-spacing: 0; }
@@ -1205,9 +1203,7 @@ button { color: inherit; }
 .webinar-form__row > label {
   display: block;
   color: var(--ink);
-  font: 600 9px/1 var(--mono);
-  letter-spacing: .04em;
-  text-transform: uppercase;
+  font: 600 14px/1.35 var(--satoshi);
 }
 
 .webinar-form__row > label span { color: var(--muted); text-transform: none; letter-spacing: 0; }
@@ -1219,36 +1215,41 @@ button { color: inherit; }
 .webinar-form textarea {
   width: 100%;
   margin-top: 8px;
-  padding: 10px 0;
-  border: 0;
-  border-bottom: 1px solid var(--line);
-  border-radius: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
   outline: 0;
   color: var(--ink);
-  background: transparent;
-  font: 500 14px/1.35 var(--satoshi);
-  transition: border-color 160ms ease;
+  background: var(--surface);
+  font: 500 15px/1.45 var(--satoshi);
+  transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
 }
 
 .webinar-form select { cursor: pointer; }
 
-.webinar-form textarea { min-height: 58px; resize: vertical; }
+.webinar-form textarea { min-height: 88px; resize: vertical; }
+
+.webinar-form input::placeholder,
+.webinar-form textarea::placeholder { color: var(--muted); opacity: .8; }
 
 .webinar-form input:focus,
 .webinar-form select:focus,
-.webinar-form textarea:focus { border-color: var(--blue); }
+.webinar-form textarea:focus {
+  border-color: var(--blue);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(3, 52, 234, .12);
+}
 
 .webinar-fieldset { margin: 24px 0 0; padding: 0; border: 0; }
 
 .webinar-fieldset legend {
+  display: block;
   padding: 0;
   color: var(--ink);
-  font: 600 9px/1.5 var(--mono);
-  letter-spacing: .04em;
-  text-transform: uppercase;
+  font: 700 16px/1.4 var(--satoshi);
 }
 
-.chip-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.chip-group { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 12px; }
 
 .chip { position: relative; }
 
@@ -1263,22 +1264,46 @@ button { color: inherit; }
 .chip span {
   display: inline-flex;
   align-items: center;
+  gap: 9px;
+  min-height: 44px;
   padding: 9px 13px;
   border: 1px solid var(--line);
+  border-radius: 9px;
   color: var(--ink);
-  background: transparent;
+  background: var(--white);
   cursor: pointer;
-  font: 500 10px/1 var(--mono);
-  letter-spacing: .04em;
-  text-transform: uppercase;
-  transition: color 140ms ease, background 140ms ease, border-color 140ms ease;
+  font: 500 14px/1.35 var(--satoshi);
+  transition: color 140ms ease, background 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
 }
 
-.chip:hover span { border-color: var(--blue); color: var(--blue); }
+.chip span::before {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  border: 1.5px solid #aab4c8;
+  border-radius: 4px;
+  background: var(--white);
+  content: "";
+  transition: border-color 140ms ease, background 140ms ease, box-shadow 140ms ease;
+}
 
-.chip input:checked + span { border-color: var(--blue); color: var(--white); background: var(--blue); }
+.chip input[type="radio"] + span::before { border-radius: 50%; }
 
-.chip input:checked:hover span { color: var(--white); border-color: var(--ink); background: var(--ink); }
+.chip:hover span { border-color: #8da1df; background: #f8f9ff; }
+
+.chip input:checked + span {
+  border-color: var(--blue);
+  color: var(--ink);
+  background: var(--mist);
+  box-shadow: inset 0 0 0 1px rgba(3, 52, 234, .12);
+  font-weight: 700;
+}
+
+.chip input:checked + span::before {
+  border-color: var(--blue);
+  background: var(--blue);
+  box-shadow: inset 0 0 0 3px var(--mist);
+}
 
 .chip input:focus-visible + span { outline: 3px solid var(--orange); outline-offset: 3px; }
 
@@ -1309,19 +1334,18 @@ button { color: inherit; }
 
 .webinar-form__submit {
   width: 100%;
-  min-height: 48px;
+  min-height: 52px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-top: 24px;
-  padding: 0 15px;
+  padding: 0 18px;
   border: 0;
+  border-radius: 9px;
   color: var(--white);
   background: var(--blue);
   cursor: pointer;
-  font: 600 10px/1 var(--mono);
-  letter-spacing: .04em;
-  text-transform: uppercase;
+  font: 700 15px/1.2 var(--satoshi);
   transition: background 160ms ease, transform 160ms ease;
 }
 
@@ -1333,11 +1357,11 @@ button { color: inherit; }
 
 .webinar-form__submit[disabled] { opacity: .65; cursor: default; transform: none; }
 
-.webinar-form__status { min-height: 16px; margin: 9px 0 0; color: var(--muted); font: 500 9px/1.4 var(--mono); }
+.webinar-form__status { min-height: 18px; margin: 10px 0 0; color: var(--muted); font: 500 12px/1.45 var(--satoshi); }
 
 .webinar-form__status.is-error { color: var(--orange); }
 
-.webinar-success { margin-top: 24px; padding: 26px; border: 1px solid var(--line); background: var(--surface); }
+.webinar-success { margin-top: 24px; padding: 26px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
 
 .webinar-success strong { display: block; font-size: 20px; font-weight: 900; letter-spacing: -.02em; }
 
@@ -1349,14 +1373,12 @@ button { color: inherit; }
   padding-top: 12px;
   border-top: 1px solid var(--line);
   color: var(--blue);
-  font: 600 9px/1 var(--mono);
-  letter-spacing: .06em;
-  text-transform: uppercase;
+  font: 600 12px/1.4 var(--satoshi);
 }
 
-.webinar-privacy { margin: 14px 0 0; color: var(--muted); font: 500 9px/1.5 var(--mono); }
+.webinar-privacy { margin: 14px 0 0; color: var(--muted); font: 500 12px/1.55 var(--satoshi); }
 
 @media (max-width: 1100px) {
   .webinar-section { grid-template-columns: 1fr; gap: 60px; padding: 100px 0 110px; }
-  .webinar-card { width: min(620px, 100%); padding: 28px 22px; transform: none; box-shadow: 8px 8px 0 var(--blue); }
+  .webinar-card { width: min(620px, 100%); padding: 28px 22px; }
 }
