@@ -1214,6 +1214,7 @@ button { color: inherit; }
 
 .webinar-form input[type="text"],
 .webinar-form input[type="email"],
+.webinar-form input[type="tel"],
 .webinar-form select,
 .webinar-form textarea {
   width: 100%;

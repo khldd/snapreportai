@@ -14,7 +14,7 @@ The form lives on the dedicated page **`snapreportai.com/clients-form.html`**, l
 2. Paste the whole content of **`supabase-schema.sql`** (repo root) → **Run**.
 3. Verify: it should end with no errors. Run `select public.webinar_form_enabled();` → should return `true`.
 
-If you already ran an earlier version of this script, run the updated script again. It adds the `help` and `ai_training` columns and updates the submission function without deleting existing leads.
+If you already ran an earlier version of this script, run the updated script again. It adds the `form_data` JSON column for the expanded questionnaire and updates the submission function without deleting existing leads. Core contact details remain in their existing columns; the additional answers are stored as structured JSON in `form_data`.
 
 ## 3. Connect the site (2 min)
 

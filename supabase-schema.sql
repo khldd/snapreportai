@@ -51,12 +51,14 @@ create table if not exists public.webinar_leads (
   ai_training text check (ai_training is null or ai_training in ('yes','no')),
   pace       text check (pace is null or pace in ('exploring','three_months','quarter','now')),
   notes      text,
+  form_data  jsonb not null default '{}'::jsonb,
   consent    boolean not null check (consent = true)   -- nothing is stored without consent
 );
 
 -- Add the latest form fields when upgrading an existing webinar_leads table.
 alter table public.webinar_leads add column if not exists help text[];
 alter table public.webinar_leads add column if not exists ai_training text;
+alter table public.webinar_leads add column if not exists form_data jsonb not null default '{}'::jsonb;
 
 do $$
 begin
@@ -78,6 +80,16 @@ begin
     alter table public.webinar_leads
       add constraint webinar_leads_ai_training_check
       check (ai_training is null or ai_training in ('yes','no'));
+  end if;
+
+  if not exists (
+    select 1 from pg_constraint
+    where conrelid = 'public.webinar_leads'::regclass
+      and conname = 'webinar_leads_form_data_check'
+  ) then
+    alter table public.webinar_leads
+      add constraint webinar_leads_form_data_check
+      check (jsonb_typeof(form_data) = 'object');
   end if;
 end;
 $$;
@@ -136,7 +148,13 @@ declare
   v_lang     text;
   v_fill_ms  integer;
   v_consented boolean;
+  v_form_data jsonb;
+  v_contact_channel text;
 begin
+  if jsonb_typeof(payload) is distinct from 'object' then
+    return jsonb_build_object('ok', false, 'error', 'invalid');
+  end if;
+
   -- (0) Kill switch — the API itself refuses when the form is closed.
   if not public.webinar_form_enabled() then
     return jsonb_build_object('ok', false, 'error', 'disabled');
@@ -242,6 +260,113 @@ begin
     return jsonb_build_object('ok', false, 'error', 'invalid');
   end if;
 
+  -- Store the new questionnaire answers as structured JSON without exposing a
+  -- public table insert path or changing the normalized lead columns.
+  v_form_data := coalesce(payload->'form_data', '{}'::jsonb);
+  if jsonb_typeof(v_form_data) is distinct from 'object'
+     or octet_length(v_form_data::text) > 16000 then
+    return jsonb_build_object('ok', false, 'error', 'invalid');
+  end if;
+
+  if v_form_data ? 'interest' then
+    if jsonb_typeof(v_form_data->'interest') is distinct from 'array' then
+      return jsonb_build_object('ok', false, 'error', 'invalid');
+    end if;
+
+    if jsonb_array_length(v_form_data->'interest') < 1
+       or jsonb_array_length(v_form_data->'interest') > 4 then
+      return jsonb_build_object('ok', false, 'error', 'invalid');
+    end if;
+
+    if exists (
+      select 1
+      from jsonb_array_elements_text(v_form_data->'interest') as value
+      where value is null or value not in ('demo','formation','diagnostic','projet')
+    ) then
+      return jsonb_build_object('ok', false, 'error', 'invalid');
+    end if;
+
+    if v_form_data ? 'products' then
+      if jsonb_typeof(v_form_data->'products') is distinct from 'array' then
+        return jsonb_build_object('ok', false, 'error', 'invalid');
+      end if;
+
+      if jsonb_array_length(v_form_data->'products') > 5 then
+        return jsonb_build_object('ok', false, 'error', 'invalid');
+      end if;
+
+      if exists (
+        select 1
+        from jsonb_array_elements_text(v_form_data->'products') as value
+        where value is null or value not in ('myQA.team','LÆRN','AgroBot','CaptureIQ','conseil')
+      ) then
+        return jsonb_build_object('ok', false, 'error', 'invalid');
+      end if;
+    end if;
+
+    if v_form_data->'interest' @> '["demo"]'::jsonb
+       and jsonb_array_length(coalesce(v_form_data->'products', '[]'::jsonb)) < 1 then
+      return jsonb_build_object('ok', false, 'error', 'invalid');
+    end if;
+  end if;
+
+  if v_form_data ? 'training_audience' then
+    if jsonb_typeof(v_form_data->'training_audience') is distinct from 'array' then
+      return jsonb_build_object('ok', false, 'error', 'invalid');
+    end if;
+    if jsonb_array_length(v_form_data->'training_audience') > 5
+       or exists (
+         select 1
+         from jsonb_array_elements_text(v_form_data->'training_audience') as value
+         where value is null or value not in ('direction','managers','metier','it','moi')
+       ) then
+      return jsonb_build_object('ok', false, 'error', 'invalid');
+    end if;
+  end if;
+
+  if v_form_data ? 'pain_points' then
+    if jsonb_typeof(v_form_data->'pain_points') is distinct from 'array' then
+      return jsonb_build_object('ok', false, 'error', 'invalid');
+    end if;
+    if jsonb_array_length(v_form_data->'pain_points') > 6
+       or exists (
+         select 1
+         from jsonb_array_elements_text(v_form_data->'pain_points') as value
+         where value is null or value not in ('veille_reglementaire','audit_interne','nc_actions_correctives','inspection_qhse','analyse_donnees','autre')
+       ) then
+      return jsonb_build_object('ok', false, 'error', 'invalid');
+    end if;
+  end if;
+
+  if coalesce(v_form_data->>'timeline', '') not in ('','maintenant','3mois','6mois','info')
+     or coalesce(v_form_data->>'company_size', '') not in ('','1-10','11-50','51-250','250+')
+     or coalesce(v_form_data->>'country', '') not in ('','TN','FR','CH','MA','DZ','autre')
+     or coalesce(v_form_data->>'training_size', '') not in ('','1-5','6-15','16-50','50+')
+     or coalesce(v_form_data->>'training_format', '') not in ('','presentiel','distanciel','hybride')
+     or coalesce(v_form_data->>'project_stage', '') not in ('','idee','cadre','pret')
+     or coalesce(v_form_data->>'slot', '') not in ('','matin','apres-midi','indifferent')
+     or coalesce(v_form_data->>'webinar_rating', '') not in ('','1','2','3','4','5')
+     or coalesce(v_form_data->>'role', '') not in ('','direction','operations','qualite','rh','commercial','it','autre')
+     or coalesce(v_form_data->>'sector', '') not in ('','agroalimentaire','agriculture','industrie','distribution','sante','education','services','tech','public','autre') then
+    return jsonb_build_object('ok', false, 'error', 'invalid');
+  end if;
+
+  if v_form_data ? 'newsletter' and jsonb_typeof(v_form_data->'newsletter') is distinct from 'boolean' then
+    return jsonb_build_object('ok', false, 'error', 'invalid');
+  end if;
+
+  if v_form_data ? 'contact_channel' then
+    v_contact_channel := v_form_data->>'contact_channel';
+    if v_contact_channel is null or v_contact_channel not in ('email','appel','whatsapp') then
+      return jsonb_build_object('ok', false, 'error', 'invalid');
+    end if;
+
+    if v_contact_channel in ('appel','whatsapp')
+       and char_length(regexp_replace(coalesce(v_form_data->>'phone', ''), '[^0-9]', '', 'g')) < 8 then
+      return jsonb_build_object('ok', false, 'error', 'invalid');
+    end if;
+  end if;
+
   -- (9) Light rate-limit: same email can't spam the table.
   if exists (
     select 1 from public.webinar_leads
@@ -253,9 +378,9 @@ begin
 
   -- (10) Insert. The server decides the campaign tag — never the client.
   insert into public.webinar_leads
-    (source, lang, full_name, email, company, role, sector, needs, help, ai_training, pace, notes, consent)
+    (source, lang, full_name, email, company, role, sector, needs, help, ai_training, pace, notes, form_data, consent)
   values
-    (v_source, v_lang, v_name, v_email, v_company, v_role, v_sector, v_needs, v_help, v_ai_training, v_pace, v_notes, true);
+    (v_source, v_lang, v_name, v_email, v_company, v_role, v_sector, v_needs, v_help, v_ai_training, v_pace, v_notes, v_form_data, true);
 
   return jsonb_build_object('ok', true);
 

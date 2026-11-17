@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0334EA">
   <title>Client Input Form | SnapReport</title>
-  <meta name="description" content="Tell us where AI should lighten the load. Two minutes, six questions. Your answers go straight to the SnapReport product team.">
+  <meta name="description" content="Tell us where AI can help your team. Your answers go straight to the SnapReport product team.">
   <link rel="icon" href="assets/snapreport-symbol-blue.svg?v=20260714-2" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,18 +66,18 @@
       <div class="hero-copy">
         <p class="eyebrow eyebrow--reverse" data-reveal>Your input shapes what we build</p>
         <h1 data-reveal>Tell us where AI should <em>lighten the load</em>.</h1>
-        <p class="hero-lede" data-reveal>Two minutes, six questions. Your answers go straight to the SnapReport product team — they decide what we build next.</p>
+        <p class="hero-lede" data-reveal>A few minutes to tell us where AI could help. Your answers go straight to the SnapReport product team.</p>
       </div>
 
       <div class="hero-foot" data-reveal>
-        <span>2 minutes</span>
+        <span>A few minutes</span>
         <span>Direct to the team</span>
         <span>Encrypted & private</span>
       </div>
     </section>
 
     <section class="webinar-section" id="form-section" lang="fr">
-      <div class="section-index"><span>Your input</span><span>Two minutes, straight to the team</span></div>
+      <div class="section-index"><span>Your input</span><span>A few minutes, straight to the team</span></div>
       <div class="webinar-copy">
         <div class="webinar-lang" role="group" data-i18n-aria="langGroup" aria-label="Langue du formulaire / Form language">
           <button type="button" class="is-active" data-lang-btn="fr" aria-pressed="true">FR</button>
@@ -85,9 +85,9 @@
         </div>
         <p class="eyebrow" data-reveal data-i18n="eyebrow">Webinaire en direct / Votre avis compte</p>
         <h2 data-reveal data-i18n="heading">Dites-nous où l&rsquo;IA vous <em>allégerait</em>.</h2>
-        <p class="webinar-lede" data-reveal data-i18n="lede">Deux minutes, six questions. Vos réponses arrivent directement à l&rsquo;équipe produit — elles décident de ce que nous construisons ensuite.</p>
+        <p class="webinar-lede" data-reveal data-i18n="lede">Quelques minutes pour nous dire où l&rsquo;IA pourrait vous aider. Vos réponses arrivent directement à l&rsquo;équipe produit.</p>
         <ul class="webinar-points" data-reveal>
-          <li><span data-i18n="point1t">2 minutes</span><p data-i18n="point1d">Chronométré honnêtement : six questions, aucune inscription.</p></li>
+          <li><span data-i18n="point1t">Quelques minutes</span><p data-i18n="point1d">Un court formulaire, sans inscription.</p></li>
           <li><span data-i18n="point2t">Direct</span><p data-i18n="point2d">Vos réponses arrivent à l&rsquo;équipe, pas à un robot.</p></li>
           <li><span data-i18n="point3t">Privé</span><p data-i18n="point3d">Chiffré en transit et au repos. Jamais partagé, jamais vendu.</p></li>
         </ul>
@@ -95,78 +95,177 @@
       <div class="webinar-card" data-reveal>
         <span class="webinar-card__eyebrow" data-i18n="cardEyebrow">Formulaire en direct</span>
         <form class="webinar-form" id="webinarForm">
+          <fieldset class="webinar-fieldset" data-req="interest">
+            <legend data-i18n="interestTitle">Qu&rsquo;est-ce qui vous intéresse ?</legend>
+            <div class="chip-group">
+              <label class="chip"><input type="checkbox" name="interest" value="demo" data-reveal="demoDetails"><span data-i18n="interestDemo">Une démo de nos outils</span></label>
+              <label class="chip"><input type="checkbox" name="interest" value="formation" data-reveal="trainingDetails"><span data-i18n="interestTraining">Une formation IA</span></label>
+              <label class="chip"><input type="checkbox" name="interest" value="diagnostic"><span data-i18n="interestDiagnostic">Un diagnostic IA</span></label>
+              <label class="chip"><input type="checkbox" name="interest" value="projet" data-reveal="projectDetails"><span data-i18n="interestProject">Un projet IA sur mesure</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="webinar-fieldset" id="demoDetails" hidden data-req="products">
+            <legend data-i18n="productsTitle">Quel(s) outil(s) voulez-vous voir ?</legend>
+            <div class="chip-group">
+              <label class="chip"><input type="checkbox" name="products" value="myQA.team"><span>myQA.team</span></label>
+              <label class="chip"><input type="checkbox" name="products" value="LÆRN"><span>LÆRN</span></label>
+              <label class="chip"><input type="checkbox" name="products" value="AgroBot"><span>AgroBot</span></label>
+              <label class="chip"><input type="checkbox" name="products" value="CaptureIQ"><span>CaptureIQ</span></label>
+              <label class="chip"><input type="checkbox" name="products" value="conseil"><span data-i18n="productAdvice">Je ne sais pas encore — conseillez-moi</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="webinar-fieldset" id="trainingDetails" hidden>
+            <legend data-i18n="trainingAudienceTitle">Pour qui ?</legend>
+            <div class="chip-group">
+              <label class="chip"><input type="checkbox" name="training_audience" value="direction"><span data-i18n="trainingAudienceLeadership">Direction</span></label>
+              <label class="chip"><input type="checkbox" name="training_audience" value="managers"><span data-i18n="trainingAudienceManagers">Managers</span></label>
+              <label class="chip"><input type="checkbox" name="training_audience" value="metier"><span data-i18n="trainingAudienceTeams">Équipes métier</span></label>
+              <label class="chip"><input type="checkbox" name="training_audience" value="it"><span>IT / Data</span></label>
+              <label class="chip"><input type="checkbox" name="training_audience" value="moi"><span data-i18n="trainingAudienceSelf">Moi-même</span></label>
+            </div>
+            <div class="webinar-form__row">
+              <fieldset class="webinar-fieldset">
+                <legend data-i18n="trainingSizeTitle">Combien de participants ?</legend>
+                <div class="chip-group">
+                  <label class="chip"><input type="radio" name="training_size" value="1-5"><span>1–5</span></label>
+                  <label class="chip"><input type="radio" name="training_size" value="6-15"><span>6–15</span></label>
+                  <label class="chip"><input type="radio" name="training_size" value="16-50"><span>16–50</span></label>
+                  <label class="chip"><input type="radio" name="training_size" value="50+"><span>50+</span></label>
+                </div>
+              </fieldset>
+              <fieldset class="webinar-fieldset">
+                <legend data-i18n="trainingFormatTitle">Format préféré</legend>
+                <div class="chip-group">
+                  <label class="chip"><input type="radio" name="training_format" value="presentiel"><span data-i18n="formatInPerson">Présentiel</span></label>
+                  <label class="chip"><input type="radio" name="training_format" value="distanciel"><span data-i18n="formatRemote">À distance</span></label>
+                  <label class="chip"><input type="radio" name="training_format" value="hybride"><span data-i18n="formatHybrid">Hybride</span></label>
+                </div>
+              </fieldset>
+            </div>
+          </fieldset>
+          <fieldset class="webinar-fieldset" id="projectDetails" hidden>
+            <legend data-i18n="projectDetailsTitle">Votre projet</legend>
+            <label><span data-i18n="projectDescription">Décrivez le besoin en quelques lignes</span> <span data-i18n="optional">(optionnel)</span>
+              <textarea name="project_description" rows="3" maxlength="1000" data-i18n-ph="projectPlaceholder" placeholder="Ex. : automatiser nos rapports d'audit mensuels à partir de fichiers Excel et de photos terrain."></textarea>
+            </label>
+            <fieldset class="webinar-fieldset">
+              <legend data-i18n="projectStageTitle">Où en êtes-vous ?</legend>
+              <div class="chip-group">
+                <label class="chip"><input type="radio" name="project_stage" value="idee"><span data-i18n="projectStageIdea">Une idée</span></label>
+                <label class="chip"><input type="radio" name="project_stage" value="cadre"><span data-i18n="projectStageScoped">Besoin cadré</span></label>
+                <label class="chip"><input type="radio" name="project_stage" value="pret"><span data-i18n="projectStageReady">Prêt à lancer</span></label>
+              </div>
+            </fieldset>
+          </fieldset>
+          <fieldset class="webinar-fieldset">
+            <legend data-i18n="painTitle">Dans votre management QHSE, où l&rsquo;IA vous ferait-elle gagner le plus de temps ?</legend>
+            <div class="chip-group">
+              <label class="chip"><input type="checkbox" name="pain_points" value="veille_reglementaire"><span data-i18n="painRegulatory">Veille réglementaire</span></label>
+              <label class="chip"><input type="checkbox" name="pain_points" value="audit_interne"><span data-i18n="painAudit">Audit interne</span></label>
+              <label class="chip"><input type="checkbox" name="pain_points" value="nc_actions_correctives"><span data-i18n="painCorrective">Gestion des non-conformités et actions correctives</span></label>
+              <label class="chip"><input type="checkbox" name="pain_points" value="inspection_qhse"><span data-i18n="painInspection">Inspection QHSE</span></label>
+              <label class="chip"><input type="checkbox" name="pain_points" value="analyse_donnees"><span data-i18n="painAnalysis">Analyse des données et tendances</span></label>
+              <label class="chip"><input type="checkbox" name="pain_points" value="autre" id="painOther"><span data-i18n="other">Autres</span></label>
+            </div>
+            <input type="text" name="pain_other" id="painOtherText" maxlength="300" hidden data-i18n-ph="painPlaceholder" placeholder="Précisez : traçabilité, HACCP, sous-traitants…">
+          </fieldset>
+          <fieldset class="webinar-fieldset">
+            <legend data-i18n="timelineTitle">Quand souhaitez-vous avancer ?</legend>
+            <div class="chip-group">
+              <label class="chip"><input type="radio" name="timeline" value="maintenant"><span data-i18n="timelineNow">Dès maintenant</span></label>
+              <label class="chip"><input type="radio" name="timeline" value="3mois"><span data-i18n="timelineThreeMonths">Dans les 3 mois</span></label>
+              <label class="chip"><input type="radio" name="timeline" value="6mois"><span data-i18n="timelineSixMonths">Dans 3 à 6 mois</span></label>
+              <label class="chip"><input type="radio" name="timeline" value="info"><span data-i18n="timelineExplore">Je m&rsquo;informe</span></label>
+            </div>
+          </fieldset>
+          <label><span data-i18n="companyLabel">Entreprise / organisation</span><input type="text" name="company" maxlength="160" autocomplete="organization" required></label>
           <div class="webinar-form__row">
-            <label><span data-i18n="labelName">Nom et prénom</span><input type="text" name="fullName" maxlength="120" autocomplete="name" required></label>
+            <label><span data-i18n="labelSector">Secteur</span>
+              <select name="sector">
+                <option value="" data-i18n="choose">Choisir…</option>
+                <option value="agroalimentaire" data-i18n="sectorFood">Agroalimentaire</option>
+                <option value="agriculture" data-i18n="sectorAgriculture">Agriculture</option>
+                <option value="industrie" data-i18n="sectorManufacturing">Industrie</option>
+                <option value="distribution" data-i18n="sectorRetail">Distribution / Retail</option>
+                <option value="sante" data-i18n="sectorHealthPharma">Santé / Pharma</option>
+                <option value="education" data-i18n="sectorEducation">Éducation / Formation</option>
+                <option value="services" data-i18n="sectorConsulting">Services / Conseil</option>
+                <option value="tech" data-i18n="sectorTechDigital">Tech / Numérique</option>
+                <option value="public" data-i18n="sectorPublic">Secteur public / ONG</option>
+                <option value="autre" data-i18n="other">Autre</option>
+              </select>
+            </label>
+            <label><span data-i18n="roleFieldLabel">Votre fonction</span>
+              <select name="role">
+                <option value="" data-i18n="choose">Choisir…</option>
+                <option value="direction" data-i18n="roleDirection">Direction / Fondateur</option>
+                <option value="operations" data-i18n="roleOperationsProduction">Opérations / Production</option>
+                <option value="qualite" data-i18n="roleQuality">Qualité / Réglementaire</option>
+                <option value="rh" data-i18n="roleHR">RH / Formation</option>
+                <option value="commercial" data-i18n="roleSales">Ventes / Marketing</option>
+                <option value="it" data-i18n="roleIT">IT / Digital</option>
+                <option value="autre" data-i18n="other">Autre</option>
+              </select>
+            </label>
+          </div>
+          <div class="webinar-form__row">
+            <label><span data-i18n="companySizeTitle">Taille de l&rsquo;entreprise</span>
+              <select name="company_size">
+                <option value="" data-i18n="choose">Choisir…</option>
+                <option value="1-10" data-i18n="companySize1">1–10 personnes</option>
+                <option value="11-50" data-i18n="companySize2">11–50 personnes</option>
+                <option value="51-250" data-i18n="companySize3">51–250 personnes</option>
+                <option value="250+" data-i18n="companySize4">Plus de 250</option>
+              </select>
+            </label>
+            <label><span data-i18n="countryTitle">Pays</span>
+              <select name="country">
+                <option value="" data-i18n="choose">Choisir…</option>
+                <option value="TN" data-i18n="countryTunisia">Tunisie</option>
+                <option value="FR" data-i18n="countryFrance">France</option>
+                <option value="CH" data-i18n="countrySwitzerland">Suisse</option>
+                <option value="MA" data-i18n="countryMorocco">Maroc</option>
+                <option value="DZ" data-i18n="countryAlgeria">Algérie</option>
+                <option value="autre" data-i18n="other">Autre</option>
+              </select>
+            </label>
+          </div>
+          <div class="webinar-form__row">
+            <label><span data-i18n="labelName">Nom et prénom</span><input type="text" name="name" maxlength="120" autocomplete="name" required></label>
             <label><span data-i18n="labelEmail">Email professionnel</span><input type="email" name="email" maxlength="160" autocomplete="email" data-i18n-ph="emailPlaceholder" required></label>
           </div>
-          <label><span data-i18n="labelCompany">Entreprise</span><input type="text" name="company" maxlength="160" autocomplete="organization" required></label>
-          <div class="webinar-form__row">
-            <label><span data-i18n="labelRole">Votre rôle</span> <span data-i18n="optional">(optionnel)</span>
-              <select name="role">
-                <option value="" selected data-i18n="rolePlaceholder">Choisir…</option>
-                <option value="direction" data-i18n="roleDirection">Direction / Fondateur</option>
-                <option value="operations" data-i18n="roleOperations">Opérations</option>
-                <option value="quality" data-i18n="roleQuality">Qualité / Réglementaire</option>
-                <option value="sales" data-i18n="roleSales">Ventes / Marketing</option>
-                <option value="it" data-i18n="roleIT">IT / Digital</option>
-                <option value="other" data-i18n="roleOther">Autre</option>
-              </select>
-            </label>
-            <label><span data-i18n="labelSector">Votre secteur</span> <span data-i18n="optional">(optionnel)</span>
-              <select name="sector">
-                <option value="" selected data-i18n="sectorPlaceholder">Choisir…</option>
-                <option value="agro" data-i18n="sectorAgro">Agroalimentaire</option>
-                <option value="industry" data-i18n="sectorIndustry">Industrie</option>
-                <option value="distribution" data-i18n="sectorDistribution">Distribution / Retail</option>
-                <option value="services" data-i18n="sectorServices">Services</option>
-                <option value="tech" data-i18n="sectorTech">Tech / Numérique</option>
-                <option value="health" data-i18n="sectorHealth">Santé</option>
-                <option value="other" data-i18n="sectorOther">Autre</option>
-              </select>
-            </label>
-          </div>
           <fieldset class="webinar-fieldset">
-            <legend data-i18n="needsTitle">Si l&rsquo;IA pouvait vous alléger dès demain, ce serait sur quoi ?</legend>
+            <legend data-i18n="contactChannelTitle">Comment préférez-vous être contacté ?</legend>
             <div class="chip-group">
-              <label class="chip"><input type="checkbox" name="needs" value="reports"><span data-i18n="needReports">Rapports & administratif</span></label>
-              <label class="chip"><input type="checkbox" name="needs" value="quality"><span data-i18n="needQuality">Docs qualité & conformité</span></label>
-              <label class="chip"><input type="checkbox" name="needs" value="clients"><span data-i18n="needClients">Réponses aux clients</span></label>
-              <label class="chip"><input type="checkbox" name="needs" value="data"><span data-i18n="needData">Analyse de données</span></label>
-              <label class="chip"><input type="checkbox" name="needs" value="production"><span data-i18n="needProduction">Planification production</span></label>
-              <label class="chip"><input type="checkbox" name="needs" value="marketing"><span data-i18n="needMarketing">Contenus marketing</span></label>
-              <label class="chip"><input type="checkbox" name="needs" value="forecasts"><span data-i18n="needForecasts">Prévisions & budgets</span></label>
-              <label class="chip"><input type="checkbox" name="needs" value="other"><span data-i18n="needOther">Autre</span></label>
+              <label class="chip"><input type="radio" name="contact_channel" value="email" checked><span>Email</span></label>
+              <label class="chip"><input type="radio" name="contact_channel" value="appel"><span data-i18n="contactCall">Appel</span></label>
+              <label class="chip"><input type="radio" name="contact_channel" value="whatsapp"><span>WhatsApp</span></label>
             </div>
           </fieldset>
-          <label><span data-i18n="notesLabel">Quelque chose à préciser ?</span> <span data-i18n="optional">(optionnel)</span>
-            <textarea name="notes" rows="3" maxlength="1000" data-i18n-ph="notesPlaceholder"></textarea>
+          <label><span data-i18n="phoneTitle">Téléphone</span> <span class="webinar-form__optional" id="phoneOptional" data-i18n="optional">(optionnel)</span><span class="webinar-form__optional" id="phoneRequired" hidden>*</span><input type="tel" name="phone" maxlength="40" autocomplete="tel" data-i18n-ph="phonePlaceholder" placeholder="+216 XX XXX XXX"></label>
+          <fieldset class="webinar-fieldset">
+            <legend data-i18n="contactTimeTitle">Meilleur moment</legend>
+            <div class="chip-group">
+              <label class="chip"><input type="radio" name="slot" value="matin"><span data-i18n="timeMorning">Matin</span></label>
+              <label class="chip"><input type="radio" name="slot" value="apres-midi"><span data-i18n="timeAfternoon">Après-midi</span></label>
+              <label class="chip"><input type="radio" name="slot" value="indifferent"><span data-i18n="timeAny">Peu importe</span></label>
+            </div>
+          </fieldset>
+          <label><span data-i18n="questionTitle">Une question restée sans réponse pendant le webinaire ?</span> <span class="webinar-form__optional" data-i18n="optional">(optionnel)</span>
+            <textarea name="question" rows="3" maxlength="1000"></textarea>
           </label>
           <fieldset class="webinar-fieldset">
-            <legend data-i18n="paceTitle">À quel rythme ?</legend>
+            <legend data-i18n="ratingTitle">Le webinaire vous a-t-il été utile ?</legend>
             <div class="chip-group">
-              <label class="chip"><input type="radio" name="pace" value="exploring"><span data-i18n="paceExploring">J&rsquo;explore</span></label>
-              <label class="chip"><input type="radio" name="pace" value="three_months"><span data-i18n="paceThreeMonths">Sous 3 mois</span></label>
-              <label class="chip"><input type="radio" name="pace" value="quarter"><span data-i18n="paceQuarter">Ce trimestre</span></label>
-              <label class="chip"><input type="radio" name="pace" value="now"><span data-i18n="paceNow">Maintenant</span></label>
+              <label class="chip"><input type="radio" name="webinar_rating" value="1"><span>1</span></label>
+              <label class="chip"><input type="radio" name="webinar_rating" value="2"><span>2</span></label>
+              <label class="chip"><input type="radio" name="webinar_rating" value="3"><span>3</span></label>
+              <label class="chip"><input type="radio" name="webinar_rating" value="4"><span>4</span></label>
+              <label class="chip"><input type="radio" name="webinar_rating" value="5"><span>5</span></label>
             </div>
           </fieldset>
-          <fieldset class="webinar-fieldset">
-            <legend data-i18n="helpTitle">Comment on peut vous aider ?</legend>
-            <div class="chip-group">
-              <label class="chip"><input type="checkbox" name="help" value="demo"><span data-i18n="helpDemo">Accès démo de nos outils</span></label>
-              <label class="chip"><input type="checkbox" name="help" value="training"><span data-i18n="helpTraining">Formation</span></label>
-              <label class="chip"><input type="checkbox" name="help" value="reporting"><span data-i18n="helpReporting">Reporting</span></label>
-              <label class="chip"><input type="checkbox" name="help" value="regulatory"><span data-i18n="helpRegulatory">Veille réglementaire</span></label>
-            </div>
-          </fieldset>
-          <fieldset class="webinar-fieldset">
-            <legend data-i18n="aiTrainingTitle">Intéressé par nos offres de formation diagnostique sur l'IA ?</legend>
-            <div class="chip-group">
-              <label class="chip"><input type="radio" name="ai_training" value="yes"><span data-i18n="aiTrainingYes">Oui</span></label>
-              <label class="chip"><input type="radio" name="ai_training" value="no"><span data-i18n="aiTrainingNo">Non</span></label>
-            </div>
-          </fieldset>
-          <label class="webinar-consent"><input type="checkbox" name="consent" required><span data-i18n="consent">J&rsquo;accepte que SnapReport conserve ces informations pour me recontacter.</span></label>
+          <label class="webinar-consent"><input type="checkbox" name="consent" required><span data-i18n="consent">J&rsquo;accepte que SnapReport utilise ces informations pour me recontacter au sujet de ma demande.</span></label>
+          <label class="webinar-consent"><input type="checkbox" name="newsletter" value="oui"><span data-i18n="newsletter">M&rsquo;informer des prochains webinaires et nouveautés (1 email par mois maximum).</span></label>
           <div class="hp-field" aria-hidden="true"><label>Site web<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
           <button class="webinar-form__submit" type="submit"><span data-i18n="submit">Envoyer mes réponses</span> <span aria-hidden="true">↗</span></button>
           <p class="webinar-form__status" aria-live="polite"></p>
@@ -216,6 +315,6 @@
   </footer>
 
   <script src="js/landing.js?v=20261117-1"></script>
-  <script src="js/webinar-form.js?v=20261117-2" defer></script>
+  <script src="js/webinar-form.js?v=20261117-3" defer></script>
 </body>
 </html>
