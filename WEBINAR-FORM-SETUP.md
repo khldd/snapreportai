@@ -1,6 +1,6 @@
 # Webinar live-input form — setup guide
 
-The form lives on the landing page at **`snapreportai.com/#ai-input`** (section "04 / Your input"). French by default, EN toggle top of the section. Answers go to Supabase with bank-safe rules: nobody in the world can read the data except you, and the form can be closed in one command at any moment.
+The form lives on the dedicated page **`snapreportai.com/clients-form.html`**, linked from the main site. French by default, EN toggle at the top of the form. Answers go to Supabase with bank-safe rules: nobody in the world can read the data except you, and the form can be closed in one command at any moment.
 
 ## 1. Create the Supabase project (~3 min)
 
@@ -13,6 +13,8 @@ The form lives on the landing page at **`snapreportai.com/#ai-input`** (section 
 1. In the dashboard: **SQL Editor** → **New query**.
 2. Paste the whole content of **`supabase-schema.sql`** (repo root) → **Run**.
 3. Verify: it should end with no errors. Run `select public.webinar_form_enabled();` → should return `true`.
+
+If you already ran an earlier version of this script, run the updated script again. It adds the `help` and `ai_training` columns and updates the submission function without deleting existing leads.
 
 ## 3. Connect the site (2 min)
 
@@ -27,7 +29,7 @@ const SUPABASE_ANON_KEY = "eyJ...long-key...";
 
 ## 4. Test before the webinar
 
-Open `landing.html` in a browser, fill the form, submit. Then check **Table Editor → webinar_leads** — the row is there.
+Open `clients-form.html` in a browser, fill the form, submit. Then check **Table Editor → webinar_leads** — the row is there.
 
 Test the guards too if you want:
 - Submitting twice with the same email → second submit shows success but creates **no duplicate row**.
@@ -36,7 +38,7 @@ Test the guards too if you want:
 
 ## 5. Publish
 
-Commit and push the `deploy` submodule (GitHub Pages picks it up in ~1 min). The audience goes to **`snapreportai.com/#ai-input`** — put that exact URL on the webinar screen.
+Commit and push the changes; Vercel serves the `deploy/` directory. The audience goes to **`snapreportai.com/clients-form.html`** — put that exact URL on the webinar screen.
 
 ## 6. During / after the webinar
 
@@ -57,9 +59,8 @@ Commit and push the `deploy` submodule (GitHub Pages picks it up in ~1 min). The
 
 | File | Role |
 |---|---|
-| `supabase-schema.sql` | One-shot database setup (tables, RLS, functions, policies) |
+| `supabase-schema.sql` | Idempotent database setup and upgrade (tables, RLS, functions, policies) |
 | `js\webinar-form.js` + `deploy\js\webinar-form.js` | Form logic + FR/EN dictionary (keep both copies identical) |
-| `css\landing.css` + `deploy\css\landing.css` | Section styles (`#ai-input` block at the end) |
-| `landing.html` / `deploy\index.html` | The `#ai-input` section between Capabilities and Team |
+| `clients-form.html` / `deploy\clients-form.html` | Dedicated FR/EN webinar form page |
 
 When you migrate to your self-hosted database later: `pg_dump` the two tables, restore on your server, and point the form's `SUPABASE_URL` at your own API.

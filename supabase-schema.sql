@@ -47,10 +47,40 @@ create table if not exists public.webinar_leads (
   role       text check (role is null or role in ('direction','operations','quality','sales','it','other')),
   sector     text check (sector is null or sector in ('agro','industry','distribution','services','tech','health','other')),
   needs      text[] check (needs is null or needs <@ array['reports','quality','clients','data','production','marketing','forecasts','other']::text[]),
+  help       text[] check (help is null or help <@ array['demo','training','reporting','regulatory']::text[]),
+  ai_training text check (ai_training is null or ai_training in ('yes','no')),
   pace       text check (pace is null or pace in ('exploring','three_months','quarter','now')),
   notes      text,
   consent    boolean not null check (consent = true)   -- nothing is stored without consent
 );
+
+-- Add the latest form fields when upgrading an existing webinar_leads table.
+alter table public.webinar_leads add column if not exists help text[];
+alter table public.webinar_leads add column if not exists ai_training text;
+
+do $$
+begin
+  if not exists (
+    select 1 from pg_constraint
+    where conrelid = 'public.webinar_leads'::regclass
+      and conname = 'webinar_leads_help_check'
+  ) then
+    alter table public.webinar_leads
+      add constraint webinar_leads_help_check
+      check (help is null or help <@ array['demo','training','reporting','regulatory']::text[]);
+  end if;
+
+  if not exists (
+    select 1 from pg_constraint
+    where conrelid = 'public.webinar_leads'::regclass
+      and conname = 'webinar_leads_ai_training_check'
+  ) then
+    alter table public.webinar_leads
+      add constraint webinar_leads_ai_training_check
+      check (ai_training is null or ai_training in ('yes','no'));
+  end if;
+end;
+$$;
 
 -- One answer per email per campaign (repeat submits are idempotent, not duplicated).
 create unique index if not exists webinar_leads_source_email_key
@@ -99,6 +129,8 @@ declare
   v_role     text;
   v_sector   text;
   v_needs    text[];
+  v_help      text[];
+  v_ai_training text;
   v_pace     text;
   v_notes    text;
   v_lang     text;
@@ -123,11 +155,11 @@ begin
   end if;
 
   -- (3) Required text fields, trimmed, control chars stripped, length-capped.
-  v_name    := left(btrim(regexp_replace(coalesce(payload->>'full_name', ''), '[[:cntrl:]]', '', 'g'), E'\\s+'), 120);
+  v_name    := left(btrim(regexp_replace(coalesce(payload->>'full_name', ''), '[[:cntrl:]]', '', 'g')), 120);
   v_email   := left(btrim(coalesce(payload->>'email', '')), 160);
   v_company := left(btrim(coalesce(payload->>'company', '')), 160);
 
-  if v_name < 2 or v_company < 2 then
+  if char_length(v_name) < 2 or char_length(v_company) < 2 then
     return jsonb_build_object('ok', false, 'error', 'invalid');
   end if;
 
@@ -165,17 +197,41 @@ begin
   if v_needs is not null then
     if exists (
       select 1 from unnest(v_needs) as n
-      where n not in ('reports','quality','clients','data','production','marketing','forecasts','other')
+      where n is null or n not in ('reports','quality','clients','data','production','marketing','forecasts','other')
     ) then
       return jsonb_build_object('ok', false, 'error', 'invalid');
     end if;
   end if;
 
-  -- (6) Free-text notes: optional, capped, null bytes removed.
-  v_notes := nullif(left(btrim(replace(coalesce(payload->>'notes', ''), chr(0), '')), 1000), '');
+  -- (6) Requested help: a JSON array restricted to known options.
+  if jsonb_typeof(coalesce(payload->'help', '[]'::jsonb)) <> 'array'
+     or jsonb_array_length(coalesce(payload->'help', '[]'::jsonb)) > 4 then
+    return jsonb_build_object('ok', false, 'error', 'invalid');
+  end if;
+
+  select array_agg(distinct left(btrim(value), 40))
+    into v_help
+    from jsonb_array_elements_text(coalesce(payload->'help', '[]'::jsonb)) as value;
+
+  if v_help is not null then
+    if exists (
+      select 1 from unnest(v_help) as h
+      where h is null or h not in ('demo','training','reporting','regulatory')
+    ) then
+      return jsonb_build_object('ok', false, 'error', 'invalid');
+    end if;
+  end if;
+
+  v_ai_training := nullif(btrim(coalesce(payload->>'ai_training', '')), '');
+  if v_ai_training is not null and v_ai_training not in ('yes','no') then
+    return jsonb_build_object('ok', false, 'error', 'invalid');
+  end if;
+
+  -- (7) Free-text notes: optional and capped.
+  v_notes := nullif(left(btrim(coalesce(payload->>'notes', '')), 1000), '');
   if v_notes = '' then v_notes := null; end if;
 
-  -- (7) Language + consent (nothing is stored without it).
+  -- (8) Language + consent (nothing is stored without it).
   v_lang := coalesce(nullif(btrim(coalesce(payload->>'lang', '')), ''), 'fr');
   if v_lang not in ('fr','en') then
     return jsonb_build_object('ok', false, 'error', 'invalid');
@@ -186,7 +242,7 @@ begin
     return jsonb_build_object('ok', false, 'error', 'invalid');
   end if;
 
-  -- (8) Light rate-limit: same email can't spam the table.
+  -- (9) Light rate-limit: same email can't spam the table.
   if exists (
     select 1 from public.webinar_leads
     where email_norm = lower(v_email)
@@ -195,11 +251,11 @@ begin
     return jsonb_build_object('ok', false, 'error', 'rate_limited');
   end if;
 
-  -- (9) Insert. The server decides the campaign tag — never the client.
+  -- (10) Insert. The server decides the campaign tag — never the client.
   insert into public.webinar_leads
-    (source, lang, full_name, email, company, role, sector, needs, pace, notes, consent)
+    (source, lang, full_name, email, company, role, sector, needs, help, ai_training, pace, notes, consent)
   values
-    (v_source, v_lang, v_name, v_email, v_company, v_role, v_sector, v_needs, v_pace, v_notes, true);
+    (v_source, v_lang, v_name, v_email, v_company, v_role, v_sector, v_needs, v_help, v_ai_training, v_pace, v_notes, true);
 
   return jsonb_build_object('ok', true);
 
@@ -229,3 +285,5 @@ grant  execute on function public.webinar_form_enabled() to anon;
 --   Read the leads:  Table Editor → webinar_leads (or Export CSV)
 --   Sanity check:    select public.webinar_form_enabled();   → should print true
 -- ----------------------------------------------------------------------------
+
+notify pgrst, 'reload schema';

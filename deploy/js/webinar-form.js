@@ -81,6 +81,7 @@
       errInvalid: "Merci de vérifier vos réponses, puis de renvoyer.",
       errFast: "Un instant — relisez vos réponses, puis renvoyez.",
       errNetwork: "Connexion impossible. Réessayez, ou écrivez-nous : snapreportai99@gmail.com",
+      errRejected: "Impossible d’enregistrer vos réponses. Réessayez, ou écrivez-nous : snapreportai99@gmail.com",
       errClosed: "Le formulaire est fermé. Écrivez-nous : snapreportai99@gmail.com",
       successTitle: "Bien reçu. Merci !",
       successBody: "Vos réponses sont arrivées directement à l\u2019équipe SnapReport. On vous recontacte très vite — et si le sujet est urgent, écrivez à snapreportai99@gmail.com.",
@@ -151,6 +152,7 @@
       errInvalid: "Please check your answers, then send again.",
       errFast: "One moment — review your answers, then send again.",
       errNetwork: "Connection failed. Please retry, or email us: snapreportai99@gmail.com",
+      errRejected: "We couldn’t save your answers. Please retry, or email us: snapreportai99@gmail.com",
       errClosed: "The form is closed. Write to us: snapreportai99@gmail.com",
       successTitle: "Got it. Thank you!",
       successBody: "Your answers went straight to the SnapReport team. We\u2019ll get back to you soon — and if it\u2019s urgent, write to snapreportai99@gmail.com.",
@@ -304,7 +306,7 @@
           Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify({ payload })
       });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       result = await response.json();
@@ -332,6 +334,10 @@
     if (result && result.error === "rate_limited") {
       setStatus(I18N[currentLang].successBody, true);
       showSuccess();
+      return;
+    }
+    if (result && result.error === "rejected") {
+      setStatus(I18N[currentLang].errRejected, true);
       return;
     }
     setStatus(I18N[currentLang].errInvalid, true);
