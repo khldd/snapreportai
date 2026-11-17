@@ -84,7 +84,7 @@
           <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
         </div>
         <p class="eyebrow" data-reveal data-i18n="eyebrow">Webinaire en direct / Votre avis compte</p>
-        <h2 data-reveal data-i18n="heading">Dites-nous où l&rsquo;IA vous <em>allégerait</em>.</h2>
+        <h2 data-reveal data-i18n="heading">Parlons de vos enjeux QHSE</h2>
         <p class="webinar-lede" data-reveal data-i18n="lede">Quelques minutes pour nous dire où l&rsquo;IA pourrait vous aider. Vos réponses arrivent directement à l&rsquo;équipe produit.</p>
         <ul class="webinar-points" data-reveal>
           <li><span data-i18n="point1t">Quelques minutes</span><p data-i18n="point1d">Un court formulaire, sans inscription.</p></li>
@@ -96,7 +96,7 @@
         <span class="webinar-card__eyebrow" data-i18n="cardEyebrow">Formulaire en direct</span>
         <form class="webinar-form" id="webinarForm">
           <fieldset class="webinar-fieldset" data-req="interest">
-            <legend data-i18n="interestTitle">Qu&rsquo;est-ce qui vous intéresse ?</legend>
+            <legend data-i18n="interestTitle">Quel type de service vous intéresse ?</legend>
             <div class="chip-group">
               <label class="chip"><input type="checkbox" name="interest" value="demo" data-reveal="demoDetails"><span data-i18n="interestDemo">Une démo de nos outils</span></label>
               <label class="chip"><input type="checkbox" name="interest" value="formation"><span data-i18n="interestTraining">Une formation IA</span></label>
@@ -126,7 +126,7 @@
             </fieldset>
           </fieldset>
           <fieldset class="webinar-fieldset">
-            <legend data-i18n="painTitle">Dans votre management QHSE, où l&rsquo;IA vous ferait-elle gagner le plus de temps ?</legend>
+            <legend data-i18n="painTitle">1. Sur quelles tâches QHSE l'IA pourrait-elle vous permettre de gagner le plus de temps</legend>
             <div class="chip-group">
               <label class="chip"><input type="checkbox" name="pain_points" value="veille_reglementaire"><span data-i18n="painRegulatory">Veille réglementaire</span></label>
               <label class="chip"><input type="checkbox" name="pain_points" value="audit_interne"><span data-i18n="painAudit">Audit interne</span></label>
@@ -137,27 +137,7 @@
             </div>
             <input type="text" name="pain_other" id="painOtherText" maxlength="300" hidden data-i18n-ph="painPlaceholder" placeholder="Précisez : traçabilité, HACCP, sous-traitants…">
           </fieldset>
-          <fieldset class="webinar-fieldset">
-            <legend data-i18n="timelineTitle">Quand souhaitez-vous avancer ?</legend>
-            <div class="chip-group">
-              <label class="chip"><input type="radio" name="timeline" value="maintenant"><span data-i18n="timelineNow">Dès maintenant</span></label>
-              <label class="chip"><input type="radio" name="timeline" value="3mois"><span data-i18n="timelineThreeMonths">Dans les 3 mois</span></label>
-              <label class="chip"><input type="radio" name="timeline" value="6mois"><span data-i18n="timelineSixMonths">Dans 3 à 6 mois</span></label>
-              <label class="chip"><input type="radio" name="timeline" value="info"><span data-i18n="timelineExplore">Je m&rsquo;informe</span></label>
-            </div>
-          </fieldset>
           <label><span data-i18n="companyLabel">Entreprise / organisation</span><input type="text" name="company" maxlength="160" autocomplete="organization" required></label>
-          <label><span data-i18n="countryTitle">Pays</span>
-            <select name="country">
-              <option value="" data-i18n="choose">Choisir…</option>
-              <option value="TN" data-i18n="countryTunisia">Tunisie</option>
-              <option value="FR" data-i18n="countryFrance">France</option>
-              <option value="CH" data-i18n="countrySwitzerland">Suisse</option>
-              <option value="MA" data-i18n="countryMorocco">Maroc</option>
-              <option value="DZ" data-i18n="countryAlgeria">Algérie</option>
-              <option value="autre" data-i18n="other">Autre</option>
-            </select>
-          </label>
           <div class="webinar-form__row">
             <label><span data-i18n="labelName">Nom et prénom</span><input type="text" name="name" maxlength="120" autocomplete="name" required></label>
             <label><span data-i18n="labelEmail">Email professionnel</span><input type="email" name="email" maxlength="160" autocomplete="email" data-i18n-ph="emailPlaceholder" required></label>
