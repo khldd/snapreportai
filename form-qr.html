@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f7fc">
+  <meta name="robots" content="noindex, nofollow">
+  <title>SnapReport | Form QR</title>
+  <link rel="icon" href="assets/snapreport-symbol-blue.svg" type="image/svg+xml">
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      min-width: 320px;
+      min-height: 100vh;
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      margin: 0;
+      padding: clamp(24px, 5vw, 72px);
+      color: #07132f;
+      background: #f5f7fc;
+      font-family: "Segoe UI", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    main {
+      width: min(1120px, 100%);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 520px);
+      align-items: center;
+      gap: clamp(36px, 8vw, 112px);
+    }
+
+    h1 {
+      max-width: 8ch;
+      margin: 0;
+      color: #0334ea;
+      font-size: clamp(42px, 6.4vw, 82px);
+      font-weight: 800;
+      line-height: .98;
+      letter-spacing: -.065em;
+    }
+
+    .qr-frame {
+      width: min(100%, 58svh, 520px);
+      justify-self: center;
+      padding: clamp(16px, 2.2vw, 28px);
+      border: 1px solid #dce1ec;
+      border-radius: 24px;
+      background: #fff;
+      box-shadow: 0 24px 80px rgba(7, 19, 47, .09);
+    }
+
+    .qr-frame img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    @media (max-width: 720px) {
+      body { padding: 28px 20px; }
+
+      main {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        justify-items: center;
+      }
+
+      h1 {
+        max-width: 12ch;
+        font-size: clamp(38px, 10vw, 54px);
+        text-align: center;
+      }
+
+      .qr-frame { width: min(78vw, 52svh, 420px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <main aria-labelledby="qr-title">
+    <h1 id="qr-title">This is the QR code to our form.</h1>
+    <div class="qr-frame">
+      <img src="assets/clients-form-qr.svg" alt="QR code for the SnapReport form">
+    </div>
+  </main>
+</body>
+</html>
